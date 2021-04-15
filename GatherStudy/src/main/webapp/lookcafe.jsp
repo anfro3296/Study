@@ -144,11 +144,6 @@
         </div>
                 <!--=== Illustration v2 ===-->
         <div class="illustration-v2 margin-bottom-60">
-            <div class="customNavigation margin-bottom-25">
-                <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
-                <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
-            </div>
-
             <ul class="list-inline owl-slider">
                 <li class="item">
                     <div class="product-img">
