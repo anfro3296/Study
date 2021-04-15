@@ -1,0 +1,119 @@
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('moimplus', '모임플러스 강남역 스터디룸', 'moimplus', '서울특별시 서초구 사임당로 173 모임플러스', '02-2421-2195', '9시~23시', '없음', './assets/img/cafeimg/moimplus/1.jpg', './assets/img/cafeimg/moimplus/2.jpg', './assets/img/cafeimg/moimplus/3.jpg', '#강남역스터디룸', '#강남스터디룸', '#강남역회의실', '#강남역강의장', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '더 넓은 공간,'||chr(13)||'더 저렴하게! 강남역 모임 플러스' where cafe_id='moimplus';
+
+update cafe set cafe_spaceintroduction = '더 넓은 공간, 더 저렴하게!'||chr(13)||chr(13)||
+'모임플러스는!'||chr(13)||
+'서초구 우성아파트 앞 사거리에 위치한공간으로 강남역 5번 출구에서 도보로 5분거리입니다.'||chr(13)||chr(13)||
+'1. 공간이 넓습니다.'||chr(13)||chr(13)||
+'2. 전면 유리창으로 되어 있습니다.'||chr(13)||chr(13)||
+'3. 강의실 경우, 파트라 책상/의자 설치되어 있으며 책상 폭이 넓습니다.'||chr(13)||chr(13)||
+'[세미나, 회의, 스터디, 모임, 강의]는 모임플러스에서 시작하세요'||chr(13)||chr(13)||
+'항상 감사드립니다^^' where cafe_id='moimplus';
+
+update cafe set cafe_infrainformation = '1. 강의실마다 독립 냉난방 화이트보드 Wifi가 기본 설치되어 있습니다.'||chr(13)||chr(13)||
+'2. 사전에 말씀해주시면 빔, 노트북, 스피커 등 설치가능합니다(유료)' where cafe_id='moimplus';
+
+update cafe set cafe_note = '1. 특별한 주의사항이 없습니다'||chr(13)||chr(13)||
+'2. 요청사항이나 불편한 부분이 있으면 바로 말씀해주세요' where cafe_id='moimplus';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='moimplus';
+
+=======================================================================================================================================
+
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('superstart', '슈퍼스타트 강남점', 'superstart', '서울특별시 강남구 테헤란로 101 이즈타워 지하 3층 슈퍼스타트', '02-2145-2054', '9시~21시', '없음', './assets/img/cafeimg/superstart/1.jpg', './assets/img/cafeimg/superstart/2.jpg', './assets/img/cafeimg/superstart/3.jpg', '#강남역', '#스터디룸', '#강남', '#스터디카페', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '세미나/회의/스터디/모임'||chr(13)||'승무원/강의/모임전문공간' where cafe_id='superstart';
+
+update cafe set cafe_spaceintroduction = '- 스터디, 회의, 미팅, 조모임, 면접준비, 강의 등 여러명이 모여서 할 수 있는 코웍 플레이스 -'||chr(13)||chr(13)||
+'* 강남역 11번 출구와 바로 연결!!'||chr(13)||
+'(출구 밖으로 나가지 않고 출구 바로 옆 통로로 들어와서 한 층만 내려오시면 됩니다.)'||chr(13)||
+'* 승무원 스터디용 탈의실 및 전면거울 빌트인 룸 보유'||chr(13)||
+'* 26개의 다양한 목적과 크기의 룸보유'||chr(13)||
+'* 다양한 먹거리 판매'||chr(13)||
+'* 최신시설 보유'||chr(13)||chr(13)||
+'공통 사항-'||chr(13)||chr(13)||
+'1. 고급 머신에서 추출하는 드립 커피를 무제한 제공'||chr(13)||chr(13)||
+'2. 전 구간 GIGA WIFI 제공'||chr(13)||chr(13)||
+'3. 8인 이하룸에는 기본 27인치 일체형 PC제공 (외부 모니터로도 활용 가능!!)' where cafe_id='superstart';
+
+update cafe set cafe_infrainformation = '- 평일/주말 정상 운영시간은 09~23시 입니다. 구정 추석 등의 장기 연휴의 경우 사전 공지 후 정상 운영시간 보다 조기 폐점 할 수 있습니다.'||chr(13)||
+'- 결재는 사전 결재 및 후불 결재가 가능합니다.'||chr(13)||
+'- 별도의 공간을(탈의실/짐수납공간) 사용이 필요하실 경우 예약시 요청사항에 남겨주셔야 합니다.'||chr(13)||
+'- 예약 당일 오셔서 카운터에 예약자분 성함을 말씀해 주시면 배정된 방 번호를 알려 드립니다.'||chr(13)||
+'- 평일/주말 정상 운영시간은 09~23시 입니다. 구정 추석 등의 장기 연휴의 경우 사전 공지 후 정상 운영시간 보다 조기 폐점 할 수 있습니다.' where cafe_id='superstart';
+
+update cafe set cafe_note = '- 간혹 시스템상 중복 예약으로 인해 결재 완료 후에도 부득이하게 취소되야 될 경우가 있습니다. 이 경우 바로 연락드리며, 100% 환불해 드립니다.'||chr(13)||
+'- 단순변심으로 인한 예약 변경 및 취소가 불가능함으로 해당 사항 꼭 확인 후 결제를 진행해주세요.' where cafe_id='superstart';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='superstart';
+
+
+=======================================================================================================================================
+
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('kaystudy', '카이스터디 카페', 'kaystudy', '서울특별시 서초구 강남대로 69길 11 3층 카이스터디 카페', '02-2539-1594', '0시~24시', '없음', './assets/img/cafeimg/kaystudy/1.jpg', './assets/img/cafeimg/kaystudy/2.jpg', './assets/img/cafeimg/kaystudy/3.jpg', '#강남역스터디', '#강남역스터디룸', '#강남역과외', '#강남역모임', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '강남역10번출구, 24/연중무휴'||chr(13)||'스터디카페' where cafe_id='kaystudy';
+
+update cafe set cafe_spaceintroduction = '24시 365일 이용가능한 유럽풍 스타일의 스터디카페 카이스터디 입니다.'||chr(13)||
+'11월 오픈하여 분위기 좋은 곳에서 다양한 모임과 스터디 공간을 이용하실수 있습니다.'||chr(13)||
+'4인-6인이 사용할수 있는 스터디룸은 모니터(hdmi케이블보유), 냉난방기, 공기공조시설을 별도로 갖추고 있습니다.' where cafe_id='kaystudy';
+
+update cafe set cafe_infrainformation = '- 화이트보드'||chr(13)||
+'- 34인치 모니터'||chr(13)||
+'- 2018년.11월 정식오픈'||chr(13)||
+'- 고급 원두커피 및 다양한 티백 제공'||chr(13)||
+'- 간단하게 즐길수 있는 음료, 과자 자판기 사용가능'||chr(13)||
+'- 최신식 복합기 제공 (프린터, 복사 가능)'||chr(13)||
+'- 넉넉한 공간룸' where cafe_id='kaystudy';
+
+update cafe set cafe_note = '- 스터디룸 사전예약 필수 (입금 확인후 출입카코드 전송됨)'||chr(13)||
+'- 환불규정 : 당일 변경.환불불가. 전날 6시 이후 취소 및 환불불가' where cafe_id='kaystudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='kaystudy';
+
+=======================================================================================================================================
+
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('sgstudy', 'SG 스터디룸 신관(강남)', 'sgstudy', '서울특별시 서초구 서초대로 78길 26 4층(서초동, 선인빌딩)', '02-2989-9841', '9시~23시', '없음', './assets/img/cafeimg/sgstudy/1.jpg', './assets/img/cafeimg/sgstudy/2.jpg', './assets/img/cafeimg/sgstudy/3.jpg', '#SG스터디룸', '#강남역스터디룸', '#강남스터디룸', '#세미나', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '강남역 5번출구 도보 30초'||chr(13)||'스터디룸/강의실' where cafe_id='sgstudy';
+
+update cafe set cafe_spaceintroduction = '- 강의실(커뮤니티룸) -'||chr(13)||
+'화이트보드 / PC or 노트북 (무료제공)'||chr(13)||
+'* 6~9인실은 빔프로젝터, 스크린 제공'||chr(13)||
+'* SG 스터디카페 : 커피/차/스낵 및 음료'||chr(13)||
+'* 흑백 출력/복사기 : A4단면1장기준 50원 (복사카드 사용)' where cafe_id='sgstudy';
+
+update cafe set cafe_infrainformation = '- 화이트보드'||chr(13)||
+'- 34인치 모니터'||chr(13)||
+'- 2020년.5월 정식오픈'||chr(13)||
+'- 고급 원두커피 및 다양한 티백 제공'||chr(13)||
+'- 간단하게 즐길수 있는 음료, 과자 자판기 사용가능'||chr(13)||
+'- 최신식 복합기 제공 (프린터, 복사 가능)'||chr(13)||
+'- 넉넉한 공간룸' where cafe_id='sgstudy';
+
+update cafe set cafe_note = '1.룸 넘버는 이용 10분전 데스크에서 확인가능합니다.'||chr(13)||
+'2.이용 시작시간은 매시각 정각,30분으로 최소 이용시간은 1시간입니다.'||chr(13)||
+'3.저녁 10시이후 예약요청건은 익일 오전 9시이후 예약 승인처리됩니다.'||chr(13)||
+'4.룸 배정 시, 창가자리등은 예약 인원,시간,순서등에 따라 배정되오니 양해부탁드립니다..'||chr(13)||
+'5.전화문의는 불가하오니 양해부탁드립니다.' where cafe_id='sgstudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='sgstudy';
+
+

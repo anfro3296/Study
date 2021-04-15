@@ -1,0 +1,25 @@
+var CubePortfolio = function () {
+    return {
+
+        initCubePortfolio3Col: function () {
+        	jQuery(document).ready( function() {
+			    jQuery('#grid-container').cubeportfolio({
+			        gridContainer.cubeportfolio({
+				        mediaQueries: [{
+				            width: 800,
+				            cols: 3
+				        }, {
+				            width: 500,
+				            cols: 2
+				        }, {
+				            width: 320,
+				            cols: 1
+				        }]
+				    });
+			    });
+			});
+        }
+        
+    };
+}();
+

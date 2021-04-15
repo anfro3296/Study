@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cafe">
+ 
+ <!--1.글목록보기  -->
+<select id="list" resultType="cafe" parameterType="String">
+  select * from cafe where cafe_id = #{id}
+</select>
+
+ <!--2.회원가입하기  -->
+<insert id="register" parameterType="mem">
+  insert into mem values(#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, sysdate)
+</insert>
+
+
+</mapper>

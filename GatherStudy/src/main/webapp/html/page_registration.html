@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="ko"> <!--<![endif]-->  
+<head>
+    <title>회원가입</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/plugins/animate.css">
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v2.css">    
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    
+</head> 
+
+<body>
+<!-- 초기화  -->
+<form onsubmit="return checkz()" method="post" action="register.do" >
+<!--=== Content Part ===-->    
+<div class="container">
+    <!--Reg Block-->
+    
+    <div class="reg-block">
+        <div class="reg-block-header">
+        	<center>
+        	<a class="logo" href="homepage.html">
+                <img src="./logoimg/MainLogo.png" alt="Logo" width="200">
+            </a>
+            </center>
+            <h2>회원가입</h2>
+            <p> 이미 가입 하셨나요? <a class="color-green" href="page_login.html">로그인</a> 을 클릭 하여 계정에 로그인하십시오.</p>
+        </div>
+        
+			<!-- 아이디 -->
+	        <div class="input-group margin-bottom-20">
+	            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	            <input type="text" id="mem_id" name="mem_id" class="form-control" placeholder="아이디">
+	        </div>
+	        <!-- 비밀번호 -->s
+	        <div class="input-group margin-bottom-20">
+	            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+	            <input type="password" id="pwd1" name="mem_pwd"  class="form-control" placeholder="비밀번호">
+	        </div>
+	        <!-- 비밀번호 재입력 -->
+	        <div class="input-group margin-bottom-20">
+	            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+	            <input type="password" id="pwd2" name="mem_pwd1" class="form-control" placeholder="비밀번호 재입력">
+	        </div>
+	        <!-- 비밀번호 확인문구 -->
+	        <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+			<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+			<!-- 이름 -->
+			<div class="input-group margin-bottom-20">
+	            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	            <input type="text" id="mem_name" name="mem_name" class="form-control" placeholder="이름">
+	        </div>
+	        <!-- 이메일 -->
+	         <div class="input-group margin-bottom-20">
+	            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+	            <input type="text" id="mem_email" name="mem_email" class="form-control" placeholder="이메일">
+	        </div>
+	        <!-- 전화번호 -->
+	        <div class="input-group margin-bottom-30">
+	            <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
+	            <input type="text" id="mem_phone" name="mem_phone" class="form-control" placeholder="전화번호">
+	        </div>
+        <hr>
+
+        <div class="checkbox">            
+            <label>
+                <input type="checkbox"> 
+                <a target="_blank" href="page_terms.html">이용약관</a>을 읽었습니다.
+            </label>
+        </div>
+                                
+       <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn-u btn-block">가입하기</button>                
+            </div>
+            <div class="col-md-4">
+                <button type="reset" class="btn-u btn-block">초기화</button>                
+            </div>
+        </div>
+    </div>
+    <!--End Reg Block-->
+</div><!--/container-->
+</form>
+<!--=== End Content Part ===-->
+
+<!-- JS Global Compulsory -->           
+<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+<!-- JS Page Level -->           
+<script type="text/javascript" src="assets/js/app.js"></script>
+<script type="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<!-- 비밀번호 유효성 검사 -->
+<script type="text/javascript" src="./Js_Set/pw_check.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        });
+</script>
+<!-- 회원가입 뒷배경 슬라이드쇼 -->
+<script type="text/javascript">
+    $.backstretch([
+      "assets/img/bg/19.jpg",
+      "assets/img/bg/18.jpg",
+      ], {
+        fade: 1000,
+        duration: 7000
+    });
+</script>
+
+<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>
+    <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
+
+</body>
+</html> 
