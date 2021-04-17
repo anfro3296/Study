@@ -15,8 +15,6 @@
  	</typeAliases>	
  
  	<mappers>
- 		<mapper resource="com/cafe/dao/CafeMapper.xml"/>
- 		<mapper resource="com/reservation/dao/ReservationMapper.xml"/>
- 		 <mapper resource="com/members/dao/MembersMapper.xml"/>
+		<mapper resource="mapper/**/*Mapper.xml"/>
  	</mappers>
  </configuration>

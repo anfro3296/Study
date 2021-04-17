@@ -3,7 +3,7 @@
     var gridContainer = $('#grid-container'),
         filtersContainer = $('#filters-container');
 
-	// init cubeportfolio
+    // init cubeportfolio
     gridContainer.cubeportfolio({
 
         defaultFilter: '*',
@@ -42,7 +42,7 @@
         singlePageInlinePosition: 'below',
         singlePageInlineShowCounter: true,
         singlePageInlineInFocus: true,
-        singlePageInlineCallback: function(url, element) {
+        singlePageInlineCallback: function (url, element) {
 
             // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
             var t = this;
@@ -53,14 +53,14 @@
                 dataType: 'html',
                 timeout: 5000
             })
-            .done(function(result) {
+                .done(function (result) {
 
-                t.updateSinglePageInline(result);
+                    t.updateSinglePageInline(result);
 
-            })
-            .fail(function() {
-                t.updateSinglePageInline("Error! Please refresh the page!");
-            });
+                })
+                .fail(function () {
+                    t.updateSinglePageInline("Error! Please refresh the page!");
+                });
 
         }
     });
@@ -71,9 +71,9 @@
         var me = $(this), wrap;
 
         // get cubeportfolio data and check if is still animating (reposition) the items.
-        if ( !$.data(gridContainer[0], 'cubeportfolio').isAnimating ) {
+        if (!$.data(gridContainer[0], 'cubeportfolio').isAnimating) {
 
-            if ( filtersContainer.hasClass('cbp-l-filters-dropdown') ) {
+            if (filtersContainer.hasClass('cbp-l-filters-dropdown')) {
                 wrap = $('.cbp-l-filters-dropdownWrap');
 
                 wrap.find('.cbp-filter-item').removeClass('cbp-filter-item-active');
@@ -88,12 +88,13 @@
         }
 
         // filter the items
-        gridContainer.cubeportfolio('filter', me.data('filter'), function () {});
+        gridContainer.cubeportfolio('filter', me.data('filter'), function () {
+        });
 
     });
 
     // add listener for load more click
-    $('.button').on('click', function(e) {
+    $('.button').on('click', function (e) {
 
         e.preventDefault();
 
@@ -103,7 +104,7 @@
 
         // get the number of times the loadMore link has been clicked
         clicks = $.data(this, 'numberOfClicks');
-        clicks = (clicks)? ++clicks : 1;
+        clicks = (clicks) ? ++clicks : 1;
         $.data(this, 'numberOfClicks', clicks);
 
         // set loading status
@@ -116,35 +117,35 @@
             type: 'GET',
             dataType: 'HTML'
         })
-        .done( function (result) {
-            var items, itemsNext;
+            .done(function (result) {
+                var items, itemsNext;
 
-            // find current container
-            items = $(result).filter( function () {
-                return $(this).is('div' + '.cbp-loadMore-block' + clicks);
-            });
+                // find current container
+                items = $(result).filter(function () {
+                    return $(this).is('div' + '.cbp-loadMore-block' + clicks);
+                });
 
-            gridContainer.cubeportfolio('appendItems', items.html(),
-                 function () {
-                    // put the original message back
-                    me.text(oMsg);
+                gridContainer.cubeportfolio('appendItems', items.html(),
+                    function () {
+                        // put the original message back
+                        me.text(oMsg);
 
-                    // check if we have more works
-                    itemsNext = $(result).filter( function () {
-                        return $(this).is('div' + '.cbp-loadMore-block' + (clicks + 1));
+                        // check if we have more works
+                        itemsNext = $(result).filter(function () {
+                            return $(this).is('div' + '.cbp-loadMore-block' + (clicks + 1));
+                        });
+
+                        if (itemsNext.length === 0) {
+                            me.text('NO MORE WORKS');
+                            me.addClass('cbp-l-loadMore-button-stop');
+                        }
+
                     });
 
-                    if (itemsNext.length === 0) {
-                        me.text('NO MORE WORKS');
-                        me.addClass('cbp-l-loadMore-button-stop');
-                    }
-
-                 });
-
-        })
-        .fail(function() {
-            // error
-        });
+            })
+            .fail(function () {
+                // error
+            });
 
     });
 

@@ -9,11 +9,11 @@ import com.reservation.domain.ReservationDTO;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDAO {
-	@Autowired
-	public SqlSession sqlSession;
-	
-	 @Override 
-	 public void reservate(ReservationDTO reservation) throws DataAccessException { 
-		 sqlSession.insert("reservate", reservation); 	 
-	}
+    @Autowired
+    public SqlSession sqlSession;
+
+    @Override
+    public void reservate(ReservationDTO reservation) throws DataAccessException {
+        sqlSession.insert("reservate", reservation);
+    }
 }

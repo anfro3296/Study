@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-	private Log log = LogFactory.getLog(getClass());
-	
-	@RequestMapping("main.do")
-	public String home() {
-		log.info("HomeController의 home()호출됨");
-		return "homepage";
-	}
+    private Log log = LogFactory.getLog(getClass());
+
+    @RequestMapping("main.do")
+    public String home() {
+        log.info("HomeController의 home()호출됨");
+        return "homepage";
+    }
 }

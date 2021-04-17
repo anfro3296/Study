@@ -1,4 +1,4 @@
-(function($, window, document, undefined) {
+(function ($, window, document, undefined) {
     'use strict';
 
     var gridContainer = $('#grid-container'),
@@ -8,7 +8,7 @@
 
 
     /*********************************
-        init cubeportfolio
+     init cubeportfolio
      *********************************/
     gridContainer.cubeportfolio({
         layoutMode: 'slider',

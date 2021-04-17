@@ -42,7 +42,7 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	     <property name="configLocation" value="classpath:config/SqlMapConfig.xml" />
-	     <property name="dataSource" ref="dataSource" />     
+	     <property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<!-- 4 SqlSessionTemplate(sqlSession객체를 더 쉽게 얻어오기 위해서 설정 -->

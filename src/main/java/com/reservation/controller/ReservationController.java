@@ -12,24 +12,24 @@ import com.reservation.dao.ReservationDAO;
 import com.reservation.domain.ReservationDTO;
 
 @Controller
-public class ReservationController{
-	
-	private Log log = LogFactory.getLog(getClass());
-	ReservationDAO dao;
-	
-	@Required
-	@Autowired
-	public void setDao(ReservationDAO dao) {
-		this.dao = dao;
-		log.info("setDao() 호출됨(dao)=>"+dao);
-	}
-	
-	@RequestMapping("/order.do")
-	public String reservate(@ModelAttribute ReservationDTO reservation){
-		log.info("ReservationActionController의 reservate()호출됨");
-		dao.reservate(reservation);
-		return "redirect:/homepage.jsp";
-	}
+public class ReservationController {
+
+    private Log log = LogFactory.getLog(getClass());
+    ReservationDAO dao;
+
+    @Required
+    @Autowired
+    public void setDao(ReservationDAO dao) {
+        this.dao = dao;
+        log.info("setDao() 호출됨(dao)=>" + dao);
+    }
+
+    @RequestMapping("/order.do")
+    public String reservate(@ModelAttribute ReservationDTO reservation) {
+        log.info("ReservationActionController의 reservate()호출됨");
+        dao.reservate(reservation);
+        return "redirect:/homepage.jsp";
+    }
 }
 
 
