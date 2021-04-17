@@ -22,6 +22,10 @@
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:config/dispatcher-servlet.xml</param-value>
+        </init-param>
     </servlet>
 
     <!-- 3.웹상에서 어떻게 요청을 할때 요청을 받아들일것인가에 대한 설정 (요청명령어 등록) *.do  -->
@@ -29,8 +33,8 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-    <filter>
 
+    <filter>
         <!-- 마이바티스에서 한글 처리하기 -->
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -39,6 +43,7 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
