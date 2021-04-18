@@ -17,7 +17,7 @@ public class ReservationController{
 	private Log log = LogFactory.getLog(getClass());
 	ReservationDAO dao;
 	
-	@Requiredzzz
+	@Required
 	@Autowired
 	public void setDao(ReservationDAO dao) {
 		this.dao = dao;
