@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.reservation.dao.ReservationDAO;
 import com.reservation.domain.ReservationDTO;
@@ -25,10 +26,19 @@ public class ReservationController{
 	}
 	
 	@RequestMapping("/order.do")
-	public String reservate(@ModelAttribute ReservationDTO reservation){
+	@ResponseBody
+	public String reservate(ReservationDTO reservation){
+		log.info(reservation);
 		log.info("ReservationActionController의 reservate()호출됨");
-		dao.reservate(reservation);
-		return "redirect:/homepage.jsp";
+		log.info(reservation.getReser_date());
+		
+		if(reservation.getMember_id() == "") {
+			return "fail";
+		} else {
+			dao.reservate(reservation);
+		}
+		
+		return "success";
 	}
 }
 

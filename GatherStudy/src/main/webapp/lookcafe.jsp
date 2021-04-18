@@ -354,9 +354,9 @@
         <!--=== 스터디룸 ===-->
         <div class="row illustration-v2">
         	<c:forEach var="cafe" items="${list}">
-	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
+	            <div class="col-md-3 col-sm-4 md-margin-bottom-30">
 	                <div class="product-img">
-	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:180px;"></a>
+	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:200px;"></a>
 	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
 	                </div>
 	                <div class="product-description product-description-brd">

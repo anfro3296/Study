@@ -180,13 +180,13 @@
                         <div class="carousel slide carousel-v1" id="myCarousel">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img width="750" height="550" src="${cafe.cafe_image1}">
+                                    <img style="width:770px; height:400px;" src="${cafe.cafe_image1}">
                                 </div>
                                 <div class="item">
-                                    <img width="750" height="550" src="${cafe.cafe_image2}">
-                                    </div>
+                                   <img style="width:770px; height:400px;" src="${cafe.cafe_image2}">
+                                </div>
                                 <div class="item">
-                                    <img width="750" height="550" src="${cafe.cafe_image3}">
+                                   <img style="width:770px; height:400px;" src="${cafe.cafe_image3}">
                                 </div>
                             </div>
                             
@@ -481,7 +481,7 @@
  				<div class="tab-pane fade in active" id="home-1">
 	                <div class="tag-box tag-box-v1 margin-bottom-40">
 	                    <div class="tab-pane fade in active" id="home-1">
-                            <form action="order.do" method="post" id="sky-form" class="sky-form">
+                            <form action="order.do" method="post" id="reservationForm" class="sky-form">
                                 <fieldset>
                                     <section>
                                         <div class="headline"><h2>예약 날짜 선택</h2></div>
@@ -602,7 +602,7 @@
                                 </fieldset>
                                 <input type="hidden" name="member_id" value="${sessionScope.loginUser.member_id}">
                                 <input type="hidden" name="cafe_id" value="${cafe.cafe_id}">
-                                <button class="btn-u btn-block btn-u-green" type="submit">예약하기</button>
+                                <input type="button" onclick="reservationForm()" class="btn-u btn-block btn-u-green" type="button" value="가입하기">
                              </form>
                         </div>	    
                     </div>                
@@ -752,6 +752,53 @@
         Datepicker.initDatepicker();
         });
 </script>
+
+<!-- 회원가입 뒷배경 슬라이드쇼 -->
+<script type="text/javascript">
+    $.backstretch([
+      "assets/img/bg/19.jpg",
+      "assets/img/bg/18.jpg",
+      ], {
+        fade: 1000,
+        duration: 7000
+    });
+
+    function reservationForm(){
+    	var date = $("#reser_date").val();
+    	var orderTime =$("#reser_time").val();	
+    	var useTime = $("#reser_usertime").val();
+    	var category = $("#reser_category").val();
+    	var request = $("#reser_request").val();
+    	    	
+    	if(!orderTime){
+    		alert("원하시는 시간을 선택해주세요.");
+    		$("#reser_time").focus();
+    	}else if(!useTime){
+    		alert("사용 시간을 선택해주세요.");
+    		$("#reser_usertime").focus();
+    	}else {
+    		reservation()
+    	}
+    }
+    
+    function reservation(){
+    	$.ajax({		
+    		url : "order.do",
+    		type:'POST',
+    		data :  $("#reservationForm").serialize(),
+    		success:function(data){
+    			if(data == "success"){
+    				alert("예약이 완료됐습니다.^^");
+    				location.href = "main.do";
+    			} else if(data == "fail"){
+    				alert("로그인 후 예약 부탁드립니다 ^^");
+    				location.href = "login.do";
+    			}
+    		}
+    	})
+    }
+</script>
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>
