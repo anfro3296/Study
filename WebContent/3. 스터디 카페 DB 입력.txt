@@ -116,7 +116,7 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
  '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
  '4. 이용당일 환불 불가' where cafe_id='sgstudy';
 
-=======================================================================================================================================
+=====================================================================================================================================
 
 insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
    values('noblestudy', '24시노블스터디룸', 'noblestudy', '서울특별시 강남구 역삼동 817-23 씨티타워 2층', '02-2693-1054', '00시~24시', '없음', './assets/img/cafeimg/noblestudy/1.jpg', './assets/img/cafeimg/noblestudy/2.jpg', './assets/img/cafeimg/noblestudy/3.jpg', '#강남스터디룸', '#강남역스터디룸', '#강남스터디룸', '#공간대여', '4인실', 1500, '6인실', 1500);
