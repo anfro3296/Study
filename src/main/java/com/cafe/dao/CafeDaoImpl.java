@@ -12,19 +12,21 @@ import com.cafe.domain.CafeDTO;
 @Repository
 public class CafeDaoImpl implements CafeDAO {
 
-    @Autowired
-    public SqlSession sqlSession;
+	@Autowired
+	public SqlSession sqlSession;
+	
+	@Override
+	public CafeDTO list(String id) throws DataAccessException {
+		return sqlSession.selectOne("list", id);
+	}
 
-    @Override
-    public CafeDTO list(String id) throws DataAccessException {
-        return sqlSession.selectOne("list", id);
-    }
-
-    @Override
-    public List<CafeDTO> lookcafe() throws DataAccessException {
-        // TODO Auto-generated method stub
-        return sqlSession.selectList("lookcafe");
-    }
+	@Override
+	public List<CafeDTO> lookcafe() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("lookcafe");
+	}
 
 
+	
+	
 }
