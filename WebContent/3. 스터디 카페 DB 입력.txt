@@ -1,5 +1,5 @@
 insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('moimplus', '모임플러스 강남역 스터디룸', 'moimplus', '서울특별시 서초구 사임당로 173 모임플러스', '02-2421-2195', '9시~23시', '없음', './assets/img/cafeimg/moimplus/1.jpg', './assets/img/cafeimg/moimplus/2.jpg', './assets/img/cafeimg/moimplus/3.jpg', '#강남역스터디룸', '#강남스터디룸', '#강남역회의실', '#강남역강의장', '4인실', 1500, '6인실', 1500);
+   values('moimplus', '모임플러스 강남역', 'moimplus', '서울특별시 서초구 사임당로 173 모임플러스', '02-2421-2195', '9시~23시', '없음', './assets/img/cafeimg/moimplus/1.jpg', './assets/img/cafeimg/moimplus/2.jpg', './assets/img/cafeimg/moimplus/3.jpg', '#강남역스터디룸', '#강남스터디룸', '#강남역회의실', '#강남역강의장', '4인실', 1500, '6인실', 1500);
 
 update cafe set cafe_linescription = '더 넓은 공간,'||chr(13)||'더 저렴하게! 강남역 모임 플러스' where cafe_id='moimplus';
 
@@ -116,4 +116,107 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
  '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
  '4. 이용당일 환불 불가' where cafe_id='sgstudy';
 
+=======================================================================================================================================
 
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('noblestudy', '24시노블스터디룸', 'noblestudy', '서울특별시 강남구 역삼동 817-23 씨티타워 2층', '02-2693-1054', '00시~24시', '없음', './assets/img/cafeimg/noblestudy/1.jpg', './assets/img/cafeimg/noblestudy/2.jpg', './assets/img/cafeimg/noblestudy/3.jpg', '#강남스터디룸', '#강남역스터디룸', '#강남스터디룸', '#공간대여', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '강남역 11번출구 24시'||chr(13)||'스터디룸입니다.' where cafe_id='noblestudy';
+
+update cafe set cafe_spaceintroduction = '24시 365일 이용가능한 무인 스터디 카페&룸 입니다.'||chr(13)||
+'9월 오픈하여 깨끗하고 쾌적한 공간에서 모임 및 스터디를 이용할 수 있습니다^^'||chr(13)||
+'2인룸 5인룸 6인룸 10인룸 12인룸 보유하고 있어 다양한 스터디 모임 할 수 있습니다.'||chr(13)||
+'각방에 최신식 냉난방기가 있어 무더위와 추위 상관없이 편안하게 사용 가능하십니다.'||chr(13)||
+'각방 화이트보드 무료 사용' where cafe_id='noblestudy';
+
+update cafe set cafe_infrainformation = '1.화이트보드'||chr(13)||
+'2.빔프로젝터'||chr(13)||
+'3.40인치 티비모니터'||chr(13)||
+'4.2018.9월오픈 쾌적한 공간'||chr(13)||
+'5.모든 룸 최신식 냉난방기 제공'||chr(13)||
+'6.5모든 룸 최신식 냉난방기 제공'||chr(13)||
+'7.365일 24시간 최신 무인시스템' where cafe_id='noblestudy';
+
+update cafe set cafe_note = '1.룸 넘버는 이용 10분전 데스크에서 확인가능합니다.'||chr(13)||
+'2.이용 시작시간은 매시각 정각,30분으로 최소 이용시간은 1시간입니다.'||chr(13)||
+'3.저녁 10시이후 예약요청건은 익일 오전 9시이후 예약 승인처리됩니다.'||chr(13)||
+'4.룸 배정 시, 창가자리등은 예약 인원,시간,순서등에 따라 배정되오니 양해부탁드립니다..'||chr(13)||
+'5.전화문의는 불가하오니 양해부탁드립니다.' where cafe_id='noblestudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='noblestudy';
+
+=======================================================================================================================================
+
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('ibstudy', '아이비 스터디카페', 'ibstudy', '서울특별시 서초구 서초동 1316-1 5층', '02-2123-2219', '08시~24시', '없음', './assets/img/cafeimg/ibstudy/1.jpg', './assets/img/cafeimg/ibstudy/2.jpg', './assets/img/cafeimg/ibstudy/3.jpg', '#강남역독서실', '#공부방', '#강남스터디룸', '#해커스어학원', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '강남에서 가장 쾌적하고 저렴한'||chr(13)||'스터디카페&독서실' where cafe_id='ibstudy';
+
+update cafe set cafe_spaceintroduction = '강남역 9번 10번 출구에서 도보로 5분거리'||chr(13)||
+'강남 최저 가격 스터디카페 & 스터디룸 & 독서실(1인석)해커스어학원 본관 바로 옆'||chr(13)||
+'파고다어학원 시사어학원 도보 3분거리'||chr(13)||
+'박문각학원 도보 1분 거리'||chr(13)||
+'강남에서 가장 쾌적한 뷰를 가지고 있음' where cafe_id='ibstudy';
+
+update cafe set cafe_infrainformation = '1.스터디 라운지'||chr(13)||
+'2.스터디룸'||chr(13)||
+'3.컴퓨터실'||chr(13)||
+'4.식사 가능 휴게실'||chr(13)||
+'5.초고속 대용량 와이파이'||chr(13)||
+'6.음료자판기'||chr(13)||
+'7.전자동 커피머신' where cafe_id='ibstudy';
+
+update cafe set cafe_note = '룸이용시 전화예약 필수' where cafe_id='ibstudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='ibstudy';
+
+ =======================================================================================================================================
+ 
+ insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('myworkspace', '마이 워크 스페이스', 'myworkspace', '서울특별시 서초구 서초동 1328-3 12층', '02-2598-1214', '09시~22시', '없음', './assets/img/cafeimg/myworkspace/1.jpg', './assets/img/cafeimg/myworkspace/2.jpg', './assets/img/cafeimg/myworkspace/3.jpg', '#강남모임', '#스터디룸', '#강남스터디룸', '#회의실', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '위치, 교통, 시설, 커피 맛 좋은'||chr(13)||'강남역 회의실' where cafe_id='myworkspace';
+
+update cafe set cafe_spaceintroduction = 'MY WORKSPACE는 여러 기업들과 사무실을 함께 나눠쓰는 사무실 공유 업체입니다. 2015년 8월 강남역 인근의 11평 공간에서 처음 시작해 현재 3호점까지 확장, 공유오피스 업계의 빽다방이 되자는 비전을 가지고 성장해왔습니다.'||chr(13)||chr(13)||
+'강남역 랜드마크 빌딩 중 하나인 A+에셋타워 오픈된 3호점은 프리미엄 공유오피스/코워킹스페이스를 목적으로 설계되어 금융, 부동산, 벤처캐피탈, IT 관련 스타트업, 외국계기업, 투자자, 프리랜서, 1인기업, 강사와 같은 Look / Feel이 중요한 분들께 어울리는 업무 공간입니다.'  where cafe_id='myworkspace';
+
+update cafe set cafe_infrainformation = '- 매니저가 상주하지 않는 시간에 이용시 사전에 방문하셔서 지문 등록 혹은 방문카드 수령이 필요합니다.'||chr(13)||
+'- 회의실 이용 물품 및 시설은 다음 이용객을 위해 파손치 말아주세요.'||chr(13)||
+'- 입주사분들이 공용으로 사용하는 공간으로 최대 예약시간은 4시간 입니다.' where cafe_id='myworkspace';
+
+update cafe set cafe_note = '- 평일 오전 9시 이전 또는 오후 6시 이후 이용객의 경우 미리 방문하여 출입카드 수령 및 지문등록이 필요합니다.' where cafe_id='myworkspace';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='myworkspace';
+ 
+ =======================================================================================================================================
+ 
+ insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
+   values('instudy', '인스터디 카페', 'instudy', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/instudy/1.jpg', './assets/img/cafeimg/instudy/2.jpg', './assets/img/cafeimg/instudy/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500);
+
+update cafe set cafe_linescription = '강남역 5번 출구에 위치한 24시간'||chr(13)||'스터디카페' where cafe_id='instudy';
+
+update cafe set cafe_spaceintroduction = '2020년 1월 새롭게 문을 연 24시간 프리미엄 스터디카페입니다. 강남역 5번 출구에서 약 300미터 거리에 위치하고 있어 오시기에 편리합니다. 넓은 데스크와 명품 시디즈의자, 개별 콘센트와 스탠드를 완비했으며 수험생과 직장인분들을 위한 최적의 환경을 조성했습니다. '||chr(13)||chr(13)||
+'2인실에서 10인실까지 다양한 규모의 스터디룸이 있어 여러 수업과 모임을 진행하실 수 있습니다. 망고나무가 있는 라운지에서는 커피와 홍차, 아이스티를 무료로 즐기실 수 있습니다.' where cafe_id='instudy';
+
+update cafe set cafe_infrainformation = '- 스터디존과 컴퓨터존을 분리하여 목적에 맞게 이용 가능합니다'||chr(13)||
+'- 친환경 인테리어와 아카시아나무 소재의 원목테이블로 더 쾌적하게 이용하실 수 있습니다'||chr(13)||
+'- 장시간 앉아있어도 허리에 부담을 주지 않는 시디즈 의자를 구비했습니다'||chr(13)||
+'- 24시간 운영해서 언제든지 이용하실 수 있습니다'||chr(13)||
+'- 아메리카노와 아이스티가 무료로 제공됩니다'||chr(13)||
+'- 모든 방에 개별 냉난방기가 설치되어 있어 겨울엔 따듯하게, 여름에는 시원하게 이용 가능합니다' where cafe_id='instudy';
+
+update cafe set cafe_note = '- 스터디룸의 경우 예약이 빨리 마감되므로 빠른 예약 부탁드립니다.' where cafe_id='instudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='instudy';
