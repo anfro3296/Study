@@ -17,7 +17,7 @@
 ;(function()
 {
 	// CommonJS
-	typeof(require) != 'undefined' ? SyntaxHighlighter = require('src/main/webapp/assets/plugins/revolution-slider/documentation/js/shCore').SyntaxHighlighter : null;
+	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
 
 	function Brush()
 	{

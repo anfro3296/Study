@@ -1,4 +1,4 @@
-(function ($, window, document, undefined) {
+(function($, window, document, undefined) {
     'use strict';
 
     var gridContainer = $('#grid-container'),
@@ -7,7 +7,7 @@
 
 
     /*********************************
-     init cubeportfolio
+        init cubeportfolio
      *********************************/
     gridContainer.cubeportfolio({
         layoutMode: 'grid',
@@ -35,33 +35,33 @@
 
 
     /*********************************
-     add listener for filters
+        add listener for filters
      *********************************/
     if (filtersContainer.hasClass('cbp-l-filters-dropdown')) {
         wrap = filtersContainer.find('.cbp-l-filters-dropdownWrap');
 
         wrap.on({
-            'mouseover.cbp': function () {
+            'mouseover.cbp': function() {
                 wrap.addClass('cbp-l-filters-dropdownWrap-open');
             },
-            'mouseleave.cbp': function () {
+            'mouseleave.cbp': function() {
                 wrap.removeClass('cbp-l-filters-dropdownWrap-open');
             }
         });
 
-        filtersCallback = function (me) {
+        filtersCallback = function(me) {
             wrap.find('.cbp-filter-item').removeClass('cbp-filter-item-active');
             wrap.find('.cbp-l-filters-dropdownHeader').text(me.text());
             me.addClass('cbp-filter-item-active');
             wrap.trigger('mouseleave.cbp');
         };
     } else {
-        filtersCallback = function (me) {
+        filtersCallback = function(me) {
             me.addClass('cbp-filter-item-active').siblings().removeClass('cbp-filter-item-active');
         };
     }
 
-    filtersContainer.on('click.cbp', '.cbp-filter-item', function () {
+    filtersContainer.on('click.cbp', '.cbp-filter-item', function() {
         var me = $(this);
 
         if (me.hasClass('cbp-filter-item-active')) {
@@ -74,15 +74,14 @@
         }
 
         // filter the items
-        gridContainer.cubeportfolio('filter', me.data('filter'), function () {
-        });
+        gridContainer.cubeportfolio('filter', me.data('filter'), function() {});
     });
 
 
     /*********************************
-     activate counter for filters
+        activate counter for filters
      *********************************/
-    gridContainer.cubeportfolio('showCounter', filtersContainer.find('.cbp-filter-item'), function () {
+    gridContainer.cubeportfolio('showCounter', filtersContainer.find('.cbp-filter-item'), function() {
         // read from url and change filter active
         var match = /#cbpf=(.*?)([#|?&]|$)/gi.exec(location.href),
             item;

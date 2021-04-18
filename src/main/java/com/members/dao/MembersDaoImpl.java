@@ -9,28 +9,29 @@ import com.members.domain.MembersDTO;
 @Repository
 public class MembersDaoImpl implements MembersDAO {
 
-    @Autowired
-    public SqlSession sqlSession;
+	@Autowired
+	public SqlSession sqlSession;
+	
+	@Override
+	public int idCheck(MembersDTO members) {
+		return sqlSession.selectOne("idCheck",members);
+		}
+	
+	@Override
+	public void userJoin(MembersDTO members) {
+		sqlSession.insert("userJoin",members);
+	}
 
-    @Override
-    public int idCheck(MembersDTO members) {
-        return sqlSession.selectOne("idCheck", members);
-    }
-
-    @Override
-    public void userJoin(MembersDTO members) {
-        sqlSession.insert("userJoin", members);
-    }
-
-    @Override
-    public MembersDTO getId(MembersDTO members) {
-        return sqlSession.selectOne("getOne", members);
-    }
-
-    @Override
-    public int getPwd(MembersDTO members) {
-        return sqlSession.selectOne("getPwd", members);
-    }
+	@Override
+	public MembersDTO getId(MembersDTO members) {
+		return sqlSession.selectOne("getOne",members);
+		}
+	
+	@Override
+	public int getPwd(MembersDTO members) {
+		return sqlSession.selectOne("getPwd",members);
+	}
 
 
+	
 }

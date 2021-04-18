@@ -15,33 +15,33 @@ import com.cafe.dao.CafeDAO;
 import com.cafe.domain.CafeDTO;
 
 @Controller
-public class CafeController {
+public class CafeController{
 
-    private Log log = LogFactory.getLog(getClass());
-    CafeDAO dao;
+	private Log log = LogFactory.getLog(getClass());
+	CafeDAO dao;
+	
+	@Required
+	@Autowired
+	public void setDao(CafeDAO dao) {
+		this.dao = dao;
+		log.info("setDao() 호출됨(dao)=>"+dao);
+	}
+	
+	@RequestMapping("/list.do")
+	public String listBoard(@RequestParam String cafe_id, Model model){
+		log.info("ListActionController의 listBoard()호출됨");
+		CafeDTO cafe = dao.list(cafe_id);
+		model.addAttribute("cafe", cafe);
+		return "Detailed_shop";
+	}
 
-    @Required
-    @Autowired
-    public void setDao(CafeDAO dao) {
-        this.dao = dao;
-        log.info("setDao() 호출됨(dao)=>" + dao);
-    }
-
-    @RequestMapping("/list.do")
-    public String listBoard(@RequestParam String cafe_id, Model model) {
-        log.info("ListActionController의 listBoard()호출됨");
-        CafeDTO cafe = dao.list(cafe_id);
-        model.addAttribute("cafe", cafe);
-        return "Detailed_shop";
-    }
-
-    @RequestMapping("/lookcafe.do")
-    public String lookCafe(Model model) {
-        log.info("LookCafeActionController의 lookCafe()호출됨");
-        List<CafeDTO> list = dao.lookcafe();
-        model.addAttribute("list", list);
-        return "lookcafe";
-    }
+	@RequestMapping("/lookcafe.do")
+	public String lookCafe(Model model){
+		log.info("LookCafeActionController의 lookCafe()호출됨");
+		List<CafeDTO> list = dao.lookcafe();
+		model.addAttribute("list", list);
+		return "lookcafe";
+	}
 }
 
 
