@@ -92,7 +92,7 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="homepage.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
                   
                     <li>
@@ -128,11 +128,11 @@
     <div class="slider-inner">
         <div id="da-slider" class="da-slider">
             <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /> =</h2>
+                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /></h2>
                 <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/19.jpg" alt=""> --></div>
             </div>
             <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /> <i>DESIGN</i></h2>
+                <h2><i>Study with the person you want</i> <br/> <i>원하는 사람과 스터디하세요!</i><br/></h2>
                 <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/18.jpg" alt=""> --></div>
             </div>
             <div class="da-arrows">
@@ -173,7 +173,7 @@
         			<div class="desc">
         				<h4>스터디 커뮤니티 형성</h4>
                         <p>불편하게 여러 커뮤니티가 아닌,<br>
-                        (회사이름)에서 편안하게</p>
+                        GatherStudy에서 편안하게</p>
         			</div>
         		</div>	
         	</div>			    

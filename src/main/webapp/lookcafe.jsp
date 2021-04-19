@@ -140,208 +140,32 @@
     	 <!-- Recent Works -->
         <div class="heading heading-v1 margin-bottom-20">
             <h2>새로 오픈한 스터디 카페</h2>
-            <p>새로 오픈한 스터디 카페 들입니다</p>
+            <p>새로 오픈한 스터디 카페입니다</p>
         </div>
-                <!--=== Illustration v2 ===-->
+        
+        <!--=== Illustration v2 ===-->
         <div class="illustration-v2 margin-bottom-60">
             <ul class="list-inline owl-slider">
+            <c:forEach var="newList" items="${newList}">
                 <li class="item">
                     <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${newList.cafe_image1}" style="width:213px; height:150px;"></a>
+                        <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
                     	<div class="shop-rgba-dark-green rgba-banner">New</div>
                     </div>
-                    <!-- 스터디룸  이름 설정  -->
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸 1</a></h4>
-                                <span class="gender text-uppercase">2인실</span>
-                                
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">2000원</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
+
+                   <div class="product-description product-description-brd">
+	                    <div class="overflow-h margin-bottom-5">
+	                        <div class="pull-left">
+	                            <h4 class="title-price"><a href="#">${newList.cafe_name}</a></h4>
+	                            <span class="gender text-uppercase"></span>   
+	                       		<h6>${newList.cafe_category1} / ${newList.cafe_category2}</h6>
+	                       		<h6>${newList.cafe_category1Price}  / 시간(인)</h6>
+	                        </div>    
+	                    </div>    
+	                </div>
                 </li>
-              <!--새로오픈한 스터디 카페 2번째 이미지  -->
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-						<div class="shop-rgba-dark-green rgba-banner">New</div>                    
-                    </div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸 2</a></h4>
-                      		<span class="gender"></span> 
-                                <span class="gender">4인실</span>
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">6000원</span>
-                         			
-                         
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                         <div class="shop-rgba-dark-green rgba-banner">New</div>
-                    </div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸3</a></h4>
-                                <span class="gender text-uppercase">2인실</span>
- 
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">4000원</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                        <div class="shop-rgba-dark-green rgba-banner">New</div>
-                    </div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸4</a></h4>
-                                <span class="gender">6인실</span>
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">9000원</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    	<div class="shop-rgba-dark-green rgba-banner">New</div>
-                    	</div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸 5</a></h4>
-                                <span class="gender">3인실</span>
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">3000원</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">스터디룸</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                       	  <div class="shop-rgba-dark-green rgba-banner">New</div>
-                    </div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸 8</a></h4>
-                           
-                                <span class="gender">6인실</span>
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">9000</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>    
-                <li class="item">
-                    <div class="product-img">
-                        <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt=""></a>
-                        <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                        <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    	<div class="shop-rgba-dark-green rgba-banner">New</div>
-                    	</div> 
-                    <div class="product-description product-description-brd">
-                        <div class="overflow-h margin-bottom-5">
-                            <div class="pull-left">
-                                <h4 class="title-price"><a href="shop-ui-inner.html">스터디룸 5</a></h4>
-                                <span class="gender">3인실</span>
-                            </div>    
-                            <div class="product-price">
-                                <span class="title-price">3000원</span>
-                            </div>
-                        </div>    
-                        <ul class="list-inline product-ratings">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                        </ul>    
-                    </div>
-                </li>
+            </c:forEach>
             </ul>
         </div> 
         <!--=== 신규 스터디카페 끝==-->
@@ -352,11 +176,11 @@
         </div>
 
         <!--=== 스터디룸 ===-->
-        <div class="row illustration-v2">
+        <div class="illustration-v2 margin-bottom-60">
         	<c:forEach var="cafe" items="${list}">
 	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
 	                <div class="product-img">
-	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:180px;"></a>
+	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:190px;"></a>
 	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
 	                </div>
 	                <div class="product-description product-description-brd">

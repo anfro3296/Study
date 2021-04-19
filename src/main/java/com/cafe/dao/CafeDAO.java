@@ -11,14 +11,10 @@ public interface CafeDAO{
 	// 1.카페 목록 보기
 	public CafeDTO list(String id) throws DataAccessException;
 	
-	/*
-	 * // 2.회원 가입하기 public void register(Mem mem) throws DataAccessException;
-	 * 
-	 * // 3. 카페 예약하기 public void reservate(Reservation reservation) throws
-	 * DataAccessException;
-	 */
-	
-	// 4.카페 전체 출력하기
+	// 2.카페 전체 출력하기
 	public List<CafeDTO> lookcafe() throws DataAccessException;
+	
+	// 3. 새로 오프한 스터디 카페 출력하기
+	public List<CafeDTO> newCafe() throws DataAccessException;
 }
 

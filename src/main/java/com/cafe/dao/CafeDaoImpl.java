@@ -26,7 +26,8 @@ public class CafeDaoImpl implements CafeDAO {
 		return sqlSession.selectList("lookcafe");
 	}
 
-
-	
-	
+	@Override
+	public List<CafeDTO> newCafe() throws DataAccessException {
+		return sqlSession.selectList("newCafe");
+		}
 }

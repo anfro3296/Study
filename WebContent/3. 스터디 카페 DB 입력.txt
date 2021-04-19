@@ -1,5 +1,5 @@
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('moimplus', '모임플러스 강남역', 'moimplus', '서울특별시 서초구 사임당로 173 모임플러스', '02-2421-2195', '9시~23시', '없음', './assets/img/cafeimg/moimplus/1.jpg', './assets/img/cafeimg/moimplus/2.jpg', './assets/img/cafeimg/moimplus/3.jpg', '#강남역스터디룸', '#강남스터디룸', '#강남역회의실', '#강남역강의장', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('moimplus', '모임플러스 강남역', 'moimplus', '서울특별시 서초구 사임당로 173 모임플러스', '02-2421-2195', '9시~23시', '없음', './assets/img/cafeimg/moimplus/1.jpg', './assets/img/cafeimg/moimplus/2.jpg', './assets/img/cafeimg/moimplus/3.jpg', '#강남역스터디룸', '#강남스터디룸', '#강남역회의실', '#강남역강의장', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '더 넓은 공간,'||chr(13)||'더 저렴하게! 강남역 모임 플러스' where cafe_id='moimplus';
 
@@ -25,8 +25,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
 =======================================================================================================================================
 
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('superstart', '슈퍼스타트 강남점', 'superstart', '서울특별시 강남구 테헤란로 101 이즈타워 지하 3층 슈퍼스타트', '02-2145-2054', '9시~21시', '없음', './assets/img/cafeimg/superstart/1.jpg', './assets/img/cafeimg/superstart/2.jpg', './assets/img/cafeimg/superstart/3.jpg', '#강남역', '#스터디룸', '#강남', '#스터디카페', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('superstart', '슈퍼스타트 강남점', 'superstart', '서울특별시 강남구 테헤란로 101 이즈타워 지하 3층 슈퍼스타트', '02-2145-2054', '9시~21시', '없음', './assets/img/cafeimg/superstart/1.jpg', './assets/img/cafeimg/superstart/2.jpg', './assets/img/cafeimg/superstart/3.jpg', '#강남역', '#스터디룸', '#강남', '#스터디카페', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '세미나/회의/스터디/모임'||chr(13)||'승무원/강의/모임전문공간' where cafe_id='superstart';
 
@@ -59,8 +59,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
 =======================================================================================================================================
 
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('kaystudy', '카이스터디 카페', 'kaystudy', '서울특별시 서초구 강남대로 69길 11 3층 카이스터디 카페', '02-2539-1594', '0시~24시', '없음', './assets/img/cafeimg/kaystudy/1.jpg', './assets/img/cafeimg/kaystudy/2.jpg', './assets/img/cafeimg/kaystudy/3.jpg', '#강남역스터디', '#강남역스터디룸', '#강남역과외', '#강남역모임', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('kaystudy', '카이스터디 카페', 'kaystudy', '서울특별시 서초구 강남대로 69길 11 3층 카이스터디 카페', '02-2539-1594', '0시~24시', '없음', './assets/img/cafeimg/kaystudy/1.jpg', './assets/img/cafeimg/kaystudy/2.jpg', './assets/img/cafeimg/kaystudy/3.jpg', '#강남역스터디', '#강남역스터디룸', '#강남역과외', '#강남역모임', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '강남역10번출구, 24/연중무휴'||chr(13)||'스터디카페' where cafe_id='kaystudy';
 
@@ -86,8 +86,11 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
 =======================================================================================================================================
 
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('sgstudy', 'SG 스터디룸 신관(강남)', 'sgstudy', '서울특별시 서초구 서초대로 78길 26 4층(서초동, 선인빌딩)', '02-2989-9841', '9시~23시', '없음', './assets/img/cafeimg/sgstudy/1.jpg', './assets/img/cafeimg/sgstudy/2.jpg', './assets/img/cafeimg/sgstudy/3.jpg', '#SG스터디룸', '#강남역스터디룸', '#강남스터디룸', '#세미나', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('sgstudy', 'SG 스터디룸 신관', 'sgstudy', '서울특별시 서초구 서초대로 78길 26 4층(서초동, 선인빌딩)', '02-2989-9841', '9시~23시', '없음', './assets/img/cafeimg/sgstudy/1.jpg', './assets/img/cafeimg/sgstudy/2.jpg', './assets/img/cafeimg/sgstudy/3.jpg', '#SG스터디룸', '#강남역스터디룸', '#강남스터디룸', '#세미나', '4인실', 1500, '6인실', 1500, sysdate);
+
+update cafe set cafe_name = 'SG 스터디룸 신관' where cafe_id='sgstudy';
+
 
 update cafe set cafe_linescription = '강남역 5번출구 도보 30초'||chr(13)||'스터디룸/강의실' where cafe_id='sgstudy';
 
@@ -118,8 +121,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
 =====================================================================================================================================
 
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('noblestudy', '24시노블스터디룸', 'noblestudy', '서울특별시 강남구 역삼동 817-23 씨티타워 2층', '02-2693-1054', '00시~24시', '없음', './assets/img/cafeimg/noblestudy/1.jpg', './assets/img/cafeimg/noblestudy/2.jpg', './assets/img/cafeimg/noblestudy/3.jpg', '#강남스터디룸', '#강남역스터디룸', '#강남스터디룸', '#공간대여', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('noblestudy', '24시노블스터디룸', 'noblestudy', '서울특별시 강남구 역삼동 817-23 씨티타워 2층', '02-2693-1054', '00시~24시', '없음', './assets/img/cafeimg/noblestudy/1.jpg', './assets/img/cafeimg/noblestudy/2.jpg', './assets/img/cafeimg/noblestudy/3.jpg', '#강남스터디룸', '#강남역스터디룸', '#강남스터디룸', '#공간대여', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '강남역 11번출구 24시'||chr(13)||'스터디룸입니다.' where cafe_id='noblestudy';
 
@@ -150,8 +153,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
 =======================================================================================================================================
 
-insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('ibstudy', '아이비 스터디카페', 'ibstudy', '서울특별시 서초구 서초동 1316-1 5층', '02-2123-2219', '08시~24시', '없음', './assets/img/cafeimg/ibstudy/1.jpg', './assets/img/cafeimg/ibstudy/2.jpg', './assets/img/cafeimg/ibstudy/3.jpg', '#강남역독서실', '#공부방', '#강남스터디룸', '#해커스어학원', '4인실', 1500, '6인실', 1500);
+insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('ibstudy', '아이비 스터디카페', 'ibstudy', '서울특별시 서초구 서초동 1316-1 5층', '02-2123-2219', '08시~24시', '없음', './assets/img/cafeimg/ibstudy/1.jpg', './assets/img/cafeimg/ibstudy/2.jpg', './assets/img/cafeimg/ibstudy/3.jpg', '#강남역독서실', '#공부방', '#강남스터디룸', '#해커스어학원', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '강남에서 가장 쾌적하고 저렴한'||chr(13)||'스터디카페&독서실' where cafe_id='ibstudy';
 
@@ -178,8 +181,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
 
  =======================================================================================================================================
  
- insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('myworkspace', '마이 워크 스페이스', 'myworkspace', '서울특별시 서초구 서초동 1328-3 12층', '02-2598-1214', '09시~22시', '없음', './assets/img/cafeimg/myworkspace/1.jpg', './assets/img/cafeimg/myworkspace/2.jpg', './assets/img/cafeimg/myworkspace/3.jpg', '#강남모임', '#스터디룸', '#강남스터디룸', '#회의실', '4인실', 1500, '6인실', 1500);
+ insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('myworkspace', '마이 워크 스페이스', 'myworkspace', '서울특별시 서초구 서초동 1328-3 12층', '02-2598-1214', '09시~22시', '없음', './assets/img/cafeimg/myworkspace/1.jpg', './assets/img/cafeimg/myworkspace/2.jpg', './assets/img/cafeimg/myworkspace/3.jpg', '#강남모임', '#스터디룸', '#강남스터디룸', '#회의실', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '위치, 교통, 시설, 커피 맛 좋은'||chr(13)||'강남역 회의실' where cafe_id='myworkspace';
 
@@ -199,8 +202,8 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
  
  =======================================================================================================================================
  
- insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price) 
-   values('instudy', '인스터디 카페', 'instudy', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/instudy/1.jpg', './assets/img/cafeimg/instudy/2.jpg', './assets/img/cafeimg/instudy/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500);
+ insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('instudy', '인스터디 카페', 'instudy', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/instudy/1.jpg', './assets/img/cafeimg/instudy/2.jpg', './assets/img/cafeimg/instudy/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500, sysdate);
 
 update cafe set cafe_linescription = '강남역 5번 출구에 위치한 24시간'||chr(13)||'스터디카페' where cafe_id='instudy';
 
@@ -220,3 +223,4 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
  '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
  '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
  '4. 이용당일 환불 불가' where cafe_id='instudy';
+ 

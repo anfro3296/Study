@@ -39,7 +39,9 @@ public class CafeController{
 	public String lookCafe(Model model){
 		log.info("LookCafeActionController의 lookCafe()호출됨");
 		List<CafeDTO> list = dao.lookcafe();
+		List<CafeDTO> newList = dao.newCafe();
 		model.addAttribute("list", list);
+		model.addAttribute("newList", newList);
 		return "lookcafe";
 	}
 }
