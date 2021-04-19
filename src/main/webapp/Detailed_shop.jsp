@@ -602,7 +602,7 @@
                                 </fieldset>
                                 <input type="hidden" name="member_id" value="${sessionScope.loginUser.member_id}">
                                 <input type="hidden" name="cafe_id" value="${cafe.cafe_id}">
-                                <input type="button" onclick="reservationForm()" class="btn-u btn-block btn-u-green" type="button" value="가입하기">
+                                <input type="button" onclick="reservationForm()" class="btn-u btn-block btn-u-green" type="button" value="예약하기">
                              </form>
                         </div>	    
                     </div>                

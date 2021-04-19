@@ -12,11 +12,13 @@
  		<typeAlias type="com.cafe.domain.CafeDTO" alias="Cafe"/>	
   		<typeAlias type="com.reservation.domain.ReservationDTO" alias="Reservation"/>			
   		<typeAlias type="com.members.domain.MembersDTO" alias="Members"/>	
+  		<typeAlias type="com.notice.domain.NoticeDTO" alias="Notice"/>	
  	</typeAliases>	
  
  	<mappers>
 		<mapper resource="mapper/CafeMapper.xml"/>
 		<mapper resource="mapper/MembersMapper.xml"/>
 		<mapper resource="mapper/ReservationMapper.xml"/>
+		<mapper resource="mapper/NoticeMapper.xml"/>
  	</mappers>
  </configuration>
