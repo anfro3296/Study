@@ -19,4 +19,18 @@ public class NoticeDaoImpl implements NoticeDAO {
 	public List<NoticeDTO> noticeList() throws DataAccessException {
 		return sqlSession.selectList("noticeList");
 	}
+
+	@Override
+	public void updateReadcnt(int notice_number) throws DataAccessException {
+		sqlSession.update("updateReadcnt", notice_number);
+	}
+
+	@Override
+	public NoticeDTO retrieve(int notice_number) throws DataAccessException {
+		return (NoticeDTO)sqlSession.selectOne("retrieve", notice_number);
+
+	}
+	
+	
+	
 }

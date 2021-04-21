@@ -117,7 +117,7 @@
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>

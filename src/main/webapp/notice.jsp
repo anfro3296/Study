@@ -95,7 +95,7 @@
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>
@@ -129,7 +129,7 @@
     <div class="headline"><h2>공지사항</h2></div>
     </div>
     <div class="row">
-    	<div class="col-md-8 col-md-offset-2">
+    	<div class="col-md-10 col-md-offset-1">
 			<table class="table table-hover" style="text-align: center;">
 				<thead > 
 					<tr class="active">
@@ -142,7 +142,7 @@
 				<c:forEach var="noticeList" items="${noticeList}">
 					<tr>
 						<td width="10%">${noticeList.notice_number}</td>
-						<td width="50%">${noticeList.notice_title}</td>
+						<td width="50%"><a href="noticeDetails.do?notice_number=${noticeList.notice_number}">${noticeList.notice_title}</a></td>
 						<td width="30%">${noticeList.notice_regdate}</td>
 						<td width="10%">${noticeList.notice_hit}</td>
 					</tr>
@@ -241,65 +241,14 @@
                 </div>
             </div> 
         </div><!--/footer-->
-    </div>
-    <!--=== End Footer v2 ===-->
 
         <div class="copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">                     
-                        <p>
-                            2015 &copy; All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                        </p>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="col-md-6">
-                        <ul class="footer-socials list-inline">
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                                    <i class="fa fa-skype"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Social Links -->
-                </div>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
             </div> 
-        </div><!--/copyright-->
+        </div><!--/copyright--> 
     </div>
-    <!--=== End Footer Version 1 ===-->
+    <!--=== End Footer v2 ===-->
 </div><!--/wrapper-->
 
 <!-- JS Global Compulsory -->			
@@ -318,10 +267,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
-    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="${pageContext.request.contextPath}/Js_Set/bootstrap.min.js"></script>
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.min.js"></script>
        
 <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -329,6 +278,14 @@
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
+    
+    $.backstretch([
+        "assets/img/bg/19.jpg",
+        "assets/img/bg/18.jpg",
+        ], {
+          fade: 1000,
+          duration: 7000
+      });
 </script>
 
 <!--[if lt IE 9]>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.notice.dao.NoticeDAO;
 import com.notice.domain.NoticeDTO;
@@ -31,9 +32,20 @@ public class NoticeController{
 		log.info("NoticeController의 noticeList()호출됨");
 		List<NoticeDTO> noticeList = dao.noticeList();
 		model.addAttribute("noticeList", noticeList);
-		System.out.println(noticeList);
+		log.info(noticeList);
 		return "notice";
 	}
+	
+	@RequestMapping(value="noticeDetails.do", method = RequestMethod.GET)
+	public String noticeDetails(@RequestParam int notice_number, Model model) {
+		log.info("NoticeController의 noticeDetails()호출됨");
+		dao.updateReadcnt(notice_number); 
+		NoticeDTO notice = dao.retrieve(notice_number);
+		model.addAttribute("notice", notice);
+		log.info(notice);
+		return "noticeDetails";
+		
+	}	
 }
 
 

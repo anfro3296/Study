@@ -123,81 +123,42 @@
     
     ================================================-->
     
-	<!--=== 현재페이지 이름과 경로 보여주기 입니다!! ===-->
-    <div class="breadcrumbs">
-        <div class="container">
-            <h1 class="pull-left">카페 구경하기</h1>
-            <ul class="pull-right breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/main.do">Home</a></li>
-                <li class="active">카페 구경하기</li>
-            </ul>
-        </div>
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
-    
-    <!--=== Content Part ===-->
-    <div class="container content-md">
-    	 <!-- Recent Works -->
-        <div class="heading heading-v1 margin-bottom-20">
-            <h2>새로 오픈한 스터디 카페</h2>
-            <p>새로 오픈한 스터디 카페입니다</p>
-        </div>
-        
-        <!--=== Illustration v2 ===-->
-        <div class="illustration-v2 margin-bottom-60">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="newList" items="${newList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${newList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    	<div class="shop-rgba-dark-green rgba-banner">New</div>
-                    </div>
+	<!--=== Content Part ===-->
+    <div class="container content-sm">
+    <div class="col-md-10 col-md-offset-1">
+    <div class="headline"><h2>공지사항</h2></div>
+    </div>
+    <div class="row">
+    	<div class="col-md-10 col-md-offset-1">
+			<table class="table" style="text-align: center;">
+				<thead > 
+					<tr class="active">
+							<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">공지사항 보기</font></th>
+					</tr>
+				</thead>
+					<tbody>
+						<tr>
+							<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
+							<td colspan="2"><font color="black" size="3pt">${notice.notice_title}</td></td>
+						</tr>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="#">${newList.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase"></span>   
-	                       		<h6>${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
-	                       		<h6>${newList.cafe_category1} - ${newList.cafe_category1Price}/시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div> 
-        <!--=== 신규 스터디카페 끝==-->
-    	
-    
-        <div class="heading heading-v1 margin-bottom-40">
-            <h2>스터디룸</h2>
-        </div>
-
-        <!--=== 스터디룸 ===-->
-        <div class="illustration-v2 margin-bottom-60">
-        	<c:forEach var="cafe" items="${list}">
-	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-	                <div class="product-img">
-	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:200px;"></a>
-	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-	                </div>
-	                <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
-	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
-	                       		<h6>${cafe.cafe_category1Price} / 시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-	            </div>
-            </c:forEach>
-        </div> 
-        <!--=== 추천 스터디룸 ===-->
+						<tr>
+							<td><font color="black" size="3pt">작성일</font></td>	
+							<td colspan="2"><font color="black" size="3pt">${notice.notice_regdate}</font></td>
+						</tr>
+						<tr>
+							<td><font color="black" size="3pt">내용</font></td>	
+							<td colspan="2" style="min-height: 200px; text-align: left;"><p style="white-space: pre-line;"><font color="black" size="3pt" >${notice.notice_content}</font></p></td>
+						</tr>
+					</tbody>
+			</table>
+			<div class="col-md-1 col-md-offset-11">
+				<a href = "notice.do" class="btn-u btn-block btn-u-green">목록</a>
+			</div>
+		</div>
 	</div>
+    </div><!--/container content-sm-->
+    <!-- End Content Part -->
 
     <!--=== Footer v2 ===-->
     <div id="footer-v2" class="footer-v2">
@@ -310,22 +271,19 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
+
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
-    
-    $.backstretch([
-        "assets/img/bg/19.jpg",
-        "assets/img/bg/18.jpg",
-        ], {
-          fade: 1000,
-          duration: 7000
-      });
 </script>
-
 
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
