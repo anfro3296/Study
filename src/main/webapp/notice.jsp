@@ -140,7 +140,7 @@
 		    	</div>
 		    	
 		    	<div class="form-group col-md-3">
-					<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="keyWord">
+					<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="keyWord" value="${keyWord}">
 		    	</div>    	
 		    	
 		    	<div class="form-group col-md-1">

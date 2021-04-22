@@ -48,7 +48,7 @@ public class NoticeController{
 		
 		int count=dao.getRowCount(map);
 		log.info(count);
-		PagingUtil page=new PagingUtil(currentPage,count,5,1,"notice.do");
+		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,5,2,"notice.do");
 		
 		map.put("start",page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -63,6 +63,7 @@ public class NoticeController{
 		
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
+		model.addAttribute("keyWord", keyWord);
 		model.addAttribute("pagingHtml",page.getPagingHtml());
 		return "notice";
 	}

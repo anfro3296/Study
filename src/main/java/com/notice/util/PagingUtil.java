@@ -17,7 +17,7 @@ public class PagingUtil {
 	}
 	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount,
 			int blockPage,String pageUrl) {
-		this(null,null,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
+		this(keyField,keyWord,currentPage,totalCount,blockCount,blockPage,pageUrl,null);
 	}
 	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount,
 			int blockPage,String pageUrl,String addKey) {
