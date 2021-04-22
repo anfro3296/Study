@@ -152,7 +152,7 @@
 						</tr>
 					</tbody>
 			</table>
-			<div class="col-md-1 col-md-offset-11">
+			<div class="col-md-2 col-md-offset-10">
 				<a href = "notice.do" class="btn-u btn-block btn-u-green">목록</a>
 			</div>
 		</div>

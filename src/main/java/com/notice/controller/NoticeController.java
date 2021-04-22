@@ -1,6 +1,9 @@
 package com.notice.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.notice.dao.NoticeDAO;
 import com.notice.domain.NoticeDTO;
+import com.notice.util.PagingUtil;
 
 @Controller
 public class NoticeController{
@@ -28,11 +32,38 @@ public class NoticeController{
 	}
 
 	@RequestMapping(value="notice.do", method = RequestMethod.GET)
-	public String noticeList(Model model) {
-		log.info("NoticeController의 noticeList()호출됨");
-		List<NoticeDTO> noticeList = dao.noticeList();
-		model.addAttribute("noticeList", noticeList);
-		log.info(noticeList);
+	public String noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+		    @RequestParam(value="keyField",defaultValue="") String keyField,
+		    @RequestParam(value="keyWord",defaultValue="") String keyWord, Model model) {
+		if(log.isDebugEnabled()) { 
+			log.info("NoticeController의 noticeList()호출됨");
+			log.debug("currentPage:"+currentPage); 
+			log.debug("keyField:"+keyField);
+			log.debug("keyWord:"+keyWord);
+		}
+		
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("keyField", keyField);
+		map.put("keyWord", keyWord);
+		
+		int count=dao.getRowCount(map);
+		log.info(count);
+		PagingUtil page=new PagingUtil(currentPage,count,5,1,"notice.do");
+		
+		map.put("start",page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<NoticeDTO> list=null;
+		if(count > 0) {
+			System.out.println("리스트 담김");
+			list=dao.noticeList(map);
+		}else {
+			list=Collections.emptyList();
+		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("pagingHtml",page.getPagingHtml());
 		return "notice";
 	}
 	

@@ -40,6 +40,7 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" >
 </head>	
 
 <body class="header-fixed">
@@ -125,34 +126,66 @@
     
 	<!--=== Content Part ===-->
     <div class="container content-sm">
-    <div class="col-md-10 col-md-offset-1">
-    <div class="headline"><h2>공지사항</h2></div>
-    </div>
-    <div class="row">
-    	<div class="col-md-10 col-md-offset-1">
-			<table class="table table-hover" style="text-align: center;">
-				<thead > 
-					<tr class="active">
-						<td width="10%">번 호</td>
-						<td width="50%">제 목</td>
-						<td width="30%">작성일</td>
-						<td width="10%">조회수</td>
-					</tr>
-				</thead>
-				<c:forEach var="noticeList" items="${noticeList}">
-					<tr>
-						<td width="10%">${noticeList.notice_number}</td>
-						<td width="50%"><a href="noticeDetails.do?notice_number=${noticeList.notice_number}">${noticeList.notice_title}</a></td>
-						<td width="30%">${noticeList.notice_regdate}</td>
-						<td width="10%">${noticeList.notice_hit}</td>
-					</tr>
-				</c:forEach>
-			</table>
+	    <div class="col-md-10 col-md-offset-1">
+		    <div class="headline"><h2>공지사항</h2></div>
+	    </div>
+	    <div class="row">
+	    	<form role="form" action="notice.do" name="search" method="get">
+		    	<div class="form-group col-md-2 col-md-offset-3">
+			    	<select class="form-control" name="keyField">
+						<option value="title">제목</option>
+						<option value="content">내용</option>		
+						<option value="all">전체</option>	
+					</select>
+		    	</div>
+		    	
+		    	<div class="form-group col-md-3">
+					<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="keyWord">
+		    	</div>    	
+		    	
+		    	<div class="form-group col-md-1">
+					<input type="submit" class="form-control" value="검색">	    	
+				</div>
+			<hr>
+	    	</form>
+	
+	    	
+	    	<div class="col-md-10 col-md-offset-1">
+				<table class="table table-hover" style="text-align: center;">
+					<thead > 
+						<tr class="active">
+							<td width="10%">번 호</td>
+							<td width="50%">제 목</td>
+							<td width="30%">작성일</td>
+							<td width="10%">조회수</td>
+						</tr>
+					</thead>
+					
+					<!-- 레코드가 없다면 -->
+					<c:if test="${count==0}">
+					    <tr>
+					       <td colspan="5" align="center">
+					          등록된 게시물이 없습니다.
+					       </td>
+					    </tr>
+					</c:if>
+	
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<td width="10%">${list.notice_number}</td>
+							<td width="50%"><a href="noticeDetails.do?notice_number=${list.notice_number}">${list.notice_title}</a></td>
+							<td width="30%">${list.notice_regdate}</td>
+							<td width="10%">${list.notice_hit}</td>
+						</tr>
+					</c:forEach>
+						<tr><!-- 링크문자열  -->
+							<td align="center" colspan="5">${pagingHtml}</td>
+						</tr>
+				</table>
+			</div>
 		</div>
-	</div>
     </div><!--/container content-sm-->
     <!-- End Content Part -->
-
 
 
 

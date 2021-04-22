@@ -1,6 +1,7 @@
 package com.notice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,15 @@ public class NoticeDaoImpl implements NoticeDAO {
 	public SqlSession sqlSession;
 
 	@Override
-	public List<NoticeDTO> noticeList() throws DataAccessException {
-		return sqlSession.selectList("noticeList");
+	public List<NoticeDTO> noticeList(Map<String,Object>map) throws DataAccessException {
+		return sqlSession.selectList("noticeList", map);
 	}
 
+	@Override
+	public int getRowCount(Map<String, Object> map) {
+		return sqlSession.selectOne("selectCount",map);
+	}
+	
 	@Override
 	public void updateReadcnt(int notice_number) throws DataAccessException {
 		sqlSession.update("updateReadcnt", notice_number);
@@ -30,6 +36,8 @@ public class NoticeDaoImpl implements NoticeDAO {
 		return (NoticeDTO)sqlSession.selectOne("retrieve", notice_number);
 
 	}
+
+
 	
 	
 	

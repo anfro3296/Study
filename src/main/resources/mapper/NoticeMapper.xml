@@ -6,21 +6,52 @@
 <mapper namespace="notice">
 
 <!--1.글목록보기  -->
-
-<select id="noticeList" resultType="Notice">
-  select * from notice order by notice_number desc
+<select  id="noticeList"  parameterType="map"  resultType="Notice"  >
+    select notice_number, notice_title, notice_content, notice_regdate, notice_hit, admin_id
+            from ( select a.*, rownum rnum
+                from (select * from notice
+                   <where>
+                     <if test="keyWord!=null and keyField=='title'">
+                            notice_title like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='content'">
+                            notice_content like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='all'">
+                            notice_title like '%' || #{keyWord} || '%'  or
+                            notice_content like '%' || #{keyWord} || '%'
+                     </if>
+                   </where>        
+                     order by notice_number desc)a)
+  <![CDATA[
+    where rnum >=#{start} AND rnum <=#{end}
+    ]]>
 </select>
 
-<!-- 2.글쓰기(게시물 번호 최대값구하기) -->
-<select id="getNewNum" resultType="int">
-   select max(notice_number) from notice
-</select>
+<!--2.검색어에 해당하는 총레코드수 구하기 java.lang.Integer->Integer->int-->
+ <select id="selectCount" parameterType="map" resultType="Integer">
+    select count(*) from notice
+                <where>
+                     <if test="keyWord!=null and keyField=='title'">
+                            notice_title like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='content'">
+                            notice_content like '%' || #{keyWord} || '%'
+                     </if>
+                     <if test="keyWord!=null and keyField=='all'">
+                            notice_title like '%' || #{keyWord} || '%'  or
+                            notice_content like '%' || #{keyWord} || '%'
+                     </if>
+                 </where>
+ </select>
+ 
+ 
 
-<!-- 3.글쓰기 -->
-<insert id="write" parameterType="Notice">
-    insert into notice(notice_number, notice_title, notice_content, notice_regdate, admin_id)
-    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, #{admin_id})
-</insert>
+
+
+
+
+
 
 <!-- 4.글 상세보기(조회수증가)  -->
 <update id="updateReadcnt" parameterType="int">
@@ -32,6 +63,34 @@
     select * from notice where notice_number=#{notice_number}
 </select>
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- 2.글쓰기(게시물 번호 최대값구하기) -->
+<select id="getNewNum" resultType="int">
+   select max(notice_number) from notice
+</select>
+
+<!-- 3.글쓰기 -->
+<insert id="write" parameterType="Notice">
+    insert into notice(notice_number, notice_title, notice_content, notice_regdate, admin_id)
+    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, #{admin_id})
+</insert>
+
  <!-- 6.글 수정하기 -->
  <update id="update" parameterType="Notice">
  	update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_number=#{notice_number}
