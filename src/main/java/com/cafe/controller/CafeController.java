@@ -27,14 +27,7 @@ public class CafeController{
 		log.info("setDao() 호출됨(dao)=>"+dao);
 	}
 	
-	@RequestMapping("/list.do")
-	public String listBoard(@RequestParam String cafe_id, Model model){
-		log.info("ListActionController의 listBoard()호출됨");
-		CafeDTO cafe = dao.list(cafe_id);
-		model.addAttribute("cafe", cafe);
-		return "Detailed_shop";
-	}
-
+	// 카페 구경하기 호출관련 메서드
 	@RequestMapping("/lookcafe.do")
 	public String lookCafe(Model model){
 		log.info("LookCafeActionController의 lookCafe()호출됨");
@@ -44,6 +37,17 @@ public class CafeController{
 		model.addAttribute("newList", newList);
 		return "lookcafe";
 	}
+	
+	// 스터디 카페 상세 페이지 관련 메서드
+	@RequestMapping("/list.do")
+	public String listBoard(@RequestParam String cafe_id, Model model){
+		log.info("ListActionController의 listBoard()호출됨");
+		CafeDTO cafe = dao.list(cafe_id);
+		model.addAttribute("cafe", cafe);
+		return "Detailed_shop";
+	}
+
+
 }
 
 

@@ -31,6 +31,7 @@ public class NoticeController{
 		this.dao = dao;
 	}
 
+	// 공지사항 호출관련 메서드
 	@RequestMapping(value="notice.do", method = RequestMethod.GET)
 	public String noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 		    @RequestParam(value="keyField",defaultValue="") String keyField,
@@ -48,7 +49,7 @@ public class NoticeController{
 		
 		int count=dao.getRowCount(map);
 		log.info(count);
-		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,5,2,"notice.do");
+		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"notice.do");
 		
 		map.put("start",page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -68,6 +69,7 @@ public class NoticeController{
 		return "notice";
 	}
 	
+	// 공지사항 상세페이지 관련 메서드
 	@RequestMapping(value="noticeDetails.do", method = RequestMethod.GET)
 	public String noticeDetails(@RequestParam int notice_number, Model model) {
 		log.info("NoticeController의 noticeDetails()호출됨");
