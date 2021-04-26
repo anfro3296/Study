@@ -160,8 +160,8 @@
 					<thead > 
 						<tr class="active">
 							<td width="10%">번 호</td>
-							<td width="50%">제 목</td>
-							<td width="30%">작성일</td>
+							<td width="63%">제 목</td>
+							<td width="17%">작성일</td>
 							<td width="10%">조회수</td>
 						</tr>
 					</thead>
@@ -178,8 +178,8 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td width="10%">${list.notice_number}</td>
-							<td width="50%"><a href="noticeDetails.do?notice_number=${list.notice_number}">${list.notice_title}</a></td>
-							<td width="30%">${list.notice_regdate}</td>
+							<td width="63%" align="left"><a href="noticeDetails.do?notice_number=${list.notice_number}">${list.notice_title}</a></td>
+							<td width="17%">${list.notice_regdate}</td>
 							<td width="10%">${list.notice_hit}</td>
 						</tr>
 					</c:forEach>

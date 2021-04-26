@@ -16,5 +16,8 @@ public interface CafeDAO{
 	
 	// 3. 새로 오프한 스터디 카페 출력하기
 	public List<CafeDTO> newCafe() throws DataAccessException;
+	
+	// 4. 오늘의 추천 스터디 카페 출력하기
+	public List<CafeDTO> recommendCafe() throws DataAccessException;	
 }
 

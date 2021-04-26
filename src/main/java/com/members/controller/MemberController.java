@@ -67,6 +67,7 @@ public class MemberController{
 		log.info(userIdCheck);
 		if(userIdCheck == null) {
 			result= "idFail";
+			return result;
 		}
 		
 		if(members.getMember_pwd().equals(userIdCheck.getMember_pwd())) {

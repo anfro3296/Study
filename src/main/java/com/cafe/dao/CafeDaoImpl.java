@@ -30,4 +30,12 @@ public class CafeDaoImpl implements CafeDAO {
 	public List<CafeDTO> newCafe() throws DataAccessException {
 		return sqlSession.selectList("newCafe");
 		}
+
+	@Override
+	public List<CafeDTO> recommendCafe() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("recommendCafe");
+	}
+	
+	
 }

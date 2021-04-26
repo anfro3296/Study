@@ -1,4 +1,4 @@
 <%
 	//request.getContextPath() ->http~SpringFileBoard(프로젝트이름!)
-	response.sendRedirect(request.getContextPath()+"/homepage.jsp");
+	response.sendRedirect(request.getContextPath()+"/main.do");
 %>

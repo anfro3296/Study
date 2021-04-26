@@ -183,72 +183,34 @@
     	 <!-- Recent Works -->
         <div class="headline"><h2>오늘의 추천 공간</h2></div>
         <div class="row margin-bottom-20">
+        <c:forEach var="recommendCafe" items="${recommendCafe}">
+        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                	<div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe1.jpg" alt="">
-                        </div>                        					
-                    </div>
-                    <div class="caption">
-                        <h6><a class="hover-effect" href="#">24시 공존스터디룸</a></h6>
-                        <p>#강남 #강남역 #스터디룸 #신논현역</p>
-                        <p>1,500원/시간</p>
-                    </div>
+	                	<div class="thumbnail-img">
+	                        <div class="overflow-hidden">
+	                            <img class="img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:300px; height:220px;">
+	                        </div>                        					
+	                    </div>
+	                    <div class="caption">
+	                        <h4 class="title-price">${recommendCafe.cafe_name}</h4>
+	                        <span class="gender text-uppercase"></span>   
+	                       	<h6>${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
+	                       	<h6>${recommendCafe.cafe_category1} - ${recommendCafe.cafe_category1Price}/시간(인)</h6>
+	                   </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe2.jpg" alt="">
-                        </div>                  
-                    </div>
-                    <div class="caption">
-                        <h6><a class="hover-effect" href="#">[강남클래스 302] 오피스 신논현</a></h6>
-                        <p>#스터디룸 #스터디카페 #신촌스터디</p>
-                        <p>1,700원/시간</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe3.jpg" alt="">
-                        </div>               
-                    </div>
-                    <div class="caption">
-                        <h6><a class="hover-effect" href="#">B101(비일공일)</a></h6>
-                        <p>#레슨 #세미나 #원데이클래스 #회의</p>
-                        <p>1,900원/시간</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/Cafe4.jpg" alt="">
-                        </div>                  
-                    </div>
-                    <div class="caption">
-                        <h6><a class="hover-effect" href="#">슈퍼 스타트 홍대점</a></h6>
-                        <p>#강의실 #스터디룸 #승무원 #영어회화</p>
-                        <p>2,900원/시간</p>
-                    </div>
-                </div>
-            </div>
+        </a>
+        </c:forEach>
         </div>
     	<!-- End Recent Works -->
     	
     
         <!--=== Team v4 ===-->
-        <div class="container content-sm">
         <div class="headline"><h2>이용자 리뷰</h2></div>
         <div class="row team-v4">
             <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img1.jpg" alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img1.jpg" style="width:280px; height:220px;">
                 <span>24시 공존스터디룸</span>
                 <small>주여나</small>
                	<ul class="list-inline star-vote">
@@ -261,7 +223,7 @@
                 <p>쾌적한 환경을 제공해주셔서 감사해요.<br> 만족스럽게 공부하고 있습니다.</p>
             </div>
             <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img2.jpg" alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img2.jpg" style="width:280px; height:220px;">
                 <span>[강남클래스 302] 신논현</span>
                 <small>- 루비 -</small>
                 <ul class="list-inline star-vote">
@@ -274,7 +236,7 @@
                 <p>예약하고 갔는데 계단올라가는거 빼고 좋습니다.<br> 조명이 환해서 좋아요</p>
             </div>
             <div class="col-md-3 col-sm-6 sm-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img3.jpg" alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img3.jpg" style="width:280px; height:220px;">
                 <span>B101(비일공일)</span>
                 <small>- 청루 -</small>
                 <ul class="list-inline star-vote">
@@ -287,7 +249,7 @@
                 <p>깨끗해서 좋았습니다.<br> 미러링 연결도 잘되고 편하게 회의했습니다</p>
             </div>
             <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img4.jpg" alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img4.jpg" style="width:280px; height:220px;">
                 <span>슈퍼스타 홍대점</span>
                 <small>- 볶음면 -</small>
                 <ul class="list-inline star-vote">
@@ -301,60 +263,7 @@
              </div>
              <p>
              <p>
-             <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img5.jpg" alt="">
-                <span>카이스터디 카페</span>
-                <small>- 모닝 아메리카노 -</small>
-                <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                 </ul>
-                <p>널찍한 공간, 깔끔한 실내. 주변은 상가건물이라 늦은시각까지 모임을 해도 눈치 보일일 없음.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img6.jpg" alt="">
-                <span>벤처스페이스</span>
-                <small>- 주홍부부 -</small>
-                <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star-o"></i></li>
-                      <li><i class="color-green fa fa-star-o"></i></li>
-                 </ul>
-                <p>물도없고 휴지도없고.. 편의점도 가까이 없었어요...좀 더 신경써주시면 좋을것 같네요 ㅠ</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img7.jpg" alt="">
-                <span>모임플러스 강남역</span>
-                <small>- 박미소 -</small>
-                 <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star-o"></i></li>
-                 </ul>
-                <p>넓고 쾌적하고 친절하고 위치는 조금 아쉽지만 가격대비 너무 좋아요!</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img8.jpg" alt="">
-                <span>SG 스터디룸</span>
-                <small>- doongry -</small>
-                 <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star-o"></i></li>
-                 </ul>
-                <p>독립공간이라 집중작업하기 좋았습니다. 화장실도 깨끗하고 조명도 밝았어요 잘 골랐다고 칭찬받았습니다</p>
-            </div>
         </div><!--/end row-->
-    </div>
     <!--=== End Team v4 ===-->
     </div><!--/container-->
     <!-- End Content Part -->
@@ -370,7 +279,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="homepage.html">
+                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
