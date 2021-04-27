@@ -140,7 +140,6 @@
     	 <!-- Recent Works -->
         <div class="heading heading-v1 margin-bottom-20">
             <h2>새로 오픈한 스터디 카페</h2>
-            <p>새로 오픈한 스터디 카페입니다</p>
         </div>
         
         <!--=== Illustration v2 ===-->
@@ -172,7 +171,7 @@
     	
     
         <div class="heading heading-v1 margin-bottom-40">
-            <h2>스터디룸</h2>
+            <h2>스터디 카페</h2>
         </div>
 
         <!--=== 스터디룸 ===-->

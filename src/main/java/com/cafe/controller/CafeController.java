@@ -27,7 +27,7 @@ public class CafeController{
 		log.info("setDao() 호출됨(dao)=>"+dao);
 	}
 	
-	// 카페 구경하기 호출관련 메서드
+	// By Jay_카페구경하기 페이지 출력하기_20210423
 	@RequestMapping("/lookcafe.do")
 	public String lookCafe(Model model){
 		log.info("LookCafeActionController의 lookCafe()호출됨");
@@ -38,7 +38,7 @@ public class CafeController{
 		return "lookcafe";
 	}
 	
-	// 스터디 카페 상세 페이지 관련 메서드
+	// By Jay_카페 상세페이지 출력하기_20210421
 	@RequestMapping("/list.do")
 	public String listBoard(@RequestParam String cafe_id, Model model){
 		log.info("ListActionController의 listBoard()호출됨");

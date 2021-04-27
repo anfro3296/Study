@@ -1,3 +1,10 @@
+/* 예약번호 생성관련 시퀀스 생성 */
+CREATE SEQUENCE reservation_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
+
 
 /* Drop Tables */
 

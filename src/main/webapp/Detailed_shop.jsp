@@ -560,12 +560,12 @@
                                             <table>
                                             	<tr>
                                                 	<td width="30%">
-                                                		<label class="radio"><input type="radio" name="reser_category" checked value="${cafe.cafe_category1}"><i class="rounded-x"></i>${cafe.cafe_category1}</label>
+                                                		<label class="radio"><input type="radio" id="reser_category" name="reser_category" checked value="${cafe.cafe_category1}"><i class="rounded-x"></i>${cafe.cafe_category1}</label>
                                                 	</td>
                                                 	<td width="70%" align="right">${cafe.cafe_category1Price} / 시간(인)</td>
                                                 </tr>
                                                 <tr>
-                                                	<td width="30%"><label class="radio"><input type="radio" name="reser_category"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
+                                                	<td width="30%"><label class="radio"><input type="radio" id="reser_category" name="reser_category"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
                                                 	<td width="70%" align="right" >${cafe.cafe_category2Price} / 시간(인)</td>                                          		
                                                 </tr>
                                             </table>
@@ -579,7 +579,8 @@
                                         <div class="headline"><h2>총 예약 인원</h2></div>
                                         <div class="row">
                                             <div class="col col-7">
-                                            	<select name="reser_person" class="form-control">
+                                            	<select id="reser_person" name="reser_person" class="form-control">
+							                        <option></option>
 							                        <option>1</option>
 							                        <option>2</option>
 							                        <option>3</option>
@@ -596,7 +597,7 @@
                                     <section>
                                         <div class="headline"><h2>고객 요청 사항</h2></div>
                                        <label class="textarea">
-			                                <textarea name="reser_request" rows="3"></textarea>
+			                                <textarea id="reser_request" name="reser_request" rows="3"></textarea>
 			                           </label>
 			                         </section>
                                 </fieldset>
@@ -760,18 +761,31 @@
     });
 
     function reservationForm(){
-    	var date = $("#reser_date").val();
+    	var date = $("#date").val();
     	var orderTime =$("#reser_time").val();	
     	var useTime = $("#reser_usertime").val();
     	var category = $("#reser_category").val();
+    	var person = $("#reser_person").val();
     	var request = $("#reser_request").val();
     	    	
-    	if(!orderTime){
-    		alert("원하시는 시간을 선택해주세요.");
+    	if(!date){
+    		alert("원하시는 날짜 선택해주세요.");
+    		$("#reser_date").focus();
+    	}else if(!orderTime){
+    		alert("원하시는 예약 시간을 선택해주세요.");
     		$("#reser_time").focus();
     	}else if(!useTime){
     		alert("사용 시간을 선택해주세요.");
     		$("#reser_usertime").focus();
+    	}else if(!category){
+    		alert("원하시는 카테고리를 선택해주세요.");
+    		$("#reser_category").focus();
+    	}else if(!person){
+    		alert("예약인원을 선택해주세요.");
+    		$("#reser_person").focus();
+    	}else if(!request){
+    		alert("요청사항을 입력해주세요.");
+    		$("#reser_request").focus();
     	}else {
     		reservation()
     	}

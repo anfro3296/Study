@@ -137,11 +137,6 @@
 						<option value="content">내용</option>		
 						<option value="all">전체</option>	
 					</select>
-					<c:if test="${keyField!=''}">
-						<script>
-					      document.search.keyField.value="${keyField}"
-					  	</script>
-				  	</c:if>
 		    	</div>
 		    	
 		    	<div class="form-group col-md-3">

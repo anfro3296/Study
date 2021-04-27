@@ -12,7 +12,7 @@
     where cafe_id = #{id}
 </select>
 
-<!--2.카페 전체 리스트 출려가기  -->
+<!--2.스터디 카페 전체 리스트 보기  -->
 <select id="lookcafe" resultType="Cafe">
     select *
     from cafe

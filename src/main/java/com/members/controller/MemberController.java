@@ -27,12 +27,14 @@ public class MemberController{
 		log.info("setDao() 호출됨(dao)=>"+dao);
 	}
 	
+	// By jay_회원가입 폼 호출 하기_20210405
 	@RequestMapping(value="register.do", method = RequestMethod.GET)
 	public String form() {
 		log.info("RegisterActionController의 form()호출됨");
 		return "page_registration";
 	}
 	
+	// By jay_회원 가입하기_20210405
 	@RequestMapping(value="register.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String signUp(MembersDTO members) {
@@ -50,12 +52,14 @@ public class MemberController{
 		return "success";
 	}
 	
+	// By jay_로그인 폼 호출 하기_20210406
 	@RequestMapping(value="login.do", method = RequestMethod.GET)
 	public String login() {
 		log.info("RegisterActionController의 login()호출됨");
 		return "page_login";
 	}	
 	
+	// By jay_로그인 하기_20210406
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String singIn (MembersDTO members, HttpSession session) {
@@ -80,6 +84,7 @@ public class MemberController{
 		return result;
 	}
 	
+	// By jay_로그아웃 하기_20210408
 	@RequestMapping(value="logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession httpSession) {
 		log.info("RegisterActionController의 logout()호출됨");
