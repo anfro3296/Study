@@ -32,6 +32,19 @@ public class MembersDaoImpl implements MembersDAO {
 		return sqlSession.selectOne("getPwd",members);
 	}
 
+	@Override
+	public MembersDTO getMember(String member_id) {
+		return sqlSession.selectOne("getMember",member_id);
+	}
 
+	@Override
+	public void updateMember(MembersDTO members) {
+		sqlSession.update("updateMember", members);
+	}
 	
+	@Override
+	public void deleteMember(MembersDTO members) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("deleteMember", members);
+	}
 }
