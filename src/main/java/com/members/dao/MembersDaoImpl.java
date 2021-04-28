@@ -2,9 +2,12 @@ package com.members.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.cafe.domain.CafeDTO;
 import com.members.domain.MembersDTO;
+import com.reservation.domain.ReservationDTO;
 
 @Repository
 public class MembersDaoImpl implements MembersDAO {
@@ -47,4 +50,11 @@ public class MembersDaoImpl implements MembersDAO {
 		// TODO Auto-generated method stub
 		sqlSession.delete("deleteMember", members);
 	}
+	
+	@Override
+	public ReservationDTO getMemberRes(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getMemberRes",member_id);
+	}
+	
 }

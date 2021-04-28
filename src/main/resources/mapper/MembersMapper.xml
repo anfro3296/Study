@@ -32,7 +32,7 @@
         where member_id = #{member_id}
     </select>
 
-	<!-- 아이디에 대한 회원정보 가져오기(마이페이지) -->
+	<!-- 아이디에 대한 회원정보 가져오기(마이페이지 회원정보출력) -->
 	<select id="getMember" resultType="Members" parameterType="String">
         SELECT * FROM members
         where member_id = #{member_id}
@@ -51,9 +51,14 @@
   
   <delete id="deleteMember" parameterType="Members">
      DELETE FROM members 
-     WHERE member_id=#{member_id}
-     
-  </delete> 
+     WHERE member_id=#{member_id}   
+  </delete>
+  
+  <select id="getMemberRes" resultType="Reservation" parameterType="String">
+  	SELECT * FROM reservation 
+  	WHERE member_id=#{member_id}
+  </select>
+
 
 </mapper>
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<!--[if !IE]><!--> <html lang="ko"> <!--<![endif]-->  
 <head>
     <title>Member-info</title>
 
@@ -188,12 +188,12 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>123</td>
-                                    <td>카페123</td>
-                                    <td>11시</td>
-                                    <td> 2020년1월2일</td>
-                                    <td> 5000원</td>
-                                    <td> 6시</td>
+                                    <td>${reser.reser_number}</td>
+                                    <td>${cafe.cafe_name}</td>
+                                    <td>${reser.reser_time}</td>
+                                    <td>${reser.reser_date}</td>
+                                    <td>${reser.reser_price}원</td>
+                                    <td>${reser.reser_orderDate}</td>
                                     <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
                                 </tr>
                                 <tr>

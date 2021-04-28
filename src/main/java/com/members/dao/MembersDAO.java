@@ -1,5 +1,9 @@
 package com.members.dao;
+import org.springframework.dao.DataAccessException;
+
+import com.cafe.domain.CafeDTO;
 import com.members.domain.MembersDTO;
+import com.reservation.domain.ReservationDTO;
 
 
 
@@ -18,5 +22,9 @@ public interface MembersDAO{
 	
 	//회원정보탈퇴(삭제)
 	public void deleteMember(MembersDTO members);
+	
+	//회원예약내역
+	public ReservationDTO getMemberRes(String member_id);
+	
 }
 

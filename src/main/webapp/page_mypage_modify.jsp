@@ -146,8 +146,8 @@
                    			<div class="col-md-12 col-sm-4">
 		                        <h3 id="RPath">My 쇼핑</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="#">예약상품/예약내역조회</a></li>     
-		                            <li><a href="#">예약취소/환불내역</a></li>   
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
+		                            <li><a href="#">환불내역</a></li>   
 		                            <li><a href="#">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
 		                        </ul>
@@ -391,7 +391,7 @@
     		success:function(data){
     			if(data == "success"){
     				alert("회원수정이 완료됐습니다.^^");
-    				location.href = "main.do"
+    				location.href = "${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}"
     			}
     		}
     	})

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cafe.domain.CafeDTO;
 import com.members.dao.MembersDAO;
 import com.members.domain.MembersDTO;
+import com.reservation.domain.ReservationDTO;
 
 @Controller
 public class MemberController{
@@ -90,6 +92,7 @@ public class MemberController{
 		return "redirect:/main.do";
 	}
 	
+	//파이페이지에 로그인한 회원정보 뿌리기
 	@RequestMapping(value="page_mypage_info.do", method = RequestMethod.GET)
 	public String getMember(@RequestParam String member_id, Model model) {
 		log.info(member_id);
@@ -121,7 +124,7 @@ public class MemberController{
 	//로그인한 아이디값가지고 탈퇴페이지 이동
 	@RequestMapping(value="page_mypage_delete.do", method = RequestMethod.GET)
 	public String deleteForm(@RequestParam String member_id, Model model) {
-		log.info("DeleteActionController의 logout()호출됨");
+		log.info("MemberController의 deleteForm()호출됨");
 
 		MembersDTO mem=dao.getMember(member_id);
 		model.addAttribute("mem", mem);
@@ -140,7 +143,8 @@ public class MemberController{
 		MembersDTO userIdCheck = dao.getId(members);
 		log.info(userIdCheck);
 		
-
+		//db에 담겨져있는 비밀번호와 입력한 비밀번호가 같다면 
+		//success(탈퇴) 틀리다면 pwdFail떨어져서 다시입력해야된다
 		if(members.getMember_pwd().equals(userIdCheck.getMember_pwd())) {
 			session.invalidate();
 			dao.deleteMember(members);
@@ -151,6 +155,17 @@ public class MemberController{
 		log.info(result);
 		return result;
 	}
+	
+	//마이페이지에서 자기 예약 내역으로 이동하기
+	@RequestMapping(value="page_mypage_selfReg.do", method = RequestMethod.GET)
+	public String resForm(@RequestParam String member_id, Model model) {
+		log.info(member_id);
+		log.info("SelectActionController의 ()호출됨");
+		ReservationDTO reser=dao.getMemberRes(member_id);
+		model.addAttribute("reser", reser);
+		return "page_mypage_selfReg";
+	}
+	
 }
 
 
