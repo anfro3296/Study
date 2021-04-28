@@ -62,18 +62,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>        
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -124,7 +131,7 @@
     
     ================================================-->
 
-    <!--=== Slider ===-->
+    <!-- 슬라이더 2개 -->
     <div class="slider-inner">
         <div id="da-slider" class="da-slider">
             <div class="da-slide">
@@ -141,11 +148,11 @@
             </div>
         </div>
     </div><!--/slider-->
-    <!--=== End Slider ===-->
+    <!--슬라이더 2개-->
 
-    <!--=== Content Part ===-->
+    <!-- GatherStudy 핵심 설명 -->
     <div class="container content-sm">
-    	<!-- Service Blocks -->
+    	<!-- GatherStudy 핵심 설명 -->
     	<div class="row margin-bottom-30">
         	<div class="col-md-4">
         		<div class="service">
@@ -178,24 +185,24 @@
         		</div>	
         	</div>			    
     	</div>
-    	<!-- End Service Blokcs -->
+    	<!-- GatherStudy 핵심 설명 -->
 
-    	 <!-- Recent Works -->
+    	 <!-- 오늘의 추천 공간 -->
         <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="row margin-bottom-20">
+        <div class="row team-v4 margin-bottom-20">
         <c:forEach var="recommendCafe" items="${recommendCafe}">
         <a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
 	                	<div class="thumbnail-img">
 	                        <div class="overflow-hidden">
-	                            <img class="img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:300px; height:220px;">
+	                            <img class="img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:240px; height:200px;">
 	                        </div>                        					
 	                    </div>
 	                    <div class="caption">
 	                        <h4 class="title-price">${recommendCafe.cafe_name}</h4>
-	                        <span class="gender text-uppercase"></span>   
 	                       	<h6>${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
+	                       	<h6>${recommendCafe.cafe_hashtag3}  ${recommendCafe.cafe_hashtag4}</h6>
 	                       	<h6>${recommendCafe.cafe_category1} - ${recommendCafe.cafe_category1Price}/시간(인)</h6>
 	                   </div>
                 </div>
@@ -203,68 +210,82 @@
         </a>
         </c:forEach>
         </div>
-    	<!-- End Recent Works -->
+    	<!-- 오늘의 추천공간 -->
     	
     
-        <!--=== Team v4 ===-->
+        <!-- 이용자 리뷰-->
         <div class="headline"><h2>이용자 리뷰</h2></div>
         <div class="row team-v4">
-            <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img1.jpg" style="width:280px; height:220px;">
-                <span>24시 공존스터디룸</span>
-                <small>주여나</small>
-               	<ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                 </ul>
-                <p>쾌적한 환경을 제공해주셔서 감사해요.<br> 만족스럽게 공부하고 있습니다.</p>
-            </div>
-            <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img2.jpg" style="width:280px; height:220px;">
-                <span>[강남클래스 302] 신논현</span>
-                <small>- 루비 -</small>
-                <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star-o"></i></li>
-                 </ul>
-                <p>예약하고 갔는데 계단올라가는거 빼고 좋습니다.<br> 조명이 환해서 좋아요</p>
-            </div>
-            <div class="col-md-3 col-sm-6 sm-margin-bottom-50">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img3.jpg" style="width:280px; height:220px;">
-                <span>B101(비일공일)</span>
-                <small>- 청루 -</small>
-                <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                 </ul>
-                <p>깨끗해서 좋았습니다.<br> 미러링 연결도 잘되고 편하게 회의했습니다</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/assets/img/main/img4.jpg" style="width:280px; height:220px;">
-                <span>슈퍼스타 홍대점</span>
-                <small>- 볶음면 -</small>
-                <ul class="list-inline star-vote">
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                      <li><i class="color-green fa fa-star"></i></li>
-                 </ul>
-                <p>자주 이용 중입니다!<br> 깔끔하고 조용해서 집중하기 좋은 환경이에요!</p>
-             </div>
-             <p>
-             <p>
+        	<c:forEach var="evaluationList" items="${evaluationList}">
+        	<a href="${pageContext.request.contextPath}/list.do?cafe_id=${evaluationList.cafe_id}">
+	            <div class="col-md-3 col-sm-6">
+	            	<div class="thumbnails thumbnail-style thumbnail-kenburn">
+		            	<div class="thumbnail-img">
+		                        <div class="overflow-hidden">
+		                            <img class="img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:240px; height:200px;">
+		                        </div>                        					
+		                </div>
+		                <div class="caption">
+	                        <h4 class="title-price">${evaluationList.cafe_name}</h4>
+			                <small>- ${evaluationList.member_id} -</small>
+			                <c:if test="${evaluationList.order_eval_score==1}">
+				               	<ul class="list-inline star-vote">
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                 </ul>
+			                 </c:if>
+			                 
+			                <c:if test="${evaluationList.order_eval_score==2}">
+				               	<ul class="list-inline star-vote">
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                 </ul>
+			                 </c:if>
+			                 
+			                <c:if test="${evaluationList.order_eval_score==3}">
+				               	<ul class="list-inline star-vote">
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                 </ul>
+			                 </c:if>       	                 
+			                 
+			                <c:if test="${evaluationList.order_eval_score==4}">
+				               	<ul class="list-inline star-vote">
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star-o"></i></li>
+				                 </ul>
+			                 </c:if>
+			                 
+			                 <c:if test="${evaluationList.order_eval_score==5}">
+				               	<ul class="list-inline star-vote">
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                      <li><i class="color-black fa fa-star"></i></li>
+				                 </ul>
+			                 </c:if>	                 
+			                <p>${evaluationList.order_eval_content}</p>
+		                </div>
+	                </div>
+	            </div>
+	        </a>
+			</c:forEach>
         </div><!--/end row-->
-    <!--=== End Team v4 ===-->
+    <!-- 이용자 리뷰 -->
+    
     </div><!--/container-->
     <!-- End Content Part -->
 

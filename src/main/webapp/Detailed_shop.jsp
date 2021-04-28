@@ -83,18 +83,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -180,13 +187,13 @@
                         <div class="carousel slide carousel-v1" id="myCarousel">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img width="750" height="550" src="${cafe.cafe_image1}">
+                                    <img width="750" height="550" src="${pageContext.request.contextPath}/${cafe.cafe_image1}">
                                 </div>
                                 <div class="item">
-                                    <img width="750" height="550" src="${cafe.cafe_image2}">
+                                    <img width="750" height="550" src="${pageContext.request.contextPath}/${cafe.cafe_image2}">
                                     </div>
                                 <div class="item">
-                                    <img width="750" height="550" src="${cafe.cafe_image3}">
+                                    <img width="750" height="550" src="${pageContext.request.contextPath}/${cafe.cafe_image3}">
                                 </div>
                             </div>
                             
@@ -332,120 +339,107 @@
 	                                <div class="panel panel-default">
 	                                    <div class="panel-heading">
 	                                        <h4 class="panel-title">
-	                                            <a href="#collapse-v6-One" data-parent="#accordion-v6" data-toggle="collapse" class="accordion-toggle">
-	                                                이용자 리뷰
-	                                            </a>
+	                                            <a href="#collapse-v6-One" data-parent="#accordion-v6" data-toggle="collapse" class="accordion-toggle">이용자 리뷰</a>
 	                                        </h4>
 	                                    </div>
+	                                    
 	                                    <div class="panel-collapse collapse in" id="collapse-v6-One">
 	                                        <div class="panel-body">
 	                                            <div class="headline"><h2>이용자 리뷰</h2></div>
-								            <div class="row-v4">
+	                                            
+	                                        <div class="row-v4">
 								                <div class="col-md-pull pull-left">             
-								                     <div class="row blog-comments">
-								                        <div class="col-sm-2">
-								                            <img class="img-responsive rounded-x" src="assets/img/team/logo.png" alt="">
-								                        </div>
-								                        <div class="col-sm-10">
-								                            <blockquote>
-								                            	<div class="row">
-									                             	<div class="col-sm-2">
-										                             	<h2>최현준</h2>
+								                     
+								                     <c:forEach var="evaluation_list" items="${evaluation_list}">
+									                     <div class="row blog-comments">
+									                        <div class="col-sm-2">
+									                            <img class="img-responsive rounded-x" src="assets/img/team/logo.png" alt="">
+									                        </div>
+									                        <div class="col-sm-10">
+									                            <blockquote>
+									                            	<div class="row">
+										                             	<div class="col-sm-2">
+											                             	<h2>${evaluation_list.member_id}</h2>
+											                            </div>
+
+											                            <c:if test="${evaluation_list.order_eval_score==1}">
+											                             	<div class="col-sm-4 col-sm-offset-6">
+												                             	  <ul class="list-inline star-vote">
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                 </ul>
+												                            </div>       
+											                            </c:if>   
+											                            
+											                            <c:if test="${evaluation_list.order_eval_score==2}">
+											                             	<div class="col-sm-4 col-sm-offset-6">
+												                             	  <ul class="list-inline star-vote">
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                 </ul>
+												                            </div>       
+											                            </c:if>   
+											                            											                            
+											                            <c:if test="${evaluation_list.order_eval_score==3}">
+											                             	<div class="col-sm-4 col-sm-offset-6">
+												                             	  <ul class="list-inline star-vote">
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                 </ul>
+												                            </div>       
+											                            </c:if>     
+											                            
+											                            <c:if test="${evaluation_list.order_eval_score==4}">
+											                             	<div class="col-sm-4 col-sm-offset-6">
+												                             	  <ul class="list-inline star-vote">
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star-o"></i></li>
+																                 </ul>
+												                            </div>       
+											                            </c:if>     
+											                            										                           
+											                            <c:if test="${evaluation_list.order_eval_score ==5}">
+											                             	<div class="col-sm-4 col-sm-offset-6">
+												                             	  <ul class="list-inline star-vote">
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                      <li><i class="color-green fa fa-star"></i></li>
+																                 </ul>
+												                            </div>       
+											                            </c:if> 
+											                            									                                     
 										                            </div>
-										                            
-									                             	<div class="col-sm-4 col-sm-offset-6">
-										                             	  <ul class="list-inline star-vote">
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                 </ul>
-										                            </div>                        
-									                            </div>
-									                            <p>
-								                                <p>방에 대충 책상만 갖다놓고 스터디룸이라고 하는 업장이 많은데 여기는 일단 방음시설이 너무좋고 청결이 너무 잘되있어서 안심하고 이용할 수 있었습니다. 직원분도 친절해서 기분도 좋았네요! 자주 이용하려고 합니다!</p>
-								                            	<h6>2021.04.05</h6>
-								                            </blockquote> 
-								                            
-								                            <blockquote>
-								                            	<h2>호스트의 답글</h2>
-								                            	<p>안녕하세요! 스터디룸 모락입니다 :D 이용해주셔서 감사드리고, 소중한 후기도 정말 감사드립니다!! 다가오는 주말도 즐겁게 보내시길 바랄께요 :-)</p>
-								                            	<h6>2021.04.08</h6>
-								                            </blockquote>
-								                        </div>
-								                    </div>
-								                    <hr>
-								     
-								                     <div class="row blog-comments">
-								                        <div class="col-sm-2">
-								                            <img class="img-responsive rounded-x" src="assets/img/team/logo.png" alt="">
-								                        </div>
-								                        <div class="col-sm-10">
-								                            <blockquote>
-								                            	<div class="row">
-									                             	<div class="col-sm-2">
-										                             	<h2>이광재</h2>
-										                            </div>
-										                            
-									                             	<div class="col-sm-4 col-sm-offset-6">
-										                             	  <ul class="list-inline star-vote">
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                 </ul>
-										                            </div>                        
-									                            </div>
-									                            <p>
-								                                <p>먼저 지인의 소개로 이곳을 알게 되어 방문했습니다. 스터디 카페는 여러 브랜드를 방문해보았으나 단일룸형태로 되어있는 공간은 처음이었습니다. 인테리어도 밝고 공간도 무엇보다 깔끔하고 쾌적해서 좋았습니다. 난방도 적당하고 괜찮았습니다. 화장실 및 편의시설도 깨끗하고 좋았는데 음료종류 (간단하게 마실수 있는 티백, 믹스커피)같은게 있었으면 어땠을까 합니다.</p>
-								                               <h6>2021.04.01</h6>
-								                            </blockquote> 
-								                            
-								                            <blockquote>
-								                            	<h2>호스트의 답글</h2>
-								                            	<p>안녕하세요! 스터디룸 모락입니다 :D 이용해주셔서 감사드리고, 소중한 후기도 정말 감사드립니다!! 다가오는 주말도 즐겁게 보내시길 바랄께요 :-)</p>
-								                            	<h6>2021.04.05</h6>
-								                            </blockquote>
-								                        </div>
-								                    </div>
-								                    <hr>
+										                            <p>제목 : ${evaluation_list.order_eval_title}</p>
+									                                <p>${evaluation_list.order_eval_content}</p>
+									                            	<h6>${evaluation_list.order_eval_regdate}</h6>
+									                            </blockquote> 
+									                            
+									                            <blockquote>
+									                            	<h2>호스트의 답글</h2>
+									                            	<p>안녕하세요! 스터디룸 모락입니다 :D 이용해주셔서 감사드리고, 소중한 후기도 정말 감사드립니다!! 다가오는 주말도 즐겁게 보내시길 바랄께요 :-)</p>
+									                            	<h6>2021.04.08</h6>
+									                            </blockquote>
+									                        </div>
+									                    </div>
+									                    <hr>
+								     				</c:forEach>
+								                     
 								                    
-								                     <div class="row blog-comments">
-								                        <div class="col-sm-2">
-								                            <img class="img-responsive rounded-x" src="assets/img/team/logo.png" alt="">
-								                        </div>
-								                        <div class="col-sm-10">
-								                            <blockquote>
-								                            	<div class="row">
-									                             	<div class="col-sm-2">
-										                             	<h2>임승혁</h2>
-										                            </div>
-										                            
-									                             	<div class="col-sm-4 col-sm-offset-6">
-										                             	  <ul class="list-inline star-vote">
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                      <li><i class="color-green fa fa-star-o"></i></li>
-														                 </ul>
-										                            </div>                        
-									                            </div>
-									                            <p>
-								                                <p>상주직원이 있는 공간임에도 굉~~장히 저렴하고 엄청 친절하고 무지하게 깨끗하고 기막히게 조용합니다, 다른 개나소나공유공간처럼 단창이 아니라 이중창이라 대로변에 위치한 방도 밖에서 빵빵대는게 아니면 소음걱정이 없어요. 촬영 잘 했습니다. 자주 이용할듯 해요 원하는 방이 스페이스클라우드에 예약표시 되어있어도 실제로는 이용가능 할 수 있으니 문의 넣어보세용</p>
-								                               <h6>2021.03.11</h6>
-								                            </blockquote> 
-								                            
-								                            <blockquote>
-								                            	<h2>호스트의 답글</h2>
-								                            	<p>안녕하세요! 스터디룸 모락입니다 :D 이용해주셔서 감사드리고, 소중한 후기도 정말 감사드립니다!! 다가오는 주말도 즐겁게 보내시길 바랄께요 :-)</p>
-								                            	<h6>2021.03.20</h6>
-								                            </blockquote>
-								                        </div>
-								                    </div>
-								                    <hr>  
+
 								                            
 									                 <!--Pegination Centered-->
 									                 <div class="c ol-md-6 col-md-offset-4">

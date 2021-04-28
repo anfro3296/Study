@@ -169,7 +169,7 @@
 					<div class="row">
                         <div class="col-md-12">	
                             <label class="pull-left">	
-                            	<input type="checkbox"> 아이디 저장                  
+                            	<input type="checkbox" name="saveId"> 아이디 저장                  
                         	</label>
                         </div>                     
             		</div>
@@ -288,7 +288,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>

@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<html>
 <head>
-    <title>Unify - Responsive Website Template</title>
-
-    <!-- Meta -->
+<meta charset="UTF-8">
+<!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -18,39 +16,51 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/csss' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
-    
-    <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="assets/plugins/animate.css">
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v1.css">    
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-</head>	
-
-<body class="header-fixed">
-<div class="wrapper">
+    <link rel="stylesheet" href="assets/css/custom.css">
     
+    
+    
+    <!-- 
+================스타일 추가 하기=====================
+    -->
+    <style type="text/css">
+    .reg-page {
+    	padding:20px;
+    }
+   </style>  
+    <!-- 
+================스타일 추가 끝========================= 
+    -->
+<title>Insert title here</title>
+</head>
+<body>
+<div class="wrapper">
+    <!--=== Header ===-->    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
     
     =================================================-->    
-    <div class="header">
+        <div class="header">
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="${pageContext.request.contextPath}/main.do">
@@ -61,25 +71,18 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-	                <c:choose>
-						<c:when test="${!empty sessionScope.loginAdmin}">
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
-	                    	<li class="topbar-devider"></li>   
-	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
-						</c:when>
-					
-						<c:when test="${!empty sessionScope.loginUser}">
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-	                    	<li class="topbar-devider"></li>   
-	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-						</c:when>
-						
-						<c:otherwise>
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-	                    	<li class="topbar-devider"></li>   
-	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-						</c:otherwise>
-					</c:choose>
+                	<c:if test="${empty sessionScope.loginUser}">
+                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+                    	<li class="topbar-devider"></li>   
+                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+                    </c:if>
+                    
+                    <c:if test="${!empty sessionScope.loginUser}">
+                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+                    	<li class="topbar-devider"></li>   
+                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+                    </c:if>
+                    
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -98,11 +101,11 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
+                        <a href="homepage.jsp">Home</a>
                    </li>
                   
                     <li>
-                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
+                        <a href="">공지사항</a>
                     </li>
                     
                     <li>
@@ -129,90 +132,82 @@
     								End Header 상단 끝입니다.!!!
     
     ================================================-->
-    
-	<!--=== 현재페이지 이름과 경로 보여주기 입니다!! ===-->
+
+
+    <!--=== Breadcrumbs ===-->
     <div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left">카페 구경하기</h1>
+            <h1 class="pull-left">로그인</h1>
             <ul class="pull-right breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/main.do">Home</a></li>
-                <li class="active">카페 구경하기</li>
+                <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
+                <li class="active">로그인</li>
             </ul>
-        </div>
+        </div><!--/container-->
     </div><!--/breadcrumbs-->
     <!--=== End Breadcrumbs ===-->
-    
+<!--  
+====================로그인 구역 시작========================
+-->
+	<form method="post" action="adminLogin.do" id="loginform" >
     <!--=== Content Part ===-->
-    <div class="container content-md">
-    	 <!-- Recent Works -->
-        <div class="heading heading-v1 margin-bottom-20">
-            <h2>새로 오픈한 스터디 카페</h2>
-        </div>
-        
-        <!--=== Illustration v2 ===-->
-        <div class="illustration-v2 margin-bottom-60">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="newList" items="${newList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${newList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    	<div class="shop-rgba-dark-green rgba-banner">New</div>
+    <div class="container content">		
+    	<div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <form class="reg-page">
+                    <div class="reg-header">            
+                        <h2>로그인</h2>
                     </div>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="#">${newList.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase"></span>   
-	                       		<h6>${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
-	                       		<h6>${newList.cafe_category1} - ${newList.cafe_category1Price}/시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div> 
-        <!--=== 신규 스터디카페 끝==-->
-    	
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="admin_id" name="admin_id" placeholder="아이디" class="form-control">
+                    </div>                    
+                    <div class="input-group margin-bottom-10">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="pwd1" name="admin_pwd" placeholder="비밀번호" class="form-control">
+                    </div>                    
+					<div class="row">
+                        <div class="col-md-12">	
+                            <label class="pull-left">	
+                            	<input type="checkbox" name="saveId"> 아이디 저장                  
+                        	</label>
+                        </div>                     
+            		</div>
+					<input type="button" onclick="signInValidation()" class="btn-u btn-u-lg btn-block btn-u-blue" value="로그인">
+                    <hr>
+					<div class="col-md-pull">
+                    <p style="text-align:center;" class="color-blue">아직 회원이 아니신가요?</p>
+                    </div>
+                    <p><a href="${pageContext.request.contextPath}/register.do"><button class="btn-u btn-block btn-u-blue" type="button" >회원가입</button></a></p>
+                    <div class="row">
+                    	<div class="col-md-12">
+                        	<span class="pull-right">
+                            	<a class="color-blue" href="#">비밀번호 찾기</a>
+                            </span>
+                            <span class="pull-left">
+                            	<a class="color-blue" href="#">아이디 찾기</a>
+                            </span>  
+                        </div>
+                	</div> 
+                </form>            
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->		
+    <!--=== End Content Part ===-->
+    </form>
+
+<!--===========================
     
-        <div class="heading heading-v1 margin-bottom-40">
-            <h2>스터디 카페</h2>
-        </div>
-
-        <!--=== 스터디룸 ===-->
-        <div class="illustration-v2 margin-bottom-60">
-        	<c:forEach var="cafe" items="${list}">
-	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-	                <div class="product-img">
-	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:200px;"></a>
-	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-	                </div>
-	                <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
-	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
-	                       		<h6>${cafe.cafe_category1Price} / 시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-	            </div>
-            </c:forEach>
-        </div> 
-        <!--=== 추천 스터디룸 ===-->
-	</div>
-
-    <!--=== Footer v2 ===-->
+  	   Footer 하단시작이요오
+  
+    =============================-->
     <div id="footer-v2" class="footer-v2">
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="homepage.html">
+                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -293,36 +288,72 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
-    <!--=== End Footer v2 ===-->
-</div><!--/wrapper-->
+    <!--=======================
+    
+     				Footer 하단끝끝
 
-<!-- JS Global Compulsory -->			
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	========================--> 
+    
+   
+</div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->
+
+<!-- JS Global Compulsory -->           
+<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
 <!-- JS Customization -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/custom.js"></script>
 <!-- JS Page Level -->           
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-      	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
-    });
-    
+        App.init();
+        });
+</script>
+
+<script type="text/javascript">
+	function signInValidation(){
+		var userId = $("#admin_id").val();
+		var userPw = $("#pwd1").val();
+		
+		if(!userId){
+    		alert("아이디 입력은 필수입니다.");
+    		$("#member_id").focus();
+    	}else if(!userPw){
+    		alert("비밀번호 입력은 필수입니다.");
+    		$("#pwd1").focus();
+    	}else {
+    		signIn()
+    	}
+	}
+	
+    function signIn(){
+    	$.ajax({		
+    		url : "adminLogin.do",
+    		type:'POST',
+    		data : $("#loginform").serialize(),
+    		success:function(data){
+    			if(data == "success"){
+    				alert("관리자 계정으로 접속하셨습니다.");
+    				location.href = "main.do";
+    			}else if(data == "idFail"){
+    				alert("ID가 존재하지 않습니다");
+    				return false;
+    				
+    			} else if(data == "pwdFail") {
+    				alert("패스워드가 틀렸습니다. 비밀번호를 확이해주세요");
+    				return false;		
+    			}
+    		}
+    	})
+    }
 </script>
 
 

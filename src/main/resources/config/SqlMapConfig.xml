@@ -12,7 +12,10 @@
  		<typeAlias type="com.cafe.domain.CafeDTO" alias="Cafe"/>	
   		<typeAlias type="com.reservation.domain.ReservationDTO" alias="Reservation"/>			
   		<typeAlias type="com.members.domain.MembersDTO" alias="Members"/>	
+  		<typeAlias type="com.members.domain.AdminDTO" alias="Admins"/>	
   		<typeAlias type="com.notice.domain.NoticeDTO" alias="Notice"/>	
+  		<typeAlias type="com.evaluation.domain.EvaluationDTO" alias="Evaluation"/>
+  		<typeAlias type="com.evaluation.domain.TotalEvaluationDTO" alias="TotalEvaluation"/>	
  	</typeAliases>	
  
  	<mappers>
@@ -20,5 +23,6 @@
 		<mapper resource="mapper/MembersMapper.xml"/>
 		<mapper resource="mapper/ReservationMapper.xml"/>
 		<mapper resource="mapper/NoticeMapper.xml"/>
+		<mapper resource="mapper/EvaluationMapper.xml"/>
  	</mappers>
  </configuration>

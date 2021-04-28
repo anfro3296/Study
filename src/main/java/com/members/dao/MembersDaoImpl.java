@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.members.domain.AdminDTO;
 import com.members.domain.MembersDTO;
 
 @Repository
@@ -25,11 +26,21 @@ public class MembersDaoImpl implements MembersDAO {
 	@Override
 	public MembersDTO getId(MembersDTO members) {
 		return sqlSession.selectOne("getOne",members);
-		}
+	}
 	
 	@Override
 	public int getPwd(MembersDTO members) {
 		return sqlSession.selectOne("getPwd",members);
+	}
+
+	@Override
+	public AdminDTO adminGetOne(AdminDTO admins) {
+		return sqlSession.selectOne("adminGetOne",admins);
+		}
+
+	@Override
+	public int adminGetPwd(AdminDTO admins) {
+		return sqlSession.selectOne("adminGetPwd",admins);
 	}
 
 

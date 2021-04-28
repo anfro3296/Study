@@ -32,6 +32,21 @@
         where member_id = #{member_id}
     </select>
 
+    <!-- [관리자 계정] 아아이디값으로 아이디, 패스워드 정보 갖고오기  -->
+    <select id="adminGetOne" resultType="Admins" parameterType="Admins">
+        SELECT admin_id, admin_pwd
+        FROM admins
+        where admin_id = #{admin_id}
+    </select>
+
+    <!-- [관리자 계정] 아이디에 대한 비밀번호 갖고오기  -->
+    <select id="adminGetPwd" resultType="int" parameterType="Admins">
+        SELECT count(*)
+        FROM admins
+        where admin_id = #{admin_id}
+    </select>
+
+
 
 </mapper>
 

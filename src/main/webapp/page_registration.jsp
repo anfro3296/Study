@@ -91,7 +91,7 @@
 
         <div class="checkbox">            
             <label>
-                <input type="checkbox"> 
+                <input type="checkbox" id="term_check" name="term_check" value=""> 
                 <a target="_blank" href="page_terms.html">이용약관</a>을 읽었습니다.
             </label>
         </div>
@@ -146,7 +146,7 @@
     	var name = $("#member_name").val();
     	var email = $("#member_email").val();
     	var phone = $("#member_phone").val();
-    	
+
     	if(!userId){
     		alert("아이디 입력은 필수입니다.");
     		$("#member_id").focus();
@@ -165,6 +165,8 @@
     	}else if(!phone){
     		alert("핸드폰 번호 입력은 필수입니다.");
     		$("#member_phone").focus();
+    	}else if($("#term_check").is(":checked") == false){
+    		alert("이용약관을 동의해주세요.");
     	}else {
     		signUp()
     	}

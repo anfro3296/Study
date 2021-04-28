@@ -53,7 +53,7 @@
 <!-- 4.공지사항 쓰기 -->
 <insert id="noticeWrite" parameterType="Notice">
     insert into notice(notice_number, notice_title, notice_content, notice_regdate, notice_hit, admin_id)
-    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, 0, 'jay')
+    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, 0, #{admin_id})
 </insert>
 
 <!-- 5.공지사항 상세보기(조회수증가)  -->

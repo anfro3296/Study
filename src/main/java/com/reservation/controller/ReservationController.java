@@ -21,7 +21,6 @@ public class ReservationController{
 	@Autowired
 	public void setDao(ReservationDAO dao) {
 		this.dao = dao;
-		log.info("setDao() 호출됨(dao)=>"+dao);
 	}
 	
 	// By jay_카페 예약하기_20210418

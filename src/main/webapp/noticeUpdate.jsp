@@ -61,18 +61,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
             <!-- End Topbar -->
