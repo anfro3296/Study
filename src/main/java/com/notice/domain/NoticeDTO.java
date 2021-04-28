@@ -2,7 +2,8 @@ package com.notice.domain;
 
 public class NoticeDTO {
 	private int notice_number;
-	private String notice_title, notice_content, notice_regdate;
+	private String notice_title, notice_content;
+	private String notice_regdate;
 	private int notice_hit;
 	private String admin_id;
 	public int getNotice_number() {
@@ -23,6 +24,7 @@ public class NoticeDTO {
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
 	}
+
 	public String getNotice_regdate() {
 		return notice_regdate;
 	}

@@ -5,9 +5,9 @@
 
 <mapper namespace="notice">
 
-<!--1.글목록보기  -->
+<!--1.공지사항 목록보기  -->
 <select  id="noticeList"  parameterType="map"  resultType="Notice"  >
-    select notice_number, notice_title, notice_content, notice_regdate, notice_hit, admin_id
+    select notice_number, notice_title, notice_content, TO_CHAR(notice_regdate, 'YYYY-MM-DD') AS notice_regdate, notice_hit, admin_id
             from ( select a.*, rownum rnum
                 from (select * from notice
                    <where>
@@ -28,7 +28,7 @@
     ]]>
 </select>
 
-<!--2.검색어에 해당하는 총레코드수 구하기 java.lang.Integer->Integer->int-->
+<!--2.검색어에 해당하는 총레코드수 구하기 -->
  <select id="selectCount" parameterType="map" resultType="Integer">
     select count(*) from notice
                 <where>
@@ -45,60 +45,35 @@
                  </where>
  </select>
  
- 
-
-
-
-
-
-
-
-<!-- 4.글 상세보기(조회수증가)  -->
-<update id="updateReadcnt" parameterType="int">
-   update notice set notice_hit=notice_hit+1 where notice_number=#{notice_number}
-</update>
-
-<!-- 5.게시물번호에 해당하는 레코드 한개 얻어오기 -->
-<select id="retrieve" parameterType="int" resultType="Notice">
-    select * from notice where notice_number=#{notice_number}
-</select>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- <!-- 2.글쓰기(게시물 번호 최대값구하기) -->
+<!-- 3.공지사항 쓰기(게시물 번호 최대값구하기) -->
 <select id="getNewNum" resultType="int">
    select max(notice_number) from notice
 </select>
 
-<!-- 3.글쓰기 -->
-<insert id="write" parameterType="Notice">
-    insert into notice(notice_number, notice_title, notice_content, notice_regdate, admin_id)
-    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, #{admin_id})
+<!-- 4.공지사항 쓰기 -->
+<insert id="noticeWrite" parameterType="Notice">
+    insert into notice(notice_number, notice_title, notice_content, notice_regdate, notice_hit, admin_id)
+    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, 0, 'jay')
 </insert>
 
- <!-- 6.글 수정하기 -->
- <update id="update" parameterType="Notice">
- 	update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_number=#{notice_number}
- </update>
+<!-- 5.공지사항 상세보기(조회수증가)  -->
+<update id="updateReadcnt" parameterType="int">
+   update notice set notice_hit=notice_hit+1 where notice_number=#{notice_number}
+</update>
+
+<!-- 6.공지사항 번호에 해당하는 레코드 한개 얻어오기 -->
+<select id="retrieve" parameterType="int" resultType="Notice">
+    select * from notice where notice_number=#{notice_number}
+</select>
  
- <!-- 7.글 삭제하기 -->
- <delete id='delete' parameterType="int">
- 	delete from notice where notice_number=#{notice_number}
- </delete>
+<!-- 7.공지사항 수정하기 -->
+<update id="noticeUpdate" parameterType="Notice">
+ 	update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_number=#{notice_number}
+</update>
+ 
+<!-- 8.공지사항 삭제하기 -->
+<delete id='noticeDelete' parameterType="int">
+	delete from notice where notice_number=#{notice_number}
+</delete>
  
 </mapper>

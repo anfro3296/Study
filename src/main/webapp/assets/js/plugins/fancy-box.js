@@ -1,8 +1,6 @@
 var FancyBox = function () {
 
     return {
-            
-        //Fancybox
         initFancybox: function () {
             jQuery(".fancybox").fancybox({
             groupAttr: 'data-rel',

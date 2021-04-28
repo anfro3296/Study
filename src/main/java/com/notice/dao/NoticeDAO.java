@@ -18,5 +18,17 @@ public interface NoticeDAO{
 	// 2-2 글 상세보기 - 게시물 번호에 해당하는 레코드 한개 얻어오기
 	public NoticeDTO retrieve(int notice_number) throws DataAccessException;
 
+	// 3. 글 수정하기 - 게시물 번호에 해당하는 레코드 수정하기
+	public void noticeUpdate(NoticeDTO noticeDTO) throws DataAccessException;
+
+	// 4. 글 등록하기 - 게시물 번호 최대값 구하기
+	public int getNewNum() throws DataAccessException;
+	
+	// 5. 글 등록하기 - 글쓰기
+	public void noticeWrite(NoticeDTO noticeDTO) throws DataAccessException;
+		
+	// 6. 글 삭제하기
+	public void noticeDelete(int notice_number) throws DataAccessException;
+	
 }
 

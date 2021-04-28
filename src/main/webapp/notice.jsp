@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
 
-    
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
@@ -126,9 +125,10 @@
     
 	<!--=== Content Part ===-->
     <div class="container content-sm">
-	    <div class="col-md-10 col-md-offset-1">
+	    <div class="col-md-9 col-md-offset-1">
 		    <div class="headline"><h2>공지사항</h2></div>
 	    </div>
+
 	    <div class="row">
 	    	<form role="form" action="notice.do" name="search" method="get">
 		    	<div class="form-group col-md-2 col-md-offset-3">
@@ -144,9 +144,12 @@
 		    	</div>    	
 		    	
 		    	<div class="form-group col-md-1">
-					<input type="submit" class="form-control" value="검색">	    	
+					<input type="submit" class="form-control" value="검색">
 				</div>
-			<hr>
+				
+		    	<div class="form-group col-md-1 col-md-offset-1">
+		    		<input type="button" class="form-control" value="글쓰기" onclick="location.href='${pageContext.request.contextPath}/noticeWrite.do' ">   	
+				</div>				
 	    	</form>
 	
 	    	
@@ -308,17 +311,8 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
     });
     
-    $.backstretch([
-        "assets/img/bg/19.jpg",
-        "assets/img/bg/18.jpg",
-        ], {
-          fade: 1000,
-          duration: 7000
-      });
 </script>
 
 <!--[if lt IE 9]>

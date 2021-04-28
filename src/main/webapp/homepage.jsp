@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/custom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <!-- 스타일존 -->
     <style>
     

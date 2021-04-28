@@ -139,7 +139,7 @@
 					<tbody>
 						<tr>
 							<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
-							<td colspan="2"><font color="black" size="3pt">${notice.notice_title}</td></td>
+							<td colspan="2"><font color="black" size="3pt">${notice.notice_title}</font></td>
 						</tr>
 
 						<tr>
@@ -152,10 +152,16 @@
 						</tr>
 					</tbody>
 			</table>
-			<div class="col-md-2 col-md-offset-10">
-				<a href = "notice.do" class="btn-u btn-block btn-u-green">목록</a>
+			<div class="col-md-2 col-md-offset-6">
+				<input type="button" class="btn-u btn-block btn-u-green" value="수정" onclick="location.href='${pageContext.request.contextPath}/noticeUpdate.do?notice_number=${notice.notice_number}' ">
+			</div>		
+			<div class="col-md-2">
+				<input type="button" class="btn-u btn-block btn-u-green" value="삭제" onclick="del(${notice.notice_number})">
 			</div>
-		</div>
+			<div class="col-md-2">
+				<input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/notice.do' ">   	
+			</div>
+		</div>	
 	</div>
     </div><!--/container content-sm-->
     <!-- End Content Part -->
@@ -280,9 +286,15 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
     });
+    
+	function del(notice_number) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='noticeDelete.do?notice_number='+notice_number;
+		}
+	}
+    
 </script>
 
 <!--[if lt IE 9]>

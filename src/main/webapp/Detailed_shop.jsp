@@ -752,14 +752,6 @@
 
 <!-- 회원가입 뒷배경 슬라이드쇼 -->
 <script type="text/javascript">
-    $.backstretch([
-      "assets/img/bg/19.jpg",
-      "assets/img/bg/18.jpg",
-      ], {
-        fade: 1000,
-        duration: 7000
-    });
-
     function reservationForm(){
     	var date = $("#date").val();
     	var orderTime =$("#reser_time").val();	
