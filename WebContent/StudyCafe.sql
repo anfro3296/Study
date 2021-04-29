@@ -5,7 +5,8 @@ DROP TABLE Notice CASCADE CONSTRAINTS;
 DROP TABLE Admins CASCADE CONSTRAINTS;
 DROP TABLE Board_find_mem CASCADE CONSTRAINTS;
 DROP TABLE Bookmark CASCADE CONSTRAINTS;
-DROP TABLE Order_evalation CASCADE CONSTRAINTS;
+DROP TABLE Order_evaluation_reply CASCADE CONSTRAINTS;
+DROP TABLE Order_evaluation CASCADE CONSTRAINTS;
 DROP TABLE Reservation CASCADE CONSTRAINTS;
 DROP TABLE Cafe CASCADE CONSTRAINTS;
 DROP TABLE Member_details CASCADE CONSTRAINTS;
@@ -111,7 +112,7 @@ CREATE TABLE Notice
 );
 
 
-CREATE TABLE Order_evalation
+CREATE TABLE Order_evaluation
 (
 	order_eval_id number NOT NULL,
 	order_eval_pwd varchar2(4),
@@ -122,6 +123,14 @@ CREATE TABLE Order_evalation
 	cafe_id varchar2(30) NOT NULL,
 	member_id varchar2(30) NOT NULL,
 	PRIMARY KEY (order_eval_id)
+);
+
+
+CREATE TABLE Order_evaluation_reply
+(
+	order_eval_reply_content varchar2(4000),
+	order_eval_reply_regdate timestamp,
+	order_eval_id number NOT NULL
 );
 
 
@@ -174,7 +183,7 @@ ALTER TABLE Bookmark
 ;
 
 
-ALTER TABLE Order_evalation
+ALTER TABLE Order_evaluation
 	ADD FOREIGN KEY (cafe_id)
 	REFERENCES Cafe (cafe_id)
 ;
@@ -204,7 +213,7 @@ ALTER TABLE Member_details
 ;
 
 
-ALTER TABLE Order_evalation
+ALTER TABLE Order_evaluation
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;
@@ -219,6 +228,12 @@ ALTER TABLE Question_answer
 ALTER TABLE Reservation
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
+;
+
+
+ALTER TABLE Order_evaluation_reply
+	ADD FOREIGN KEY (order_eval_id)
+	REFERENCES Order_evaluation (order_eval_id)
 ;
 
 

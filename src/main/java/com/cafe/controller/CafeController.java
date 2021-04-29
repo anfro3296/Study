@@ -14,6 +14,7 @@ import com.cafe.dao.CafeDAO;
 import com.cafe.domain.CafeDTO;
 import com.evaluation.dao.copy.EvaluationDAO;
 import com.evaluation.domain.EvaluationDTO;
+import com.evaluation.domain.EvaluationReplyDTO;
 
 @Controller
 public class CafeController{
@@ -49,9 +50,13 @@ public class CafeController{
 		log.info("CafeController의 listBoard()호출됨");
 		CafeDTO cafe = dao.list(cafe_id);
 		List<EvaluationDTO> evaluation_list = dao2.evaluation_list(cafe_id);
+		List<EvaluationReplyDTO> evaluation_reply_list = dao2.evaluation_reply_list(cafe_id);
+		int count = dao2.getEvaluationRows(cafe_id);
 		model.addAttribute("cafe", cafe);
 		model.addAttribute("evaluation_list", evaluation_list);
-		log.info(evaluation_list);
+		model.addAttribute("evaluation_reply_list", evaluation_reply_list);
+		model.addAttribute("count", count);
+		log.info(count);
 		return "Detailed_shop";
 	}
 }

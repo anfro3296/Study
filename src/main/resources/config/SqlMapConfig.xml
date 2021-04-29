@@ -15,6 +15,7 @@
   		<typeAlias type="com.members.domain.AdminDTO" alias="Admins"/>	
   		<typeAlias type="com.notice.domain.NoticeDTO" alias="Notice"/>	
   		<typeAlias type="com.evaluation.domain.EvaluationDTO" alias="Evaluation"/>
+  		<typeAlias type="com.evaluation.domain.EvaluationReplyDTO" alias="EvaluationReply"/>
   		<typeAlias type="com.evaluation.domain.TotalEvaluationDTO" alias="TotalEvaluation"/>	
  	</typeAliases>	
  

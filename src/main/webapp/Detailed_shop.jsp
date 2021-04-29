@@ -346,20 +346,26 @@
 	                                    <div class="panel-collapse collapse in" id="collapse-v6-One">
 	                                        <div class="panel-body">
 	                                            <div class="headline"><h2>이용자 리뷰</h2></div>
-	                                            
+	                                         
+		                                     <!-- 레코드가 없다면 -->
+											<c:if test="${count==0}">
+											    <div>
+											          <h4>고객이 작성한 리뷰가 없습니다.</h4>
+											     </div>
+											</c:if>
+					
 	                                        <div class="row-v4">
 								                <div class="col-md-pull pull-left">             
-								                     
 								                     <c:forEach var="evaluation_list" items="${evaluation_list}">
-									                     <div class="row blog-comments">
+									                     <div class="row">
 									                        <div class="col-sm-2">
-									                            <img class="img-responsive rounded-x" src="assets/img/team/logo.png" alt="">
+									                            <img class="img-responsive rounded-x" src="${pageContext.request.contextPath}/assets/img/team/logo.png" >
 									                        </div>
 									                        <div class="col-sm-10">
 									                            <blockquote>
 									                            	<div class="row">
 										                             	<div class="col-sm-2">
-											                             	<h2>${evaluation_list.member_id}</h2>
+											                             	<h2 style="font-weight: bolder;">${evaluation_list.member_id}</h2>
 											                            </div>
 
 											                            <c:if test="${evaluation_list.order_eval_score==1}">
@@ -423,36 +429,27 @@
 											                            </c:if> 
 											                            									                                     
 										                            </div>
-										                            <p>제목 : ${evaluation_list.order_eval_title}</p>
+										                            <h5>제목 : ${evaluation_list.order_eval_title}</h5>
 									                                <p>${evaluation_list.order_eval_content}</p>
-									                            	<h6>${evaluation_list.order_eval_regdate}</h6>
+									                            	<h6 style="font-weight: lighter;">${evaluation_list.order_eval_regdate}</h6>
 									                            </blockquote> 
 									                            
+
 									                            <blockquote>
-									                            	<h2>호스트의 답글</h2>
-									                            	<p>안녕하세요! 스터디룸 모락입니다 :D 이용해주셔서 감사드리고, 소중한 후기도 정말 감사드립니다!! 다가오는 주말도 즐겁게 보내시길 바랄께요 :-)</p>
-									                            	<h6>2021.04.08</h6>
+										                            <c:forEach var="evaluation_reply_list" items="${evaluation_reply_list}">
+											                            <c:if test="${evaluation_list.order_eval_id==evaluation_reply_list.order_eval_id}">
+												                            
+												                            	<h2 style="color: purple; font-weight: bolder;">호스트의 답글</h2>
+												                            	<p>${evaluation_reply_list.order_eval_reply_content}</p>
+												                            	<h6 style="font-weight: lighter;">${evaluation_reply_list.order_eval_reply_regdate}</h6>
+												                            
+											                            </c:if>
+										                            </c:forEach>
 									                            </blockquote>
 									                        </div>
 									                    </div>
 									                    <hr>
 								     				</c:forEach>
-								                     
-								                    
-
-								                            
-									                 <!--Pegination Centered-->
-									                 <div class="c ol-md-6 col-md-offset-4">
-									                        <ul class="pagination">
-									                            <li><a href="#">&laquo;</a></li>
-									                            <li><a href="#">1</a></li>
-									                            <li class="active"><a href="#">2</a></li>
-									                            <li><a href="#">3</a></li>
-									                            <li><a href="#">4</a></li>
-									                            <li><a href="#">&raquo;</a></li>
-									                       </ul>                                                      
-									                  </div>
-									                  <!--End Pegination Centered-->      
 												  </div><!-- <div class="col-md-8">  -->
 								                </div>
 	                                        </div>

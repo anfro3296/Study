@@ -26,4 +26,14 @@
     ]]>
 </select>
 
+<!--3. 스터디 카페당 댓글 불러오기  -->
+<select  id="evaluation_reply_list" parameterType="String" resultType="EvaluationReply"  >
+    select  order_eval_reply_content, TO_CHAR(order_eval_reply_regdate, 'YYYY-MM-DD') AS order_eval_reply_regdate, order_eval_id, cafe_id from order_evaluation_reply where cafe_id = #{cafe_id}
+</select>
+
+<!-- 4. 스터디 카페당 후기 개수 추출하기  -->
+<select  id="getEvaluationRows"  parameterType="String"  resultType="int"  >
+    select count(*) from order_evaluation where cafe_id=#{cafe_id}
+</select>
+
 </mapper>
