@@ -1,5 +1,11 @@
 package com.members.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -66,9 +72,12 @@ public class MemberController{
 	// By jay_로그인 하기_20210406
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String singIn (@ModelAttribute MembersDTO members, HttpSession session) {
-		log.info(members);
+	public String singIn (@ModelAttribute MembersDTO members, HttpSession session, HttpServletRequest request,
+			HttpServletResponse response) {
 		log.info("MemberController의 signIn()호출됨");
+		
+		// page_login.jsp에서 아이디 기억하기 name값(remember) 가져오기
+		String user_check = request.getParameter("remember_userId");
 		
 		String result = null;
 		MembersDTO userIdCheck = dao.getId(members);
@@ -82,6 +91,15 @@ public class MemberController{
 			session.setAttribute("loginUser", userIdCheck);
 			result = "success";
 			
+			if(user_check.equals("true")) {
+				Cookie cookie = new Cookie("user_check", members.getMember_id());
+				response.addCookie(cookie);
+			} else {
+				Cookie cookie = new Cookie("user_check", members.getMember_id());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+	
 		} else {
 			result = "pwdFail";
 		}
@@ -91,10 +109,10 @@ public class MemberController{
 	
 	// By jay_로그아웃 하기_20210408
 	@RequestMapping(value="logout.do", method = RequestMethod.GET)
-	public String logout(HttpSession httpSession) {
+	public String logout(HttpSession httpSession) throws IOException {
 		log.info("MemberController의 logout()호출됨");
 		httpSession.invalidate();
-		return "redirect:/main.do";
+		return "page_logout";
 	}	
 	
 	// By jay_관리자 로그인창 호출 하기_20210428

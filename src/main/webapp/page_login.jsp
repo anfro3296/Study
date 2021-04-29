@@ -155,6 +155,11 @@
 <!--  
 ====================로그인 구역 시작========================
 -->
+	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+	
 	<form method="post" action="login.do" id="loginform" >
     <!--=== Content Part ===-->
     <div class="container content">		
@@ -167,7 +172,7 @@
 
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="member_id" name="member_id" placeholder="아이디" class="form-control">
+                        <input type="text" id="member_id" name="member_id" value="${cookie.user_check.value}" placeholder="아이디" class="form-control">
                     </div>                    
                     <div class="input-group margin-bottom-10">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -176,7 +181,7 @@
 					<div class="row">
                         <div class="col-md-12">	
                             <label class="pull-left">	
-                            	<input type="checkbox" name="saveId"> 아이디 저장                  
+                            	<input type="checkbox" id="remember_us" name="remember_userId" ${checked}> 아이디 저장                  
                         	</label>
                         </div>                     
             		</div>
@@ -329,7 +334,7 @@
 	function signInValidation(){
 		var userId = $("#member_id").val();
 		var userPw = $("#pwd1").val();
-		
+	
 		if(!userId){
     		alert("아이디 입력은 필수입니다.");
     		$("#member_id").focus();
@@ -345,7 +350,11 @@
     	$.ajax({		
     		url : "login.do",
     		type:'POST',
-    		data : $("#loginform").serialize(),
+    		data : {
+    			member_id : $("#member_id").val(),
+    			member_pwd : $("#pwd1").val(),
+				remember_userId : $("#remember_us").is(':checked')
+			},
     		success:function(data){
     			if(data == "success"){
     				alert("로그인에 성공하셨습니다.");
