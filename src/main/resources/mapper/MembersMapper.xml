@@ -46,7 +46,31 @@
         where admin_id = #{admin_id}
     </select>
 
+	<!-- 아이디에 대한 회원정보 가져오기(마이페이지 회원정보출력) -->
+   <select id="getMember" resultType="Members" parameterType="String">
+        SELECT * FROM members
+        where member_id = #{member_id}
+    </select>
+    
+    <!-- 5.회원정보수정하기 -->
+	<update id="updateMember" parameterType="Members">
+      update members set member_pwd=#{member_pwd},
+                 member_name=#{member_name}, member_phone=#{member_phone},
+                 member_email=#{member_email}
+      where member_id=#{member_id}
+  </update>
 
+  <!-- 6.회원정보 삭제하기 -->
+  <delete id="deleteMember" parameterType="Members">
+     DELETE FROM members 
+     WHERE member_id=#{member_id}   
+  </delete>
+  
+  <!-- 7. 예약내역 보기 -->
+  <select id="getMemberRes" resultType="Reservation" parameterType="String">
+     SELECT * FROM reservation 
+     WHERE member_id=#{member_id}
+  </select>
 
 </mapper>
 

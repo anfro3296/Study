@@ -114,11 +114,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->
@@ -165,7 +165,7 @@
 	                        <div class="pull-left">
 	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}">${newList.cafe_name}</a></h4>
 	                       		<h6 align="left">${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${newList.cafe_category1} - ${newList.cafe_category1Price}/시간(인)</h6>
+	                       		<h6 align="left">${newList.cafe_category1} - <fmt:formatNumber value="${newList.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>
@@ -194,7 +194,7 @@
 	                            <h4 class="title-price" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
 	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
 	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
-	                       		<h6>${cafe.cafe_category1Price} / 시간(인)</h6>
+	                       		<h6><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> ~ / 시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>

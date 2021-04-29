@@ -71,18 +71,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -101,11 +108,11 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="homepage.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>
@@ -117,11 +124,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->

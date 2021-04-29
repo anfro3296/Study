@@ -7,9 +7,7 @@
 
 <!--1.카페 상세 내용보기  -->
 <select id="list" resultType="Cafe" parameterType="String">
-    select *
-    from cafe
-    where cafe_id = #{id}
+    select * from cafe where cafe_id=#{id}
 </select>
 
 <!--2.스터디 카페 전체 리스트 보기  -->

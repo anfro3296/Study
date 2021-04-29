@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
-    s
+    
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
@@ -73,7 +73,7 @@
 						</c:when>
 					
 						<c:when test="${!empty sessionScope.loginUser}">
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
 						</c:when>
@@ -118,11 +118,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->
@@ -206,7 +206,7 @@
 	                        <div class="pull-left">
 	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
 	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${recommendCafe.cafe_category1} - ${recommendCafe.cafe_category1Price}/시간(인)</h6>
+	                       		<h6 align="left">${recommendCafe.cafe_category1} - <fmt:formatNumber value="${recommendCafe.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>

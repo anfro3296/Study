@@ -136,11 +136,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->
@@ -553,11 +553,11 @@
                                                 	<td width="30%">
                                                 		<label class="radio"><input type="radio" id="reser_category" name="reser_category" checked value="${cafe.cafe_category1}"><i class="rounded-x"></i>${cafe.cafe_category1}</label>
                                                 	</td>
-                                                	<td width="70%" align="right">${cafe.cafe_category1Price} / 시간(인)</td>
+                                                	<td width="70%" align="right"><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> / 시간(인)</td>
                                                 </tr>
                                                 <tr>
                                                 	<td width="30%"><label class="radio"><input type="radio" id="reser_category" name="reser_category"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
-                                                	<td width="70%" align="right" >${cafe.cafe_category2Price} / 시간(인)</td>                                          		
+                                                	<td width="70%" align="right" ><fmt:formatNumber value="${cafe.cafe_category2Price}" pattern="#,###" /> / 시간(인)</td>                                          		
                                                 </tr>
                                             </table>
                                             </div>
@@ -782,7 +782,7 @@
     		success:function(data){
     			if(data == "success"){
     				alert("예약이 완료됐습니다.^^");
-    				location.href = "main.do";
+    				location.href = "${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}"
     			} else if(data == "fail"){
     				alert("로그인 후 예약 부탁드립니다 ^^");
     				location.href = "login.do";

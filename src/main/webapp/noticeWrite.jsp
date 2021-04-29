@@ -114,11 +114,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->

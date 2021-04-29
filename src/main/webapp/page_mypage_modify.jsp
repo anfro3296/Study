@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-<meta charset="UTF-8">
-<!-- Meta -->
+    <title>Member-info</title>
+
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- color -->
+	<link rel="stylesheet" href="assets/css/theme-colors/blue.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -24,43 +29,43 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">    
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 
     <!-- CSS Page Style -->    
-    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v1.css">    
+    <link rel="stylesheet" href="assets/css/pages/blog.css">
+    <link rel="stylesheet" href="assets/css/pages/blog_magazine.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- 스타일존 -->
+	<style>    
+	    #RPath{
+			color:#2ecc71;
+		}
+	    #CTitle{
+			font-size:30px;
+			    
+	    }
     
-    
-    
-    <!-- 
-================스타일 추가 하기=====================
-    -->
-    <style type="text/css">
-    .reg-page {
-    	padding:20px;
-    }
-   </style>  
-    <!-- 
-================스타일 추가 끝========================= 
-    -->
-<title>Insert title here</title>
-</head>
+	</style>
+</head>	
+
 <body>
 <div class="wrapper">
-    <!--=== Header ===-->    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
     
     =================================================-->    
-        <div class="header">
+    <div class="header">
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="${pageContext.request.contextPath}/main.do">
@@ -79,7 +84,7 @@
 						</c:when>
 					
 						<c:when test="${!empty sessionScope.loginUser}">
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
+	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
 						</c:when>
@@ -89,7 +94,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>
+					</c:choose>        
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -129,7 +134,7 @@
 
                    <li>
                         <a href="#">호스트 센터</a>
-                    </li>             
+                    </li>     
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -140,70 +145,101 @@
     
     ================================================-->
 
-
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs">
+	<div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left">로그인</h1>
-            <ul class="pull-right breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
-                <li class="active">로그인</li>
-            </ul>
-        </div><!--/container-->
+            <h1 class="pull-left" id="RPath"><b>회원 정보</b></h1>
+        </div>
     </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
-<!--  
-====================로그인 구역 시작========================
--->
-	<form method="post" action="adminLogin.do" id="loginform" >
-    <!--=== Content Part ===-->
-    <div class="container content">		
-    	<div class="row">
-            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <form class="reg-page">
-                    <div class="reg-header">            
-                        <h2>로그인</h2>
-                    </div>
+    
+    <!-- 중단 시작 -->
+     <div class="container content">		
+    	<div class="row blog-page"> 
+    	   <div class="col-md-2  hidden-xs related-search">
+			<div class=" s-results margin-bottom-50">
+       			<div class="row">
+                   			<div class="col-md-12 col-sm-4">
+		                        <h3 id="RPath">My 쇼핑</h3>
+		                        <ul class="list-unstyled">
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
+		                            <li><a href="#">환불내역</a></li>   
+		                            <li><a href="#">구매후기</a></li>
+		                            <li><a href="#">장바구니</a></li>   
+		                        </ul>
+		                        <hr>
+	                    	</div>       
 
-                    <div class="input-group margin-bottom-20">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="admin_id" name="admin_id" placeholder="아이디" class="form-control">
-                    </div>                    
-                    <div class="input-group margin-bottom-10">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="pwd1" name="admin_pwd" placeholder="비밀번호" class="form-control">
-                    </div>                    
-					<div class="row">
-                        <div class="col-md-12">	
-                            <label class="pull-left">	
-                            	<input type="checkbox" name="saveId"> 아이디 저장                  
-                        	</label>
-                        </div>                     
+                    		<div class="col-md-12 col-sm-4">
+                        	<h3 id="RPath">My 정보</h3>
+                       		<ul class="list-unstyled">
+                            	<li><a href="#">개인정보확인/수정</a></li>       
+                        	</ul>
+                        	<hr>
+                    		</div>                                                                      		        
             		</div>
-					<input type="button" onclick="signInValidation()" class="btn-u btn-u-lg btn-block btn-u-blue" value="로그인">
-                    <hr>
-					<div class="col-md-pull">
-                    <p style="text-align:center;" class="color-blue">아직 회원이 아니신가요?</p>
-                    </div>
-                    <p><a href="${pageContext.request.contextPath}/register.do"><button class="btn-u btn-block btn-u-blue" type="button" >회원가입</button></a></p>
-                    <div class="row">
-                    	<div class="col-md-12">
-                        	<span class="pull-right">
-                            	<a class="color-blue" href="#">비밀번호 찾기</a>
-                            </span>
-                            <span class="pull-left">
-                            	<a class="color-blue" href="#">아이디 찾기</a>
-                            </span>  
-                        </div>
-                	</div> 
-                </form>            
+            	</div>
             </div>
-        </div><!--/row-->
-    </div><!--/container-->		
-    <!--=== End Content Part ===-->
-    </form>
+		<div class="col-md-10">
+	    	<div class="tab-pane fade in active" id="home-1">
+                            <form action="update.do" id="updateform" class="sky-form" method="post">
+                                <header>회원정보수정하기</header>
+                                
+                                <fieldset>
+                                	<div>                  
+                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${mem.member_id}
+                                    </div>
+                                    <p>
+                                    <hr>
+                                    <div>                  
+                                        <i class="fa fa-lock">&ensp;</i><b>비밀번호</b>
+                                        <input type="password" class="form-control" id="pwd1" name="member_pwd" placeholder="Password">
+                                    </div>
+                                    <p>
+                                    <div>                  
+                                        <i class="fa fa-lock">&ensp;</i><b>비밀번호 재입력</b>
+                                        <input type="password" class="form-control" id="pwd2" placeholder="Password">
+                                    </div>
+                                    <p>
+                                    <hr>
+                                    <div>                  
+                                        <i class="fa fa-user">&ensp;</i><b>이름</b>
+                                        <input type="text" id="member_name" name="member_name" class="form-control" placeholder="이름을 입력해주세요" value="${mem.member_name}">
+                                    </div>
+                                    <p>
+                                    <hr>
+                                    <div>                  
+                                        <i class="fa fa-envelope">&ensp;</i><b>이메일</b>
+                                        <input type="email" class="form-control" id="member_email" name="member_email" placeholder="예시) aaa@aaa.com" value="${mem.member_email}" >
+                                    </div>
+                                    <p>
+                                    <hr>
+                                    <div>                  
+                                        <i class="fa fa-phone-square">&ensp;</i><b>전화번호</b>                                        
+                                        <input type="text" id="member_phone" name="member_phone" class="form-control" placeholder="전화번호 ex)01012345678" value="${mem.member_phone}">
+                                    	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.loginUser.member_id}">
+                                    </div>
+                                    <p>
+                                </fieldset>
+                                <footer class="pull">
+	                                	<div class="pull-left">
+	                                		<a type="submit" class="btn-u btn-u-blue" onclick="updateValidation()">수정완료</a>&ensp;&ensp;&ensp;
+	                                		<a type="submit" class="btn-u btn-u-yellow" href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">취소하기</a>
+	                                	</div>
+                                </footer>
+                            </form>
+                            <!--/ Success states for elements -->
+		</div>
+		</div>
+	</div>
+</div>
+ <div class="margin-bottom-50"></div>
 
-<!--===========================
+
+
+
+
+
+
+    <!--===========================
     
   	   Footer 하단시작이요오
   
@@ -214,7 +250,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                        <a class="logo" href="homepage.html">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -295,7 +331,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
@@ -304,66 +340,79 @@
      				Footer 하단끝끝
 
 	========================--> 
-    
-   
-</div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->
+    </div>
 
-<!-- JS Global Compulsory -->           
+<!-- JS Global Compulsory -->			
 <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-<!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
+<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
 <!-- JS Customization -->
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/forms/login.js"></script>
+<script type="text/javascript" src="assets/js/forms/contact.js"></script>
+<script type="text/javascript" src="assets/js/plugins/fancy-box.js"></script>
+<script type="text/javascript" src="assets/js/plugins/datepicker.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        App.init();
-        });
-</script>
-
-<script type="text/javascript">
-	function signInValidation(){
-		var userId = $("#admin_id").val();
-		var userPw = $("#pwd1").val();
-		
-		if(!userId){
-    		alert("아이디 입력은 필수입니다.");
-    		$("#member_id").focus();
-    	}else if(!userPw){
+      	App.init();
+        OwlCarousel.initOwlCarousel();        
+        ParallaxSlider.initParallaxSlider();
+    });
+    
+    function updateValidation(){
+    	var userPw = $("#pwd1").val();	
+    	var userPwCheck = $("#pwd2").val();
+    	var name = $("#member_name").val();
+    	var email = $("#member_email").val();
+    	var phone = $("#member_phone").val();
+    	
+		if(!userPw){
     		alert("비밀번호 입력은 필수입니다.");
     		$("#pwd1").focus();
+    	}else if(!userPwCheck){
+    		alert("비밀번호 확인 입력은 필수입니다.");
+    		$("#pwd2").focus();
+    	}else if(userPw != userPwCheck){
+    		alert("비밀번호가 맞지 않습니다.");
+    		$("#userPwCheck").focus();		
+    	}else if(!email){
+    		alert("이메일 입력은 필수입니다.");
+    		$("#member_email").focus();
+    	}else if(!phone){
+    		alert("핸드폰 번호 입력은 필수입니다.");
+    		$("#member_phone").focus();
     	}else {
-    		signIn()
+    		update()
     	}
-	}
-	
-    function signIn(){
+    }
+    
+    function update(){
     	$.ajax({		
-    		url : "adminLogin.do",
+    		url : "update.do",
     		type:'POST',
-    		data : $("#loginform").serialize(),
+    		data :  $("#updateform").serialize(),
     		success:function(data){
     			if(data == "success"){
-    				alert("관리자 계정으로 접속하셨습니다.");
-    				location.href = "main.do";
-    			}else if(data == "idFail"){
-    				alert("ID가 존재하지 않습니다");
-    				return false;
-    				
-    			} else if(data == "pwdFail") {
-    				alert("패스워드가 틀렸습니다. 비밀번호를 확이해주세요");
-    				return false;		
+    				alert("회원수정이 완료됐습니다.^^");
+    				location.href = "${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}"
     			}
     		}
     	})
     }
+    
+    
 </script>
-
-
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

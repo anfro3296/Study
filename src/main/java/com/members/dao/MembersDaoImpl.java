@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.members.domain.AdminDTO;
 import com.members.domain.MembersDTO;
+import com.reservation.domain.ReservationDTO;
 
 @Repository
 public class MembersDaoImpl implements MembersDAO {
@@ -43,6 +44,23 @@ public class MembersDaoImpl implements MembersDAO {
 		return sqlSession.selectOne("adminGetPwd",admins);
 	}
 
-
+	@Override
+  	public void updateMember(MembersDTO members) {
+	     sqlSession.update("updateMember", members);
+	}
+	   
+	@Override
+	public void deleteMember(MembersDTO members) {
+	   sqlSession.delete("deleteMember", members);
+	}
+	   
+	@Override
+	public ReservationDTO getMemberRes(String member_id) {
+	   return sqlSession.selectOne("getMemberRes",member_id);
+	}
 	
+	@Override
+	   public MembersDTO getMember(String member_id) {
+	      return sqlSession.selectOne("getMember",member_id);
+	   }
 }
