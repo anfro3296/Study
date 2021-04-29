@@ -161,18 +161,17 @@
                    			<div class="col-md-12 col-sm-4">
 		                        <h3 id="RPath">My 쇼핑</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="#">예약상품/예약내역조회</a></li>     
-		                            <li><a href="#">예약취소/환불내역</a></li>   
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
 		                            <li><a href="#">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
-		                        </ul>
+		                       </ul>
 		                        <hr>
 	                    	</div>       
 
                     		<div class="col-md-12 col-sm-4">
                         	<h3 id="RPath">My 정보</h3>
                        		<ul class="list-unstyled">
-                            	<li><a href="#">개인정보확인/수정</a></li>       
+                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
                         	</ul>
                         	<hr>
                     		</div>                                                                      		        
@@ -208,36 +207,6 @@
                                     <td>${reser.reser_date}</td>
                                     <td>${reser.reser_price}원</td>
                                     <td>${reser.reser_orderDate}</td>
-                                    <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Edit</td>
-                                    <td> Delete</td>
-                                    <td> Delete</td>
-                                    <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Share</td>
-                                    <td> Delete</td>
-                                    <td> Delete</td>
-                                    <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>htmlstream</td>
-                                    <td>Web Design</td>
-                                    <td>@htmlstream</td>
-                                    <td>Submit</td>
-                                    <td> Delete</td>
-                                    <td> Delete</td>
                                     <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
                                 </tr>
                             </tbody>

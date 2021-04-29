@@ -170,7 +170,7 @@
                     		<div class="col-md-12 col-sm-4">
                         	<h3 id="RPath">My 정보</h3>
                        		<ul class="list-unstyled">
-                            	<li><a href="#">개인정보확인/수정</a></li>       
+                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
                         	</ul>
                         	<hr>
                     		</div>                                                                      		        

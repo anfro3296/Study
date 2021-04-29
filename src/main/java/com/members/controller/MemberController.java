@@ -216,7 +216,7 @@ public class MemberController{
 	   @RequestMapping(value="page_mypage_selfReg.do", method = RequestMethod.GET)
 	   public String resForm(@RequestParam String member_id, Model model) {
 	      log.info(member_id);
-	      log.info("SelectActionController의 ()호출됨");
+	      log.info("MemberController의 ()호출됨");
 	      ReservationDTO reser=dao.getMemberRes(member_id);
 	      model.addAttribute("reser", reser);
 	      return "page_mypage_selfReg";
