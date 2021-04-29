@@ -23,7 +23,8 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
+    s
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
@@ -34,6 +35,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/parallax-slider/css/parallax-slider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
@@ -151,7 +154,7 @@
     <!--슬라이더 2개-->
 
     <!-- GatherStudy 핵심 설명 -->
-    <div class="container content-sm">
+    <div class="container content-md">
     	<!-- GatherStudy 핵심 설명 -->
     	<div class="row margin-bottom-30">
         	<div class="col-md-4">
@@ -189,103 +192,108 @@
 
     	 <!-- 오늘의 추천 공간 -->
         <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="row team-v4 margin-bottom-20">
-        <c:forEach var="recommendCafe" items="${recommendCafe}">
-        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}">
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-	                	<div class="thumbnail-img">
-	                        <div class="overflow-hidden">
-	                            <img class="img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:240px; height:200px;">
-	                        </div>                        					
-	                    </div>
-	                    <div class="caption">
-	                        <h4 class="title-price">${recommendCafe.cafe_name}</h4>
-	                       	<h6>${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       	<h6>${recommendCafe.cafe_hashtag3}  ${recommendCafe.cafe_hashtag4}</h6>
-	                       	<h6>${recommendCafe.cafe_category1} - ${recommendCafe.cafe_category1Price}/시간(인)</h6>
-	                   </div>
-                </div>
-            </div>
-        </a>
-        </c:forEach>
-        </div>
+        <div class="illustration-v2 margin-bottom-30">
+            <ul class="list-inline owl-slider">
+            <c:forEach var="recommendCafe" items="${recommendCafe}">
+                <li class="item">
+                    <div class="product-img">
+                        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:213px; height:150px;"></a>
+                        <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                    </div>
+
+                   <div class="product-description product-description-brd">
+	                    <div class="overflow-h margin-bottom-5">
+	                        <div class="pull-left">
+	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
+	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
+	                       		<h6 align="left">${recommendCafe.cafe_category1} - ${recommendCafe.cafe_category1Price}/시간(인)</h6>
+	                        </div>    
+	                    </div>    
+	                </div>
+                </li>
+            </c:forEach>
+            </ul>
+        </div>        
     	<!-- 오늘의 추천공간 -->
     	
-    
-        <!-- 이용자 리뷰-->
+    	<!-- 이용자 리뷰 -->
         <div class="headline"><h2>이용자 리뷰</h2></div>
-        <div class="row team-v4">
-        	<c:forEach var="evaluationList" items="${evaluationList}">
-        	<a href="${pageContext.request.contextPath}/list.do?cafe_id=${evaluationList.cafe_id}">
-	            <div class="col-md-3 col-sm-6">
-	            	<div class="thumbnails thumbnail-style thumbnail-kenburn">
-		            	<div class="thumbnail-img">
-		                        <div class="overflow-hidden">
-		                            <img class="img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:240px; height:200px;">
-		                        </div>                        					
-		                </div>
-		                <div class="caption">
-	                        <h4 class="title-price">${evaluationList.cafe_name}</h4>
-			                <small>- ${evaluationList.member_id} -</small>
-			                <c:if test="${evaluationList.order_eval_score==1}">
-				               	<ul class="list-inline star-vote">
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                 </ul>
-			                 </c:if>
-			                 
-			                <c:if test="${evaluationList.order_eval_score==2}">
-				               	<ul class="list-inline star-vote">
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                 </ul>
-			                 </c:if>
-			                 
-			                <c:if test="${evaluationList.order_eval_score==3}">
-				               	<ul class="list-inline star-vote">
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                 </ul>
-			                 </c:if>       	                 
-			                 
-			                <c:if test="${evaluationList.order_eval_score==4}">
-				               	<ul class="list-inline star-vote">
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star-o"></i></li>
-				                 </ul>
-			                 </c:if>
-			                 
-			                 <c:if test="${evaluationList.order_eval_score==5}">
-				               	<ul class="list-inline star-vote">
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                      <li><i class="color-black fa fa-star"></i></li>
-				                 </ul>
-			                 </c:if>	                 
-			                <p>${evaluationList.order_eval_content}</p>
-		                </div>
+        <div class="illustration-v2 margin-bottom-30">
+            <ul class="list-inline owl-slider">
+            <c:forEach var="evaluationList" items="${evaluationList}">
+                <li class="item">
+                    <div class="product-img">
+                        <a href="${pageContext.request.contextPath}/list.do?cafe_id=${evaluationList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:213px; height:150px;"></a>
+                        <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${evaluationList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                    </div>
+
+                   <div class="product-description product-description-brd">
+	                    <div class="overflow-h margin-bottom-5">
+	                        <div class="pull-left">
+	                            <h4 class="title-price" align="center" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${evaluationList.cafe_id}"">${evaluationList.cafe_name}</a></h4>
+	                            <h5 align="center">- ${evaluationList.member_id} -</h5>
+	                            <div class="caption" align="center">	              
+					                <c:if test="${evaluationList.order_eval_score==1}">
+						               	<ul class="list-inline star-vote">
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                 </ul>
+					                 </c:if>
+					                 
+					                <c:if test="${evaluationList.order_eval_score==2}">
+						               	<ul class="list-inline star-vote">
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                 </ul>
+					                 </c:if>
+					                 
+					                <c:if test="${evaluationList.order_eval_score==3}">
+						               	<ul class="list-inline star-vote">
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                 </ul>
+					                 </c:if>       	                 
+					                 
+					                <c:if test="${evaluationList.order_eval_score==4}">
+						               	<ul class="list-inline star-vote">
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star-o"></i></li>
+						                 </ul>
+					                 </c:if>
+					                 
+					                 <c:if test="${evaluationList.order_eval_score==5}">
+						               	<ul class="list-inline star-vote">
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                      <li><i class="color-black fa fa-star"></i></li>
+						                 </ul>
+					                 </c:if>	  
+					                 <hr>               
+					                <p>${evaluationList.order_eval_content}</p>
+			                     </div>    
+	                        </div>    
+	                    </div>
 	                </div>
-	            </div>
-	        </a>
-			</c:forEach>
-        </div><!--/end row-->
-    <!-- 이용자 리뷰 -->
-    
+                </li>
+            </c:forEach>
+            </ul>
+        </div>        
+    	<!-- 이용자 리뷰 -->
+
     </div><!--/container-->
     <!-- End Content Part -->
 

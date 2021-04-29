@@ -22,7 +22,7 @@
                 from (select c.cafe_id, c.cafe_image1, c.cafe_name, o.member_id, o.order_eval_score, o.order_eval_content from cafe c, order_evaluation o 
 							where c.cafe_id = o.cafe_id order by o.order_eval_id desc)a)
   <![CDATA[
-    where rnum >=1 AND rnum <=8
+    where rnum >=1 AND rnum <=16
     ]]>
 </select>
 

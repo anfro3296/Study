@@ -163,10 +163,9 @@
                    <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="#">${newList.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase"></span>   
-	                       		<h6>${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
-	                       		<h6>${newList.cafe_category1} - ${newList.cafe_category1Price}/시간(인)</h6>
+	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}">${newList.cafe_name}</a></h4>
+	                       		<h6 align="left">${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
+	                       		<h6 align="left">${newList.cafe_category1} - ${newList.cafe_category1Price}/시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>
@@ -192,7 +191,7 @@
 	                <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
+	                            <h4 class="title-price" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
 	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
 	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
 	                       		<h6>${cafe.cafe_category1Price} / 시간(인)</h6>

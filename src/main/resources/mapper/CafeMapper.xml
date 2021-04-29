@@ -34,7 +34,7 @@ select *
         from ( select a.*, rownum rnum
             from (select * from cafe order by cafe_id asc)a)
 <![CDATA[
-where rnum >=1 AND rnum <= 4
+where rnum >=1 AND rnum <= 8
 ]]>
 </select>
 
