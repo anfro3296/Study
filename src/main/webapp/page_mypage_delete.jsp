@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Member Update</title>
+    <title>GatherStudy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">

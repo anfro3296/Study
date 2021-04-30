@@ -527,16 +527,16 @@
                                     		<div class="col col-7">
                                             	<select name="reser_usertime" id="reser_usertime" class="form-control">
 							                        <option></option>
-							                        <option>1시간</option>
-							                        <option>2시간</option>
-							                        <option>3시간</option>
-							                        <option>4시간</option>
-							                        <option>5시간</option>
-							                        <option>6시간</option>
-							                        <option>7시간</option>
-							                        <option>8시간</option>
-							                        <option>9시간</option>
-							                        <option>10시간</option>
+							                        <option value="1">1시간</option>
+							                        <option value="2">2시간</option>
+							                        <option value="3">3시간</option>
+							                        <option value="4">4시간</option>
+							                        <option value="5">5시간</option>
+							                        <option value="6">6시간</option>
+							                        <option value="7">7시간</option>
+							                        <option value="8">8시간</option>
+							                        <option value="9">9시간</option>
+							                        <option value="10">10시간</option>
 							                    </select>   
                                   			</div>
                                   		</div>

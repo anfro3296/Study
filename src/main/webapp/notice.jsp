@@ -176,7 +176,7 @@
 					<!-- 레코드가 없다면 -->
 					<c:if test="${count==0}">
 					    <tr>
-					       <td colspan="5" align="center">
+					       <td colspan="4" align="center">
 					          등록된 게시물이 없습니다.
 					       </td>
 					    </tr>

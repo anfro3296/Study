@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="ko"> <!--<![endif]-->  
 <head>
-    <title>Member-info</title>
+    <title>GatherStudy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -29,7 +29,8 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
@@ -148,7 +149,7 @@
 
 	<div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left" id="RPath"><b>My 쇼핑</b></h1>
+            <h1 class="pull-left" id="RPath"><b>My 예약</b></h1>
         </div>
     </div><!--/breadcrumbs-->
     
@@ -159,9 +160,9 @@
 			<div class=" s-results margin-bottom-50">
        			<div class="row">
                    			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 쇼핑</h3>
+		                        <h3 id="RPath">My 예약</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
 		                            <li><a href="#">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
 		                       </ul>
@@ -185,30 +186,53 @@
                         <h3 class="panel-title"><i class="fa fa-user"></i>My 예약</h3>
                     </div>
                     <div class="panel-body">
-                        <table class="table">
+                        <table class="table table-hover" style="text-align: center;">
                             <thead>
-                                <tr>
-                                    <th>순서</th>
-                                    <th>예약번호</th>
-                                    <th>Cafe 이름</th>
-                                    <th>예약 시간</th>
-                                    <th>예약 날짜</th>
-                                    <th>금액</th>
-                                    <th>주문 일시</th>
-                                    <th>취소(환불내용참조)</th>
+                                <tr class="active">
+                                    <td width="8%">예약번호</td>
+                                    <td width="15%">스터디 카페명</td>
+                                    <td width="6%">공간</td>
+                                    <td width="10%">예약 날짜</td>
+                                    <td width="10%">예약 시간</td>
+                                    <td width="9%">사용 시간</td>
+                                    <td width="8%">사용 인원</td>
+                                    <td width="9%">결제 금액</td>
+                                    <td width="8%">예약 상태</td>
+                                    <td width="8%">주문 일시</td>
+                                    <td width="9%">예약 취소</td>
                                 </tr>
                             </thead>
+                            
+                            <!-- 레코드가 없다면 -->
+							<c:if test="${count==0}">
+							    <tr>
+							       <td colspan="11" align="center">
+							          예약하신 내역이 없습니다.
+							       </td>
+							    </tr>
+							</c:if>
+					
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>${reser.reser_number}</td>
-                                    <td>${cafe.cafe_name}</td>
-                                    <td>${reser.reser_time}</td>
-                                    <td>${reser.reser_date}</td>
-                                    <td>${reser.reser_price}원</td>
-                                    <td>${reser.reser_orderDate}</td>
-                                    <td><a type="submit" class="btn-u btn-u-sm btn-u-red">취소하기</a></td>
-                                </tr>
+                            	<c:forEach var="OrderList" items="${OrderList}">  
+                               		 <tr>
+                                	   <td width="8%">${OrderList.reser_number}</td>
+	                                   <td width="15%">${OrderList.cafe_name}</td>
+	                                   <td width="6%">${OrderList.reser_category}</td>
+	                                   <td width="10%">${OrderList.reser_date}</td>
+	                                   <td width="10%">${OrderList.reser_time}</td>
+	                                   <td width="9%">${OrderList.reser_usertime}시간</td>
+	                                   <td width="8%">${OrderList.reser_person}명</td>
+	                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
+	                                   <td width="8%">${OrderList.reser_status}</td>
+	                                   <td width="8%">${OrderList.reser_orderDate}</td>
+	                                   <c:if test="${OrderList.reser_status=='READY'}">
+	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="취소요청" onclick="cancel(${OrderList.reser_number})"></td>
+									   </c:if>
+									   <c:if test="${OrderList.reser_status=='CANCEL'}">
+	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-red" disabled value="취소완료" onclick="cancel(${OrderList.reser_number})"></td>
+									   </c:if>
+									 </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>                      
@@ -355,6 +379,14 @@
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
+    
+	function cancel(reser_number) {
+		var chk = confirm("예약을 취소하시겠습니까?");
+		if (chk) {
+			location.href = "${pageContext.request.contextPath}/page_mypage_orderCancel.do?member_id=${sessionScope.loginUser.member_id}&reser_number="+reser_number;
+		}
+	}
+	
 </script>
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>

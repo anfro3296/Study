@@ -37,8 +37,6 @@ public class HomeController {
         List<TotalEvaluationDTO> evaluationList = dao2.total_evaluation_list();
 		model.addAttribute("recommendCafe", recommendCafe);
 		model.addAttribute("evaluationList", evaluationList);
-        
-		log.info(evaluationList);
 		return "homepage";
     }
 }

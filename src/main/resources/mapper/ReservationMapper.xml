@@ -7,7 +7,26 @@
     <!-- 카페 예약하기  -->
     <insert id="reservate" parameterType="Reservation">
         insert into reservation
-        values (reservation_seq.nextval, #{reser_person} * 2000, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
-                #{reser_person}, #{reser_request}, sysdate, 'ready', #{member_id}, #{cafe_id})
+        values (reservation_seq.nextval, #{reser_usertime} * #{reser_person} * 2000, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
+                #{reser_person}, #{reser_request}, sysdate, 'READY', #{member_id}, #{cafe_id})
     </insert>
+    
+    <!-- 회원당 예약내역 보기 -->
+    <select id="getMemberOrders" resultType="MemberOrderList" parameterType="String">
+		select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'MM-DD') as reser_orderdate,
+        TO_CHAR(r.reser_date, 'MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id
+		from reservation r, cafe c
+		where r.cafe_id = c.cafe_id and r.member_id=#{member_id} order by r.reser_number desc
+   </select>
+   
+   <!-- 회원당 예약 취소하기 -->
+	<update id="orderCancel" parameterType="String">
+	   update reservation set reser_status='CANCEL' where reser_number=#{reser_number}
+	</update>
+   
+   <!-- 회원당 예약내역 갯수 확인하기 -->
+   <select id="getOrderNum" parameterType="String" resultType="int">
+ 	 select count(*) from reservation where member_id =#{member_id}
+   </select>
+
 </mapper>

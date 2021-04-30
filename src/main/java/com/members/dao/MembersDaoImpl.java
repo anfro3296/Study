@@ -60,7 +60,7 @@ public class MembersDaoImpl implements MembersDAO {
 	}
 	
 	@Override
-	   public MembersDTO getMember(String member_id) {
-	      return sqlSession.selectOne("getMember",member_id);
-	   }
+	public MembersDTO getMember(String member_id) {
+	     return sqlSession.selectOne("getMember",member_id);
+	 }
 }

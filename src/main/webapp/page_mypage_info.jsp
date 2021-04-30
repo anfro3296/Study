@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Member-info</title>
+    <title>GatherStudy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+	<link rel="stylesheet" href="assets/css/footers/footer-v2.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
@@ -158,9 +158,9 @@
 			<div class=" s-results margin-bottom-50">
        			<div class="row">
                    			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 쇼핑</h3>
+		                        <h3 id="RPath">My 예약</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
 		                            <li><a href="#">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
 		                        </ul>

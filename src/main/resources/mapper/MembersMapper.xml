@@ -66,11 +66,6 @@
      WHERE member_id=#{member_id}   
   </delete>
   
-  <!-- 7. 예약내역 보기 -->
-  <select id="getMemberRes" resultType="Reservation" parameterType="String">
-     SELECT * FROM reservation 
-     WHERE member_id=#{member_id}
-  </select>
 
 </mapper>
 
