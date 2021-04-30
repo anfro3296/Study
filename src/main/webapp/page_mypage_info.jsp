@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Member-info</title>
+    <title>GatherStudy</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+	<link rel="stylesheet" href="assets/css/footers/footer-v2.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
@@ -75,12 +75,26 @@
             
             <!-- Topbar -->
             <div class="topbar">
-                <ul class="loginbar pull-right">     
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
+                <ul class="loginbar pull-right">  
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>        
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -103,7 +117,7 @@
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>
@@ -115,12 +129,12 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
-                    </li>             
+                        <a href="#">호스트 센터</a>
+                    </li>            
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -144,9 +158,9 @@
 			<div class=" s-results margin-bottom-50">
        			<div class="row">
                    			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 쇼핑</h3>
+		                        <h3 id="RPath">My 예약</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소(환불)</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
 		                            <li><a href="#">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
 		                        </ul>
@@ -156,7 +170,7 @@
                     		<div class="col-md-12 col-sm-4">
                         	<h3 id="RPath">My 정보</h3>
                        		<ul class="list-unstyled">
-                            	<li><a href="#">개인정보확인/수정</a></li>       
+                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
                         	</ul>
                         	<hr>
                     		</div>                                                                      		        
@@ -315,7 +329,6 @@
     <!--=======================
     
      				Footer 하단끝끝
-
 	========================--> 
     </div>
 

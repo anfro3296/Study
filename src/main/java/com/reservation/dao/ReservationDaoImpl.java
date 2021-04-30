@@ -1,10 +1,13 @@
 package com.reservation.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.reservation.domain.MemberOrderListDTO;
 import com.reservation.domain.ReservationDTO;
 
 @Repository
@@ -16,4 +19,22 @@ public class ReservationDaoImpl implements ReservationDAO {
     public void reservate(ReservationDTO reservation) throws DataAccessException {
         sqlSession.insert("reservate", reservation);
     }
+
+	@Override
+	public List<MemberOrderListDTO> getMemberOrders(String member_id) {
+		return sqlSession.selectList("getMemberOrders",member_id);
+	}
+
+	@Override
+	public void orderCancel(String reser_number) {
+		 sqlSession.delete("orderCancel", reser_number);
+	}
+
+	@Override
+	public int getOrderNum(String member_id) {
+		return sqlSession.selectOne("getOrderNum",member_id);
+	}
+    
+    
+	
 }

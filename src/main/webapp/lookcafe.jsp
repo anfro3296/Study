@@ -61,18 +61,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -95,7 +102,7 @@
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>
@@ -107,11 +114,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->
@@ -140,7 +147,6 @@
     	 <!-- Recent Works -->
         <div class="heading heading-v1 margin-bottom-20">
             <h2>새로 오픈한 스터디 카페</h2>
-            <p>새로 오픈한 스터디 카페입니다</p>
         </div>
         
         <!--=== Illustration v2 ===-->
@@ -157,10 +163,9 @@
                    <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="#">${newList.cafe_name}</a></h4>
-	                            <span class="gender text-uppercase"></span>   
-	                       		<h6>${newList.cafe_category1} / ${newList.cafe_category2}</h6>
-	                       		<h6>${newList.cafe_category1Price}  / 시간(인)</h6>
+	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${newList.cafe_id}">${newList.cafe_name}</a></h4>
+	                       		<h6 align="left">${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
+	                       		<h6 align="left">${newList.cafe_category1} - <fmt:formatNumber value="${newList.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>
@@ -172,7 +177,7 @@
     	
     
         <div class="heading heading-v1 margin-bottom-40">
-            <h2>스터디룸</h2>
+            <h2>스터디 카페</h2>
         </div>
 
         <!--=== 스터디룸 ===-->
@@ -180,16 +185,16 @@
         	<c:forEach var="cafe" items="${list}">
 	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
 	                <div class="product-img">
-	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:190px;"></a>
+	                    <a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:200px;"></a>
 	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
 	                </div>
 	                <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
+	                            <h4 class="title-price" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/list.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
 	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
 	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
-	                       		<h6>${cafe.cafe_category1Price} / 시간(인)</h6>
+	                       		<h6><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> ~ / 시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>
@@ -292,63 +297,6 @@
         </div><!--/copyright--> 
     </div>
     <!--=== End Footer v2 ===-->
-
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">                     
-                        <p>
-                            2015 &copy; All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                        </p>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="col-md-6">
-                        <ul class="footer-socials list-inline">
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                                    <i class="fa fa-skype"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Social Links -->
-                </div>
-            </div> 
-        </div><!--/copyright-->
-    </div>
-    <!--=== End Footer Version 1 ===-->
 </div><!--/wrapper-->
 
 <!-- JS Global Compulsory -->			
@@ -373,7 +321,10 @@
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
+    
 </script>
+
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

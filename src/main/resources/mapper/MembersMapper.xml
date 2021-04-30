@@ -18,7 +18,7 @@
         values (#{member_id}, #{member_pwd}, #{member_name}, #{member_phone}, #{member_email}, sysdate)
     </insert>
 
-    <!-- 아이디값으로 회원 아이디/비밀번호 갖고오기  -->
+    <!-- 아이디값으로 아이디, 패스워드 정보 갖고오기  -->
     <select id="getOne" resultType="Members" parameterType="Members">
         SELECT member_id, member_pwd
         FROM members
@@ -32,15 +32,28 @@
         where member_id = #{member_id}
     </select>
 
+    <!-- [관리자 계정] 아아이디값으로 아이디, 패스워드 정보 갖고오기  -->
+    <select id="adminGetOne" resultType="Admins" parameterType="Admins">
+        SELECT admin_id, admin_pwd
+        FROM admins
+        where admin_id = #{admin_id}
+    </select>
+
+    <!-- [관리자 계정] 아이디에 대한 비밀번호 갖고오기  -->
+    <select id="adminGetPwd" resultType="int" parameterType="Admins">
+        SELECT count(*)
+        FROM admins
+        where admin_id = #{admin_id}
+    </select>
+
 	<!-- 아이디에 대한 회원정보 가져오기(마이페이지 회원정보출력) -->
-	<select id="getMember" resultType="Members" parameterType="String">
+   <select id="getMember" resultType="Members" parameterType="String">
         SELECT * FROM members
         where member_id = #{member_id}
     </select>
     
     <!-- 5.회원정보수정하기 -->
-
-<update id="updateMember" parameterType="Members">
+	<update id="updateMember" parameterType="Members">
       update members set member_pwd=#{member_pwd},
                  member_name=#{member_name}, member_phone=#{member_phone},
                  member_email=#{member_email}
@@ -48,17 +61,10 @@
   </update>
 
   <!-- 6.회원정보 삭제하기 -->
-  
   <delete id="deleteMember" parameterType="Members">
      DELETE FROM members 
      WHERE member_id=#{member_id}   
   </delete>
   
-  <select id="getMemberRes" resultType="Reservation" parameterType="String">
-  	SELECT * FROM reservation 
-  	WHERE member_id=#{member_id}
-  </select>
-
 
 </mapper>
-

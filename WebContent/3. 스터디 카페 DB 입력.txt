@@ -159,7 +159,7 @@ insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_
 update cafe set cafe_linescription = '강남에서 가장 쾌적하고 저렴한'||chr(13)||'스터디카페&독서실' where cafe_id='ibstudy';
 
 update cafe set cafe_spaceintroduction = '강남역 9번 10번 출구에서 도보로 5분거리'||chr(13)||
-'강남 최저 가격 스터디카페 & 스터디룸 & 독서실(1인석)해커스어학원 본관 바로 옆'||chr(13)||
+'강남 최저 가격 스터디카페 / 스터디룸 / 독서실(1인석), 해커스어학원 본관 바로 옆'||chr(13)||
 '파고다어학원 시사어학원 도보 3분거리'||chr(13)||
 '박문각학원 도보 1분 거리'||chr(13)||
 '강남에서 가장 쾌적한 뷰를 가지고 있음' where cafe_id='ibstudy';

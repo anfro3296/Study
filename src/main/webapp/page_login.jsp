@@ -71,18 +71,25 @@
             <!-- Topbar -->
             <div class="topbar">
                 <ul class="loginbar pull-right">  
-                	<c:if test="${empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
-                    </c:if>
-                    
-                    <c:if test="${!empty sessionScope.loginUser}">
-                    	<li><a href="${pageContext.request.contextPath}/login.do">마이페이지</a></li>  
-                    	<li class="topbar-devider"></li>   
-                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
-                    </c:if>
-                    
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+						</c:when>
+					
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+						
+						<c:otherwise>
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -101,11 +108,11 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="homepage.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
                   
                     <li>
-                        <a href="">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
                     </li>
                     
                     <li>
@@ -117,11 +124,11 @@
                     </li>
                     
                      <li>
-                        <a href="#">문의 사항</a>
+                        <a href="#">도움말</a>
                     </li>                   
 
                    <li>
-                        <a href="#">예약 후기</a>
+                        <a href="#">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->
@@ -148,6 +155,11 @@
 <!--  
 ====================로그인 구역 시작========================
 -->
+	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+	
 	<form method="post" action="login.do" id="loginform" >
     <!--=== Content Part ===-->
     <div class="container content">		
@@ -160,7 +172,7 @@
 
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="member_id" name="member_id" placeholder="아이디" class="form-control">
+                        <input type="text" id="member_id" name="member_id" value="${cookie.user_check.value}" placeholder="아이디" class="form-control">
                     </div>                    
                     <div class="input-group margin-bottom-10">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -169,7 +181,7 @@
 					<div class="row">
                         <div class="col-md-12">	
                             <label class="pull-left">	
-                            	<input type="checkbox"> 아이디 저장                  
+                            	<input type="checkbox" id="remember_us" name="remember_userId" ${checked}> 아이디 저장                  
                         	</label>
                         </div>                     
             		</div>
@@ -207,8 +219,8 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="homepage.html">
-                		<img src="./logoimg/MainLogo.png" alt="Logo" width="180">
+                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
                         <p>공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해주세요. ㅇㅇ는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 ㅇㅇ는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
@@ -288,7 +300,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
@@ -322,7 +334,7 @@
 	function signInValidation(){
 		var userId = $("#member_id").val();
 		var userPw = $("#pwd1").val();
-		
+	
 		if(!userId){
     		alert("아이디 입력은 필수입니다.");
     		$("#member_id").focus();
@@ -338,7 +350,11 @@
     	$.ajax({		
     		url : "login.do",
     		type:'POST',
-    		data : $("#loginform").serialize(),
+    		data : {
+    			member_id : $("#member_id").val(),
+    			member_pwd : $("#pwd1").val(),
+				remember_userId : $("#remember_us").is(':checked')
+			},
     		success:function(data){
     			if(data == "success"){
     				alert("로그인에 성공하셨습니다.");
@@ -354,7 +370,6 @@
     		}
     	})
     }
-
 </script>
 
 
