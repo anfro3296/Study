@@ -34,7 +34,23 @@ public class ReservationDaoImpl implements ReservationDAO {
 	public int getOrderNum(String member_id) {
 		return sqlSession.selectOne("getOrderNum",member_id);
 	}
-    
-    
+
+	@Override
+	public List<MemberOrderListDTO> orderEvaluationList(String member_id) {
+		return sqlSession.selectList("orderEvaluationList",member_id);
+	}
+
+	@Override
+	public int orderEvaluationNum(String member_id) {
+		return sqlSession.selectOne("orderEvaluationNum",member_id);
+	}
+
+	@Override
+	public MemberOrderListDTO getOrderOneByReser_number(int reser_number) {
+		return sqlSession.selectOne("getOrderOneByReser_number",reser_number);
+	}
+	
+	
+	
 	
 }

@@ -13,6 +13,8 @@ public class MemberOrderListDTO {
 	private String reser_status;
 	private String cafe_name;
 	private String member_id;
+	private String cafe_id;
+	private String reser_evaluationCheck;
 	
 	public int getReser_number() {
 		return reser_number;
@@ -87,14 +89,25 @@ public class MemberOrderListDTO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getCafe_id() {
+		return cafe_id;
+	}
+	public void setCafe_id(String cafe_id) {
+		this.cafe_id = cafe_id;
+	}
+	public String getReser_evaluationCheck() {
+		return reser_evaluationCheck;
+	}
+	public void setReser_evaluationCheck(String reser_evaluationCheck) {
+		this.reser_evaluationCheck = reser_evaluationCheck;
+	}
 	@Override
 	public String toString() {
 		return "MemberOrderListDTO [reser_number=" + reser_number + ", reser_price=" + reser_price + ", reser_date="
 				+ reser_date + ", reser_time=" + reser_time + ", reser_usertime=" + reser_usertime + ", reser_category="
 				+ reser_category + ", reser_person=" + reser_person + ", reser_request=" + reser_request
 				+ ", reser_orderDate=" + reser_orderDate + ", reser_status=" + reser_status + ", cafe_name=" + cafe_name
-				+ ", member_id=" + member_id + "]";
-	}
-	
-	
+				+ ", member_id=" + member_id + ", cafe_id=" + cafe_id + ", reser_evaluationCheck="
+				+ reser_evaluationCheck + "]";
+	}	
 }

@@ -4,6 +4,7 @@ public class EvaluationDTO {
 	private int order_eval_id;
 	private String order_eval_pwd, order_eval_title, order_eval_content, order_eval_regdate;
 	private int order_eval_score;
+	private int reser_number;
 	private String cafe_id, member_id;
 	public int getOrder_eval_id() {
 		return order_eval_id;
@@ -53,12 +54,17 @@ public class EvaluationDTO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	
+	public int getReser_number() {
+		return reser_number;
+	}
+	public void setReser_number(int reser_number) {
+		this.reser_number = reser_number;
+	}
 	@Override
 	public String toString() {
 		return "EvaluationDTO [order_eval_id=" + order_eval_id + ", order_eval_pwd=" + order_eval_pwd
 				+ ", order_eval_title=" + order_eval_title + ", order_eval_content=" + order_eval_content
-				+ ", order_eval_regdate=" + order_eval_regdate + ", order_eval_score=" + order_eval_score + ", cafe_id="
-				+ cafe_id + ", member_id=" + member_id + "]";
+				+ ", order_eval_regdate=" + order_eval_regdate + ", order_eval_score=" + order_eval_score
+				+ ", reser_number=" + reser_number + ", cafe_id=" + cafe_id + ", member_id=" + member_id + "]";
 	}
 }

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<!--[if !IE]><!--> <html lang="ko"> <!--<![endif]-->  
 <head>
     <title>GatherStudy</title>
 
@@ -29,7 +29,8 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-	<link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
@@ -54,6 +55,7 @@
 			font-size:30px;
 			    
 	    }
+	    
     
 	</style>
 </head>	
@@ -134,7 +136,7 @@
 
                    <li>
                         <a href="#">호스트 센터</a>
-                    </li>            
+                    </li>           
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -147,7 +149,7 @@
 
 	<div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left" id="RPath"><b>회원 정보</b></h1>
+            <h1 class="pull-left" id="RPath"><b>My 예약</b></h1>
         </div>
     </div><!--/breadcrumbs-->
     
@@ -163,7 +165,7 @@
 		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
 		                            <li><a href="${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
-		                        </ul>
+		                       </ul>
 		                        <hr>
 	                    	</div>       
 
@@ -179,45 +181,60 @@
             </div>
 		<div class="col-md-10">
 	    	<div class="tab-pane fade in active" id="home-1">
-                            <form action="#" class="sky-form">
-                                <header>회원정보</header>
-                                
-                                <fieldset>
-                                	<div>                  
-                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${mem.member_id}
-                                    </div>
-                                    <p>
-                                    <hr>
-                                    <div>                  
-                                        <i class="fa fa-user">&ensp;</i><b>이름</b> : ${mem.member_name}
-                                    </div>
-                                    <p>
-                                    <hr>
-                                    <div>                  
-                                        <i class="fa fa-envelope">&ensp;</i><b>이메일</b> : ${mem.member_email}
-                                    </div>
-                                    <p>
-                                    <hr>
-                                    <div>                  
-                                        <i class="fa fa-phone-square">&ensp;</i><b>전화번호</b> : ${mem.member_phone}
-                                    </div>
-                                    <p>
-                                    <hr>
-                                    <div>                  
-                                        <i class="fa fa-history">&ensp;</i><b>가입날짜</b> : ${mem.member_joindate}                           
-                                    </div>
-                                    <p>
-                                </fieldset>
-                                <footer class="pull">
-	                                	<div class="pull-left">
-	                                		<a type="submit" class="btn-u" href="${pageContext.request.contextPath}/page_mypage_modify.do?member_id=${sessionScope.loginUser.member_id}">수정하기</a>
-	                                	</div>
-										<div class="pull-right">
-	                                		<a type="submit" class="btn-u btn-u-red" href="${pageContext.request.contextPath}/page_mypage_delete.do?member_id=${sessionScope.loginUser.member_id}">탈퇴하기</a>
-	                                	</div>
-                                </footer>
-                            </form>
-                            <!--/ Success states for elements -->
+            	<div class="panel panel-green margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-user"></i>My 예약</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" style="text-align: center;">
+                            <thead>
+                                <tr class="active">
+                                    <td width="8%">예약번호</td>
+                                    <td width="15%">스터디 카페명</td>
+                                    <td width="6%">공간</td>
+                                    <td width="10%">예약 날짜</td>
+                                    <td width="10%">예약 시간</td>
+                                    <td width="9%">사용 시간</td>
+                                    <td width="8%">사용 인원</td>
+                                    <td width="9%">결제 금액</td>
+                                    <td width="8%">예약 상태</td>
+                                    <td width="17%">후기 작성</td>
+                                </tr>
+                            </thead>
+                            
+                            <!-- 레코드가 없다면 -->
+							<c:if test="${count==0}">
+							    <tr>
+							       <td colspan="11" align="center">
+							          예약하신 내역이 없습니다.
+							       </td>
+							    </tr>
+							</c:if>
+					
+                            <tbody>
+                            	<c:forEach var="OrderList" items="${OrderList}">  
+                               		 <tr>
+                                	   <td width="8%">${OrderList.reser_number}</td>
+	                                   <td width="15%">${OrderList.cafe_name}</td>
+	                                   <td width="6%">${OrderList.reser_category}</td>
+	                                   <td width="10%">${OrderList.reser_date}</td>
+	                                   <td width="10%">${OrderList.reser_time}</td>
+	                                   <td width="9%">${OrderList.reser_usertime}시간</td>
+	                                   <td width="8%">${OrderList.reser_person}명</td>
+	                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
+	                                   <td width="8%">${OrderList.reser_status}</td>
+	                                   <c:if test="${OrderList.reser_evaluationCheck=='YES'}">
+	                                 	  <td width="17%"><input type="button" class="btn-u btn-u-sm btn-u-red" value="후기 작성 완료" disabled onclick="location.href='${pageContext.request.contextPath}/page_mypage_evaluationWrite.do?reser_number=${OrderList.reser_number}' "></td>
+									   </c:if>
+									   <c:if test="${OrderList.reser_evaluationCheck=='NO'}">
+	                                 	  <td width="17%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="후기 작성 하기" onclick="location.href='${pageContext.request.contextPath}/page_mypage_evaluationWrite.do?reser_number=${OrderList.reser_number}' "></td>
+									   </c:if>
+	                                   </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>                      
+                </div>
         	</div>
 		</div>
 	</div>

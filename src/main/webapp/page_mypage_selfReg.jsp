@@ -163,7 +163,7 @@
 		                        <h3 id="RPath">My 예약</h3>
 		                        <ul class="list-unstyled">
 		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
-		                            <li><a href="#">구매후기</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}">구매후기</a></li>
 		                            <li><a href="#">장바구니</a></li>   
 		                       </ul>
 		                        <hr>
@@ -230,6 +230,9 @@
 									   </c:if>
 									   <c:if test="${OrderList.reser_status=='CANCEL'}">
 	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-red" disabled value="취소완료" onclick="cancel(${OrderList.reser_number})"></td>
+									   </c:if>
+									   <c:if test="${OrderList.reser_status=='USED'}">
+	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-blue" disabled value="사용완료" onclick="cancel(${OrderList.reser_number})"></td>
 									   </c:if>
 									 </tr>
                                 </c:forEach>

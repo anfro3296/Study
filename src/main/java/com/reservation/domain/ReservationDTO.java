@@ -13,8 +13,7 @@ public class ReservationDTO {
 	private String reser_status;
 	private String member_id;
 	private String cafe_id;
-	
-	
+	private String reser_evaluationCheck;
 	
 	public String getReser_time() {
 		return reser_time;
@@ -88,18 +87,18 @@ public class ReservationDTO {
 	public void setCafe_id(String cafe_id) {
 		this.cafe_id = cafe_id;
 	}
+	public String getReser_evaluationCheck() {
+		return reser_evaluationCheck;
+	}
+	public void setReser_evaluationCheck(String reser_evaluationCheck) {
+		this.reser_evaluationCheck = reser_evaluationCheck;
+	}
 	@Override
 	public String toString() {
-		return "Reservation [reser_number=" + reser_number + ", reser_price=" + reser_price + ", reser_date="
+		return "ReservationDTO [reser_number=" + reser_number + ", reser_price=" + reser_price + ", reser_date="
 				+ reser_date + ", reser_time=" + reser_time + ", reser_usertime=" + reser_usertime + ", reser_category="
 				+ reser_category + ", reser_person=" + reser_person + ", reser_request=" + reser_request
 				+ ", reser_orderDate=" + reser_orderDate + ", reser_status=" + reser_status + ", member_id=" + member_id
-				+ ", cafe_id=" + cafe_id + ", getReser_time()=" + getReser_time() + ", getReser_number()="
-				+ getReser_number() + ", getReser_price()=" + getReser_price() + ", getReser_date()=" + getReser_date()
-				+ ", getReser_usertime()=" + getReser_usertime() + ", getReser_category()=" + getReser_category()
-				+ ", getReser_person()=" + getReser_person() + ", getReser_request()=" + getReser_request()
-				+ ", getReser_orderDate()=" + getReser_orderDate() + ", getReser_status()=" + getReser_status()
-				+ ", getMember_id()=" + getMember_id() + ", getCafe_id()=" + getCafe_id() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", cafe_id=" + cafe_id + ", reser_evaluationCheck=" + reser_evaluationCheck + "]";
 	}
 }

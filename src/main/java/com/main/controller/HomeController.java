@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cafe.dao.CafeDAO;
 import com.cafe.domain.CafeDTO;
-import com.evaluation.dao.copy.EvaluationDAO;
+import com.evaluation.dao.EvaluationDAO;
 import com.evaluation.domain.TotalEvaluationDTO;
 
 @Controller

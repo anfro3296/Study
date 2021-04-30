@@ -1,4 +1,4 @@
-package com.evaluation.dao.copy;
+package com.evaluation.dao;
 
 import java.util.List;
 
@@ -35,6 +35,21 @@ public class EvaluationDaoImpl implements EvaluationDAO {
 	@Override
 	public int getEvaluationRows(String cafe_id) throws DataAccessException {
 		return sqlSession.selectOne("getEvaluationRows", cafe_id);
+	}
+
+	@Override
+	public int getEvaluationNum() throws DataAccessException {
+		return sqlSession.selectOne("getEvaluationNum");
+	}
+
+	@Override
+	public void evaluationWrite(EvaluationDTO evaluationDTO) throws DataAccessException {
+		sqlSession.insert("evaluationWrite", evaluationDTO);
+	}
+
+	@Override
+	public void evaluationCheckChange(int reser_number) throws DataAccessException {
+		sqlSession.update("evaluationCheckChange", reser_number);
 	}
 	
 	

@@ -556,7 +556,7 @@
                                                 	<td width="70%" align="right"><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> / 시간(인)</td>
                                                 </tr>
                                                 <tr>
-                                                	<td width="30%"><label class="radio"><input type="radio" id="reser_category" name="reser_category"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
+                                                	<td width="30%"><label class="radio"><input type="radio" id="reser_category" name="reser_category" value="${cafe.cafe_category2}"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
                                                 	<td width="70%" align="right" ><fmt:formatNumber value="${cafe.cafe_category2Price}" pattern="#,###" /> / 시간(인)</td>                                          		
                                                 </tr>
                                             </table>

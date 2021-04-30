@@ -8,7 +8,7 @@
     <insert id="reservate" parameterType="Reservation">
         insert into reservation
         values (reservation_seq.nextval, #{reser_usertime} * #{reser_person} * 2000, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
-                #{reser_person}, #{reser_request}, sysdate, 'READY', #{member_id}, #{cafe_id})
+                #{reser_person}, #{reser_request}, sysdate, 'READY', #{member_id}, #{cafe_id}, 'NO')
     </insert>
     
     <!-- 회원당 예약내역 보기 -->
@@ -29,4 +29,25 @@
  	 select count(*) from reservation where member_id =#{member_id}
    </select>
 
+   <!-- 회원당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기) -->
+   <select id="orderEvaluationList" parameterType="String" resultType="MemberOrderList">
+ 	 	select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'MM-DD') as reser_orderdate,
+        TO_CHAR(r.reser_date, 'MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id, r.cafe_id, r.reser_evaluationCheck
+		from reservation r, cafe c
+		where r.cafe_id = c.cafe_id and r.member_id=#{member_id} and reser_status='USED' order by r.reser_number desc
+   </select>
+
+   <!-- 회원당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기) - 갯수체크 -->
+   <select id="orderEvaluationNum" parameterType="String" resultType="int">
+ 	 select count(*) from reservation where member_id =#{member_id} and reser_status='USED'
+   </select>
+   
+   <!-- 예약번호로 예약한 내용 끌고오기  -->
+   <select id="getOrderOneByReser_number" parameterType="int" resultType="MemberOrderList">
+ 	 select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'MM-DD') as reser_orderdate,
+        TO_CHAR(r.reser_date, 'MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id, r.cafe_id, r.reser_evaluationCheck
+		from reservation r, cafe c
+		where r.cafe_id = c.cafe_id and r.reser_number=#{reser_number} 
+   </select>
+   
 </mapper>

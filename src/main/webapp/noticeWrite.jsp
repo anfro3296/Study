@@ -142,38 +142,35 @@
 	    <div class="row">
 	    	<div class="col-md-10 col-md-offset-1">
 					<table class="table" style="text-align: center;">
-						<thead > 
-							<tr class="active">
-									<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">공지사항 작성하기</font></th>
-							</tr>
-						</thead>
-							<tbody>
-								<tr>
-									<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
-									<td><input type="text" id="notice_title" name="notice_title" class="form-control"></td>
-								</tr>
+					<thead > 
+						<tr class="active">
+							<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">공지사항 작성하기</font></th>
+						</tr>
+					</thead>
+						
+					<tbody>
+						<tr>
+							<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
+							<td><input type="text" id="notice_title" name="notice_title" class="form-control"></td>
+						</tr>
 		
-								<tr>
-									 <td><font color="black" size="3pt">내용</font></td>	
-									 <td><textarea id="notice_content" name="notice_content" class="form-control" rows="50" cols="50"></textarea></td>
-								</tr>
-								
-							</tbody>
-					</table>
-						<input type="hidden" name="admin_id" value="${sessionScope.loginAdmin.admin_id}">
+						<tr>
+							 <td><font color="black" size="3pt">내용</font></td>	
+							 <td><textarea id="notice_content" name="notice_content" class="form-control" rows="50" cols="50"></textarea></td>
+						</tr>	
+					</tbody>
+			</table>
+			<input type="hidden" name="admin_id" value="${sessionScope.loginAdmin.admin_id}">
 					
-			           <div class="col-md-2 col-md-offset-6">
-			                <input type="button" onclick="noticeResgisterValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
-			           </div>
-			            
-			           <div class="col-md-2">
-			           		<input type="reset" class="btn-u btn-block btn-u-green" value="초기화">                        
-			           </div>
-			            
-			           <div class="col-md-2">
-				   			 <input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/notice.do' ">   	
-						</div>
-		        	
+			 <div class="col-md-2 col-md-offset-6">
+			    	<input type="button" onclick="noticeResgisterValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
+			 </div>
+			 <div class="col-md-2">
+			         <input type="reset" class="btn-u btn-block btn-u-green" value="초기화">                        
+			  </div>
+			  <div class="col-md-2">
+				   	 <input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/notice.do' ">   	
+			  </div>
 			</div>
 		</div>
 		</form>

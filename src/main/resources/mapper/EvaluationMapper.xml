@@ -7,7 +7,7 @@
 
 <!--1. 스터디 카페당 후기 보기  -->
 <select  id="evaluation_list"  parameterType="String"  resultType="Evaluation"  >
-    select order_eval_id, order_eval_pwd, order_eval_title, order_eval_content, TO_CHAR(order_eval_regdate, 'YYYY-MM-DD') AS order_eval_regdate, order_eval_score, cafe_id, member_id 
+    select order_eval_id, order_eval_title, order_eval_content, TO_CHAR(order_eval_regdate, 'YYYY-MM-DD') AS order_eval_regdate, order_eval_score, cafe_id, member_id 
             from ( select a.*, rownum rnum
                 from (select * from Order_evaluation where cafe_id=#{cafe_id} order by order_eval_id desc)a)
   <![CDATA[
@@ -36,4 +36,20 @@
     select count(*) from order_evaluation where cafe_id=#{cafe_id}
 </select>
 
+<!-- 5. 후기 작성하기(게시물 번호 최대값구하기) -->
+<select id="getEvaluationNum" resultType="int">
+   select max(order_eval_id) from order_evaluation
+</select>
+
+<!-- 6. 공지사항 쓰기 -->
+<insert id="evaluationWrite" parameterType="Evaluation">
+    insert into order_evaluation(order_eval_id, order_eval_title, order_eval_content, order_eval_regdate, order_eval_score, cafe_id, member_id, reser_number)
+    values(#{order_eval_id},#{order_eval_title},#{order_eval_content}, sysdate, #{order_eval_score}, #{cafe_id}, #{member_id}, #{reser_number})
+</insert>
+
+<!-- 후기 작성 후 후기작성여부 YES로 변경하기 -->
+<update id="evaluationCheckChange" parameterType="int">
+   update reservation set reser_evaluationCheck='YES' where reser_number=#{reser_number}
+</update>
+	
 </mapper>

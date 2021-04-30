@@ -1,4 +1,4 @@
-insert into notice (notice_number, notice_title, notice_regdate, notice_hit, admin_id) values(1, 'GatherStudy 서버 점검 안내', sysdate, 0, 'jay');
+insert into notice (notice_number, notice_title, notice_regdate, notice_hit, admin_id) values(1, 'GatherStudy 서버 점검 안내', sysdate, 0, 'admin');
  
 update notice set notice_content = 
 '안녕하세요!'||chr(13)||

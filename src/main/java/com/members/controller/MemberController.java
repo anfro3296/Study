@@ -1,7 +1,6 @@
 package com.members.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,28 +19,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.evaluation.dao.EvaluationDAO;
+import com.evaluation.domain.EvaluationDTO;
 import com.members.dao.MembersDAO;
 import com.members.domain.AdminDTO;
 import com.members.domain.MembersDTO;
 import com.reservation.dao.ReservationDAO;
 import com.reservation.domain.MemberOrderListDTO;
-import com.reservation.domain.ReservationDTO;
 
 @Controller
 public class MemberController{
 
 	private Log log = LogFactory.getLog(getClass());
-	MembersDAO dao;
-	ReservationDAO dao2;
+	MembersDAO membersDAO;
+	ReservationDAO reservationDAO;
+	EvaluationDAO evaluationDAO;
 	
 	@Autowired
-	public void setDao(MembersDAO dao) {
-		this.dao = dao;
+	public void setMembersDAO(MembersDAO membersDAO) {
+		this.membersDAO = membersDAO;
 	}
 	
 	@Autowired
-	public void setDao2(ReservationDAO dao2) {
-		this.dao2 = dao2;
+	public void setDReservationDAO(ReservationDAO reservationDAO) {
+		this.reservationDAO = reservationDAO;
+	}
+	
+	@Autowired
+	public void setEvaluationDAO(EvaluationDAO evaluationDAO) {
+		this.evaluationDAO = evaluationDAO;
 	}
 	
 	// By Jay_회원가입 폼 호출 하기_20210405
@@ -59,13 +64,13 @@ public class MemberController{
 		log.info(members);
 		log.info("MemberController의 signUp()호출됨");
 		
-		int result = dao.idCheck(members);
+		int result = membersDAO.idCheck(members);
 		System.out.println("중복은 1 아니면 0 = " + result );
 		
 		if(result == 1) {
 			return "fail";
 		} else if (result == 0) {
-			dao.userJoin(members);
+			membersDAO.userJoin(members);
 		}
 		return "success";
 	}
@@ -88,7 +93,7 @@ public class MemberController{
 		String user_check = request.getParameter("remember_userId");
 		
 		String result = null;
-		MembersDTO userIdCheck = dao.getId(members);
+		MembersDTO userIdCheck = membersDAO.getId(members);
 		log.info(userIdCheck);
 		if(userIdCheck == null) {
 			result= "idFail";
@@ -138,7 +143,7 @@ public class MemberController{
 		log.info("MemberController의 adminLogin()호출됨");
 		
 		String result = null;
-		AdminDTO userIdCheck = dao.adminGetOne(admins);
+		AdminDTO userIdCheck = membersDAO.adminGetOne(admins);
 		log.info(userIdCheck);
 		if(userIdCheck == null) {
 			result= "idFail";
@@ -161,7 +166,7 @@ public class MemberController{
 	public String getMember(@RequestParam String member_id, Model model) {
 	     log.info(member_id);
 	     log.info("MemberController의 ()호출됨");
-	     MembersDTO mem=dao.getMember(member_id);
+	     MembersDTO mem=membersDAO.getMember(member_id);
 	     model.addAttribute("mem", mem);
 	     return "page_mypage_info";
 	}
@@ -171,7 +176,7 @@ public class MemberController{
 	public String Modify(@RequestParam String member_id, Model model) {
 	     log.info("MemberController의 ()호출됨");
 
-	     MembersDTO mem=dao.getMember(member_id);
+	     MembersDTO mem=membersDAO.getMember(member_id);
 	     model.addAttribute("mem", mem);
 	     return "page_mypage_modify";
 	}
@@ -180,7 +185,7 @@ public class MemberController{
 	@RequestMapping(value="update.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String update(@ModelAttribute MembersDTO members) {
-	     dao.updateMember(members);
+		membersDAO.updateMember(members);
 	     return "success";
 	}
 	   
@@ -189,7 +194,7 @@ public class MemberController{
 	public String deleteForm(@RequestParam String member_id, Model model) {
 	    log.info("MemberController의 deleteForm()호출됨");
 
-	    MembersDTO mem=dao.getMember(member_id);
+	    MembersDTO mem=membersDAO.getMember(member_id);
 	    model.addAttribute("mem", mem);
 	    return "page_mypage_delete";
 	}
@@ -203,14 +208,14 @@ public class MemberController{
 	    log.info("MemberController의 deleteUp()호출됨");
 	      
 	    String result = null;
-	    MembersDTO userIdCheck = dao.getId(members);
+	    MembersDTO userIdCheck = membersDAO.getId(members);
 	    log.info(userIdCheck);
 	      
 	    //db에 담겨져있는 비밀번호와 입력한 비밀번호가 같다면 
 	    //success(탈퇴) 틀리다면 pwdFail떨어져서 다시입력해야된다
 	    if(members.getMember_pwd().equals(userIdCheck.getMember_pwd())) {
 	       session.invalidate();
-	       dao.deleteMember(members);
+	       membersDAO.deleteMember(members);
 	       result = "success";
 	    } else {
 	       result = "pwdFail";
@@ -223,9 +228,9 @@ public class MemberController{
 	@RequestMapping(value="page_mypage_selfReg.do", method = RequestMethod.GET)
 	public String resForm(@RequestParam String member_id, Model model) {
 	   log.info(member_id);
-	   log.info("MemberController의 ()호출됨");
-	   List<MemberOrderListDTO> OrderList=dao2.getMemberOrders(member_id);
-	   int count = dao2.getOrderNum(member_id);
+	   log.info("MemberController의 resForm()호출됨");
+	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
+	   int count = reservationDAO.getOrderNum(member_id);
 	   log.info(count);
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
@@ -235,16 +240,52 @@ public class MemberController{
 	// By Jay_회원 당 예약 내역 취소하기_20210430
 	@RequestMapping(value="page_mypage_orderCancel.do", method = RequestMethod.GET)
 	public String orderCancel(@RequestParam String member_id, @RequestParam String reser_number, Model model) {
-	   log.info("MemberController의 ()호출됨");
-	   dao2.orderCancel(reser_number);
+	   log.info("MemberController의 orderCancel()호출됨");
+	   reservationDAO.orderCancel(reser_number);
 	   
-	   List<MemberOrderListDTO> OrderList=dao2.getMemberOrders(member_id);
-	   int count = dao2.getOrderNum(member_id);
+	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
+	   int count = reservationDAO.getOrderNum(member_id);
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
 	   
 	   return "page_mypage_selfReg";
 	 }
+	
+	// By Jay_회원 당 구매후기 관련 리스트로 이동_20210430
+	@RequestMapping(value="page_mypage_orderEvaluation.do", method = RequestMethod.GET)
+	public String orderEvaluationList(@RequestParam String member_id, Model model) {
+	   log.info("MemberController의 orderEvaluationList()호출됨");
+	   List<MemberOrderListDTO> OrderList = reservationDAO.orderEvaluationList(member_id);
+	   int count = reservationDAO.getOrderNum(member_id);
+	   model.addAttribute("OrderList", OrderList);
+	   model.addAttribute("count", count);  
+	   log.info(OrderList);
+	   log.info(count);
+	   return "page_mypage_orderEvaluation";
+	 }
+	
+	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.GET)
+	public String EvaluationWriteForm(@RequestParam int reser_number, Model model) {
+	   log.info("MemberController의 EvaluationWriteForm()호출됨");
+	   MemberOrderListDTO memberOrder = reservationDAO.getOrderOneByReser_number(reser_number);
+	   model.addAttribute("memberOrder", memberOrder);
+	   log.info(memberOrder);
+	   return "page_mypage_orderEvaluationWrite";
+	 }
+	
+	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String EvaluationWrite(@ModelAttribute EvaluationDTO evaluationDTO) {
+	   log.info("MemberController의 EvaluationWrite()호출됨");
+	   int num = evaluationDAO.getEvaluationNum()+1;
+	   log.info(num);
+	   evaluationDTO.setOrder_eval_id(num);
+	   evaluationDAO.evaluationWrite(evaluationDTO);
+	   
+	   evaluationDAO.evaluationCheckChange(evaluationDTO.getReser_number());
+	   
+	   return "success";
+	 }	
 	
 }
 

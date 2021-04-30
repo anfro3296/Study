@@ -21,5 +21,15 @@ public interface ReservationDAO {
 	// 예약 내역 갯수 확인하기
 	public int getOrderNum(String member_id);
     
+	// 회원당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기)
+	public List<MemberOrderListDTO> orderEvaluationList(String member_id);
+    
+	// 예약 내역 갯수 확인하기(사용한 예약만)
+	public int orderEvaluationNum(String member_id);
+	    
+	// 예약번호로 예약한 내용 갖고오기
+	public MemberOrderListDTO getOrderOneByReser_number(int reser_number);
+		  
+	
 }
 

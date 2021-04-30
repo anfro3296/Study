@@ -1,4 +1,4 @@
-package com.evaluation.dao.copy;
+package com.evaluation.dao;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.evaluation.domain.EvaluationDTO;
 import com.evaluation.domain.EvaluationReplyDTO;
 import com.evaluation.domain.TotalEvaluationDTO;
+import com.notice.domain.NoticeDTO;
 
 public interface EvaluationDAO{
 	// 1.스터디 카페당 후기 보기
@@ -20,6 +21,15 @@ public interface EvaluationDAO{
 		
 	// 4. 스터디 카페당 후기 개수 추출하기
 	public int getEvaluationRows(String cafe_id) throws DataAccessException;
+	
+	// 5. 글 등록하기 - 게시물 번호 최대값 구하기
+	public int getEvaluationNum() throws DataAccessException;
+	
+	// 6. 글 등록하기 - 글쓰기
+	public void evaluationWrite(EvaluationDTO evaluationDTO) throws DataAccessException;
+	
+	// 7. 후기 작성 후 후기작성 여부 YES로 변경
+	public void evaluationCheckChange(int reser_number) throws DataAccessException;
 	
 }
 
