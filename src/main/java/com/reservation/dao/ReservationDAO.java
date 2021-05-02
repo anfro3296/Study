@@ -24,12 +24,14 @@ public interface ReservationDAO {
 	// 회원당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기)
 	public List<MemberOrderListDTO> orderEvaluationList(String member_id);
     
+	// 현재일 기준으로 사용일이 지난 예약은 USED로 변경하기(단, 예약이 READY인것만!!)
+	public void orderUsed();
+	
 	// 예약 내역 갯수 확인하기(사용한 예약만)
 	public int orderEvaluationNum(String member_id);
 	    
 	// 예약번호로 예약한 내용 갖고오기
 	public MemberOrderListDTO getOrderOneByReser_number(int reser_number);
-		  
-	
+
 }
 

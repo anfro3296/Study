@@ -47,9 +47,25 @@
     values(#{order_eval_id},#{order_eval_title},#{order_eval_content}, sysdate, #{order_eval_score}, #{cafe_id}, #{member_id}, #{reser_number})
 </insert>
 
-<!-- 후기 작성 후 후기작성여부 YES로 변경하기 -->
+<!-- 7. 후기 작성 후 후기작성여부 YES로 변경하기 -->
 <update id="evaluationCheckChange" parameterType="int">
    update reservation set reser_evaluationCheck='YES' where reser_number=#{reser_number}
 </update>
 	
+<!--8. 회원이 작성한 스터디 카페 후기 보기  -->
+<select  id="evaluation_list_byMemberId" parameterType="String" resultType="TotalEvaluation"  >
+    select  cafe_id, cafe_image1, cafe_name, member_id, order_eval_score, order_eval_content, TO_CHAR(order_eval_regdate, 'YYYY-MM-DD') as order_eval_regdate, order_eval_id
+            from ( select a.*, rownum rnum
+                from (select c.cafe_id, c.cafe_image1, c.cafe_name, o.member_id, o.order_eval_score, o.order_eval_content, o.order_eval_regdate, o.order_eval_id from cafe c, order_evaluation o 
+							where c.cafe_id = o.cafe_id and o.member_id=#{member_id} order by o.order_eval_id desc)a)
+  <![CDATA[
+    where rnum >=1 AND rnum <=16
+    ]]>
+</select>
+
+<!-- 9.회원이 작성한 스터디 카페 후기에 대한 댓들 보기 => 스터디 카페 전체 댓글 불러오기 -->
+<select  id="evaluation_reply_Entrylist" resultType="EvaluationReply"  >
+    select  order_eval_reply_content, TO_CHAR(order_eval_reply_regdate, 'YYYY-MM-DD') AS order_eval_reply_regdate, order_eval_id, cafe_id from order_evaluation_reply
+</select>
+
 </mapper>

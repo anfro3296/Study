@@ -438,11 +438,9 @@
 									                            <blockquote>
 										                            <c:forEach var="evaluation_reply_list" items="${evaluation_reply_list}">
 											                            <c:if test="${evaluation_list.order_eval_id==evaluation_reply_list.order_eval_id}">
-												                            
 												                            	<h2 style="color: purple; font-weight: bolder;">호스트의 답글</h2>
 												                            	<p>${evaluation_reply_list.order_eval_reply_content}</p>
 												                            	<h6 style="font-weight: lighter;">${evaluation_reply_list.order_eval_reply_regdate}</h6>
-												                            
 											                            </c:if>
 										                            </c:forEach>
 									                            </blockquote>
@@ -450,17 +448,17 @@
 									                    </div>
 									                    <hr>
 								     				</c:forEach>
-												  </div><!-- <div class="col-md-8">  -->
+												  </div>
 								                </div>
 	                                        </div>
 	                                    </div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <!-- 6 -->                           
+	                        <!-- 6 -->       
+	                                            
 	                    </div>
 	                </div> 
-                        
             </div><!-- col-md-8 -->
             <!-- End Left Sidebar -->
 

@@ -27,7 +27,7 @@ public class ReservationDaoImpl implements ReservationDAO {
 
 	@Override
 	public void orderCancel(String reser_number) {
-		 sqlSession.delete("orderCancel", reser_number);
+		 sqlSession.update("orderCancel", reser_number);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class ReservationDaoImpl implements ReservationDAO {
 		return sqlSession.selectOne("getOrderNum",member_id);
 	}
 
+	@Override
+	public void orderUsed() {
+		sqlSession.update("orderUsed");
+	}
+	
 	@Override
 	public List<MemberOrderListDTO> orderEvaluationList(String member_id) {
 		return sqlSession.selectList("orderEvaluationList",member_id);
@@ -49,8 +54,6 @@ public class ReservationDaoImpl implements ReservationDAO {
 	public MemberOrderListDTO getOrderOneByReser_number(int reser_number) {
 		return sqlSession.selectOne("getOrderOneByReser_number",reser_number);
 	}
-	
-	
-	
-	
+
+
 }

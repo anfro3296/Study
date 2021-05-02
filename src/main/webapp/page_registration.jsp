@@ -45,18 +45,19 @@
     <div class="reg-block">
         <div class="reg-block-header">
         	<center>
-            <a class="logo" href="${pageContext.request.contextPath}/main.do">
+            <a  class="logo" href="${pageContext.request.contextPath}/main.do">
                 <img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             </a>
             </center>
             <h2>회원가입</h2>
-            <p> 이미 가입 하셨나요? <a class="color-green" href="${pageContext.request.contextPath}/login.do">로그인</a> 을 클릭 하여 계정에 로그인하십시오.</p>
+            <p> 이미 가입 하셨나요?<br><a class="color-green" href="${pageContext.request.contextPath}/login.do"><font color="green">로그인</font></a>을 클릭하여 계정에 로그인하십시오.</p>
         </div>
+        
 		<!-- 아이디 -->
 		<div id="temp"></div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디">
+            <input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디" autofocus>
         </div>
         
         <!-- 비밀번호 -->
@@ -76,17 +77,18 @@
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
             <input type="text" id="member_name" name="member_name" class="form-control" placeholder="이름">
         </div>
+        
         <!-- 이메일 -->
          <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
             <input type="text" id="member_email" name="member_email" class="form-control" placeholder="이메일">
         </div>
+        
         <!-- 전화번호 -->
         <div class="input-group margin-bottom-30">
             <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
             <input type="text" id="member_phone" name="member_phone" class="form-control" placeholder="전화번호 ex)01000000000">
         </div>
-        
         <hr>
 
         <div class="checkbox">            
@@ -101,7 +103,7 @@
                 <input type="button" onclick="signUpValidation()" class="btn-u btn-block" value="가입하기 ">           
             </div>
             <div class="col-md-4">
-                <button type="reset" class="btn-u btn-block">초기화</button>                
+                <input type="reset" class="btn-u btn-block" value="초기화">     
             </div>
         </div>
     </div>

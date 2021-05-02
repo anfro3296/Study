@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import com.evaluation.domain.EvaluationDTO;
 import com.evaluation.domain.EvaluationReplyDTO;
 import com.evaluation.domain.TotalEvaluationDTO;
-import com.notice.domain.NoticeDTO;
 
 public interface EvaluationDAO{
 	// 1.스터디 카페당 후기 보기
@@ -31,5 +30,11 @@ public interface EvaluationDAO{
 	// 7. 후기 작성 후 후기작성 여부 YES로 변경
 	public void evaluationCheckChange(int reser_number) throws DataAccessException;
 	
+	// 8. 회원이 작성한 스터디 카페 후기 보기
+	public List<TotalEvaluationDTO> evaluation_list_byMemberId(String member_id) throws DataAccessException;
+
+	// 9. 회원이 작성한 스터디 카페 후기에 대한 댓글 보기(스터디 카페 전체 댓글 불러오기)
+	public List<EvaluationReplyDTO> evaluation_reply_Entrylist() throws DataAccessException;
+
 }
 

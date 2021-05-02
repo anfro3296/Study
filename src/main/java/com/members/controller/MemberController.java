@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.evaluation.dao.EvaluationDAO;
 import com.evaluation.domain.EvaluationDTO;
+import com.evaluation.domain.EvaluationReplyDTO;
+import com.evaluation.domain.TotalEvaluationDTO;
 import com.members.dao.MembersDAO;
 import com.members.domain.AdminDTO;
 import com.members.domain.MembersDTO;
@@ -61,12 +63,11 @@ public class MemberController{
 	@RequestMapping(value="register.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String signUp(MembersDTO members) {
-		log.info(members);
 		log.info("MemberController의 signUp()호출됨");
 		
 		int result = membersDAO.idCheck(members);
-		System.out.println("중복은 1 아니면 0 = " + result );
-		
+
+		// 1이면 아이디 중복, 0이면 아이디 없음
 		if(result == 1) {
 			return "fail";
 		} else if (result == 0) {
@@ -227,11 +228,10 @@ public class MemberController{
 	// By Jay_회원 당 예약내역 불러오기_20210430
 	@RequestMapping(value="page_mypage_selfReg.do", method = RequestMethod.GET)
 	public String resForm(@RequestParam String member_id, Model model) {
-	   log.info(member_id);
 	   log.info("MemberController의 resForm()호출됨");
 	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
-	   log.info(count);
+	   reservationDAO.orderUsed();
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
 	   return "page_mypage_selfReg";
@@ -245,6 +245,7 @@ public class MemberController{
 	   
 	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
+	   reservationDAO.orderUsed();
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
 	   
@@ -257,13 +258,18 @@ public class MemberController{
 	   log.info("MemberController의 orderEvaluationList()호출됨");
 	   List<MemberOrderListDTO> OrderList = reservationDAO.orderEvaluationList(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
+	   List<TotalEvaluationDTO> evaluationList =  evaluationDAO.evaluation_list_byMemberId(member_id);
+	   List<EvaluationReplyDTO> replyList = evaluationDAO.evaluation_reply_Entrylist();
+	   
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);  
-	   log.info(OrderList);
-	   log.info(count);
+	   model.addAttribute("evaluationList", evaluationList);  
+	   model.addAttribute("replyList", replyList);  
+	   
 	   return "page_mypage_orderEvaluation";
 	 }
 	
+	// By Jay_회원 당 구매후기 관련 작성 페이지로 이동_20210501
 	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.GET)
 	public String EvaluationWriteForm(@RequestParam int reser_number, Model model) {
 	   log.info("MemberController의 EvaluationWriteForm()호출됨");
@@ -273,6 +279,7 @@ public class MemberController{
 	   return "page_mypage_orderEvaluationWrite";
 	 }
 	
+	// By Jay_회원 당 구매후기 관련 작성하기_20210501
 	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String EvaluationWrite(@ModelAttribute EvaluationDTO evaluationDTO) {

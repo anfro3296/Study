@@ -51,7 +51,18 @@ public class EvaluationDaoImpl implements EvaluationDAO {
 	public void evaluationCheckChange(int reser_number) throws DataAccessException {
 		sqlSession.update("evaluationCheckChange", reser_number);
 	}
+
+	@Override
+	public List<TotalEvaluationDTO> evaluation_list_byMemberId(String member_id) throws DataAccessException {
+		return sqlSession.selectList("evaluation_list_byMemberId", member_id);
+	}
+
+	@Override
+	public List<EvaluationReplyDTO> evaluation_reply_Entrylist() throws DataAccessException {
+		return sqlSession.selectList("evaluation_reply_Entrylist");
+	}
+
 	
-	
+
 	
 }
