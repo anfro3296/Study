@@ -554,7 +554,9 @@
                                                 	<td width="70%" align="right"><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> / 시간(인)</td>
                                                 </tr>
                                                 <tr>
-                                                	<td width="30%"><label class="radio"><input type="radio" id="reser_category" name="reser_category" value="${cafe.cafe_category2}"><i class="rounded-x"></i>${cafe.cafe_category2}</label></td>
+                                                	<td width="30%">
+                                                		<label class="radio"><input type="radio" id="reser_category" name="reser_category" value="${cafe.cafe_category2}"><i class="rounded-x"></i>${cafe.cafe_category2}</label>
+                                                	</td>
                                                 	<td width="70%" align="right" ><fmt:formatNumber value="${cafe.cafe_category2Price}" pattern="#,###" /> / 시간(인)</td>                                          		
                                                 </tr>
                                             </table>
@@ -592,6 +594,7 @@
                                 </fieldset>
                                 <input type="hidden" name="member_id" value="${sessionScope.loginUser.member_id}">
                                 <input type="hidden" name="cafe_id" value="${cafe.cafe_id}">
+                                <input type="hidden" name="reser_categoryPersonPrice" value="${cafe.cafe_category1Price}">
                                 <input type="button" onclick="reservationForm()" class="btn-u btn-block btn-u-green" type="button" value="예약하기">
                              </form>
                         </div>	    

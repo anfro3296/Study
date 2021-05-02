@@ -7,7 +7,7 @@
     <!-- 카페 예약하기  -->
     <insert id="reservate" parameterType="Reservation">
         insert into reservation
-        values (reservation_seq.nextval, #{reser_usertime} * #{reser_person} * 2000, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
+        values (reservation_seq.nextval, #{reser_usertime} * #{reser_person} * #{reser_categoryPersonPrice}, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
                 #{reser_person}, #{reser_request}, sysdate, 'READY', #{member_id}, #{cafe_id}, 'NO')
     </insert>
     

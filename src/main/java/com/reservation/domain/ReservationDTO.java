@@ -8,6 +8,7 @@ public class ReservationDTO {
 	private String reser_usertime;
 	private String reser_category;
 	private int reser_person;
+	public int reser_categoryPersonPrice;
 	private String reser_request;
 	private String reser_orderDate;
 	private String reser_status;
@@ -92,6 +93,13 @@ public class ReservationDTO {
 	}
 	public void setReser_evaluationCheck(String reser_evaluationCheck) {
 		this.reser_evaluationCheck = reser_evaluationCheck;
+	}
+	
+	public int getReser_categoryPersonPrice() {
+		return reser_categoryPersonPrice;
+	}
+	public void setReser_categoryPersonPrice(int reser_categoryPersonPrice) {
+		this.reser_categoryPersonPrice = reser_categoryPersonPrice;
 	}
 	@Override
 	public String toString() {
