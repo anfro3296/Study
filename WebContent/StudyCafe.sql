@@ -103,7 +103,7 @@ CREATE TABLE Member_details
 CREATE TABLE Notice
 (
 	notice_number number NOT NULL,
-	notie_title varchar2(100),
+	notice_title varchar2(100),
 	notice_content varchar2(4000),
 	notice_regdate timestamp,
 	notice_hit number,

@@ -122,7 +122,7 @@
                     </li>                   
 
                    <li>
-                        <a href="#">호스트 센터</a>
+                        <a href="${pageContext.request.contextPath}/help.do">호스트 센터</a>
                     </li>             
                 </ul>
             </div><!--/end container-->

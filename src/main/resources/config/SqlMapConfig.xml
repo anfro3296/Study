@@ -17,7 +17,8 @@
   		<typeAlias type="com.notice.domain.NoticeDTO" alias="Notice"/>	
   		<typeAlias type="com.evaluation.domain.EvaluationDTO" alias="Evaluation"/>
   		<typeAlias type="com.evaluation.domain.EvaluationReplyDTO" alias="EvaluationReply"/>
-  		<typeAlias type="com.evaluation.domain.TotalEvaluationDTO" alias="TotalEvaluation"/>	
+  		<typeAlias type="com.evaluation.domain.TotalEvaluationDTO" alias="TotalEvaluation"/>
+  		<typeAlias type="com.help.domain.HelpDTO" alias="Help"/>	
  	</typeAliases>	
  
  	<mappers>
@@ -26,5 +27,6 @@
 		<mapper resource="mapper/ReservationMapper.xml"/>
 		<mapper resource="mapper/NoticeMapper.xml"/>
 		<mapper resource="mapper/EvaluationMapper.xml"/>
+		<mapper resource="mapper/HelpMapper.xml"/>
  	</mappers>
  </configuration>
