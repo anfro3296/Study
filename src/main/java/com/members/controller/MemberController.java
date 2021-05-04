@@ -245,7 +245,7 @@ public class MemberController{
 	   
 	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
-	   reservationDAO.orderUsed();
+
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
 	   
@@ -260,6 +260,7 @@ public class MemberController{
 	   int count = reservationDAO.getOrderNum(member_id);
 	   List<TotalEvaluationDTO> evaluationList =  evaluationDAO.evaluation_list_byMemberId(member_id);
 	   List<EvaluationReplyDTO> replyList = evaluationDAO.evaluation_reply_Entrylist();
+	   reservationDAO.orderUsed();
 	   
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);  

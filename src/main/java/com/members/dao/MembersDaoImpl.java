@@ -30,11 +30,6 @@ public class MembersDaoImpl implements MembersDAO {
 	}
 	
 	@Override
-	public int getPwd(MembersDTO members) {
-		return sqlSession.selectOne("getPwd",members);
-	}
-
-	@Override
 	public AdminDTO adminGetOne(AdminDTO admins) {
 		return sqlSession.selectOne("adminGetOne",admins);
 		}

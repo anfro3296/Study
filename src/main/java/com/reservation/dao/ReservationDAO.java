@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException; // 스프링 전용 예외처리 클래스 -> try ~ catch를 사용 x => 예외가 발생이 될때 처리를 해준다.
 
+import com.evaluation.domain.EvaluationDTO;
 import com.reservation.domain.MemberOrderListDTO;
 import com.reservation.domain.ReservationDTO;
 
@@ -33,5 +34,13 @@ public interface ReservationDAO {
 	// 예약번호로 예약한 내용 갖고오기
 	public MemberOrderListDTO getOrderOneByReser_number(int reser_number);
 
+	// 스터디 카페 예약한 정보 갖고오기
+	public List<MemberOrderListDTO> getCafeOrders(String cafe_id);
+	
+	// 스터디 카페당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기)
+	public List<MemberOrderListDTO> getCafeOrdersUsed(String cafe_id);
+	    
+	// 스터디 카페 예약번호로 고객이 작성한 댓글 불러오기
+	public EvaluationDTO getEvaluationOneByReser_number(int reser_number);
 }
 

@@ -33,11 +33,19 @@ public class CafeDaoImpl implements CafeDAO {
 		return sqlSession.selectList("newCafe");
 		}
 
+	// 오늘의 추천 스터디 카페 출력하기
 	@Override
 	public List<CafeDTO> recommendCafe() throws DataAccessException {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("recommendCafe");
 	}
+
+	// 카페 id로 카페 정보 갖고오기
+	@Override
+	public CafeDTO getCafe(CafeDTO cafe) {
+		return sqlSession.selectOne("getCafe",cafe);
+	}
+	
 	
 	
 }

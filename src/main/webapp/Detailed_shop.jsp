@@ -347,109 +347,109 @@
 	                                        <div class="panel-body">
 	                                            <div class="headline"><h2>이용자 리뷰</h2></div>
 	                                         
-		                                     <!-- 레코드가 없다면 -->
-											<c:if test="${count==0}">
-											    <div>
-											          <h4>고객이 작성한 리뷰가 없습니다.</h4>
-											     </div>
-											</c:if>
+			                                    <!-- 레코드가 없다면 -->
+												<c:if test="${count==0}">
+												    <div>
+												          <h4>고객이 작성한 리뷰가 없습니다.</h4>
+												     </div>
+												</c:if>
 					
-	                                        <div class="row-v4">
-								                <div class="col-md-pull pull-left">             
-								                     <c:forEach var="evaluation_list" items="${evaluation_list}">
-									                     <div class="row">
-									                        <div class="col-sm-2">
-									                            <img class="img-responsive rounded-x" src="${pageContext.request.contextPath}/assets/img/team/logo.png" >
-									                        </div>
-									                        <div class="col-sm-10">
-									                            <blockquote>
-									                            	<div class="row">
-										                             	<div class="col-sm-2">
-											                             	<h2 style="font-weight: bolder;">${evaluation_list.member_id}</h2>
+		                                        <div class="row-v4">
+									                <div class="col-md-pull pull-left">             
+									                     <c:forEach var="evaluation_list" items="${evaluation_list}">
+										                     <div class="row">
+										                        <div class="col-sm-2">
+										                            <img class="img-responsive rounded-x" src="${pageContext.request.contextPath}/assets/img/team/logo.png" >
+										                        </div>
+										                        <div class="col-sm-10">
+										                            <blockquote>
+										                            	<div class="row">
+											                             	<div class="col-sm-2">
+												                             	<h2 style="font-weight: bolder;">${evaluation_list.member_id}</h2>
+												                            </div>
+	
+												                            <c:if test="${evaluation_list.order_eval_score==1}">
+												                             	<div class="col-sm-4 col-sm-offset-6">
+													                             	  <ul class="list-inline star-vote">
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                 </ul>
+													                            </div>       
+												                            </c:if>   
+												                            
+												                            <c:if test="${evaluation_list.order_eval_score==2}">
+												                             	<div class="col-sm-4 col-sm-offset-6">
+													                             	  <ul class="list-inline star-vote">
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                 </ul>
+													                            </div>       
+												                            </c:if>   
+												                            											                            
+												                            <c:if test="${evaluation_list.order_eval_score==3}">
+												                             	<div class="col-sm-4 col-sm-offset-6">
+													                             	  <ul class="list-inline star-vote">
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                 </ul>
+													                            </div>       
+												                            </c:if>     
+												                            
+												                            <c:if test="${evaluation_list.order_eval_score==4}">
+												                             	<div class="col-sm-4 col-sm-offset-6">
+													                             	  <ul class="list-inline star-vote">
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star-o"></i></li>
+																	                 </ul>
+													                            </div>       
+												                            </c:if>     
+												                            										                           
+												                            <c:if test="${evaluation_list.order_eval_score ==5}">
+												                             	<div class="col-sm-4 col-sm-offset-6">
+													                             	  <ul class="list-inline star-vote">
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                      <li><i class="color-green fa fa-star"></i></li>
+																	                 </ul>
+													                            </div>       
+												                            </c:if> 
+												                            									                                     
 											                            </div>
-
-											                            <c:if test="${evaluation_list.order_eval_score==1}">
-											                             	<div class="col-sm-4 col-sm-offset-6">
-												                             	  <ul class="list-inline star-vote">
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                 </ul>
-												                            </div>       
-											                            </c:if>   
-											                            
-											                            <c:if test="${evaluation_list.order_eval_score==2}">
-											                             	<div class="col-sm-4 col-sm-offset-6">
-												                             	  <ul class="list-inline star-vote">
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                 </ul>
-												                            </div>       
-											                            </c:if>   
-											                            											                            
-											                            <c:if test="${evaluation_list.order_eval_score==3}">
-											                             	<div class="col-sm-4 col-sm-offset-6">
-												                             	  <ul class="list-inline star-vote">
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                 </ul>
-												                            </div>       
-											                            </c:if>     
-											                            
-											                            <c:if test="${evaluation_list.order_eval_score==4}">
-											                             	<div class="col-sm-4 col-sm-offset-6">
-												                             	  <ul class="list-inline star-vote">
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star-o"></i></li>
-																                 </ul>
-												                            </div>       
-											                            </c:if>     
-											                            										                           
-											                            <c:if test="${evaluation_list.order_eval_score ==5}">
-											                             	<div class="col-sm-4 col-sm-offset-6">
-												                             	  <ul class="list-inline star-vote">
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                      <li><i class="color-green fa fa-star"></i></li>
-																                 </ul>
-												                            </div>       
-											                            </c:if> 
-											                            									                                     
-										                            </div>
-										                            <h5>제목 : ${evaluation_list.order_eval_title}</h5>
-									                                <p>${evaluation_list.order_eval_content}</p>
-									                            	<h6 style="font-weight: lighter;">${evaluation_list.order_eval_regdate}</h6>
-									                            </blockquote> 
-									                            
-
-									                            <blockquote>
-										                            <c:forEach var="evaluation_reply_list" items="${evaluation_reply_list}">
-											                            <c:if test="${evaluation_list.order_eval_id==evaluation_reply_list.order_eval_id}">
-												                            	<h2 style="color: purple; font-weight: bolder;">호스트의 답글</h2>
-												                            	<p>${evaluation_reply_list.order_eval_reply_content}</p>
-												                            	<h6 style="font-weight: lighter;">${evaluation_reply_list.order_eval_reply_regdate}</h6>
-											                            </c:if>
-										                            </c:forEach>
-									                            </blockquote>
-									                        </div>
-									                    </div>
-									                    <hr>
-								     				</c:forEach>
-												  </div>
-								                </div>
+											                            <h5>제목 : ${evaluation_list.order_eval_title}</h5>
+										                                <p>${evaluation_list.order_eval_content}</p>
+										                            	<h6 style="font-weight: lighter;">${evaluation_list.order_eval_regdate}</h6>
+										                            </blockquote> 
+										                            
+	
+										                            <blockquote>
+											                            <c:forEach var="evaluation_reply_list" items="${evaluation_reply_list}">
+												                            <c:if test="${evaluation_list.order_eval_id==evaluation_reply_list.order_eval_id}">
+													                            	<h2 style="color: purple; font-weight: bolder;">호스트의 답글</h2>
+													                            	<p>${evaluation_reply_list.order_eval_reply_content}</p>
+													                            	<h6 style="font-weight: lighter;">${evaluation_reply_list.order_eval_reply_regdate}</h6>
+												                            </c:if>
+											                            </c:forEach>
+										                            </blockquote>
+										                        </div>
+										                    </div>
+										                    <hr>
+									     				</c:forEach>
+													  </div>
+									            </div>
 	                                        </div>
 	                                    </div>
 	                                </div>

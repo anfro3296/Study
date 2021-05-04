@@ -36,4 +36,11 @@ where rnum >=1 AND rnum <= 8
 ]]>
 </select>
 
+<!-- 5. 아이디값으로 아이디, 패스워드 정보 갖고오기  -->
+<select id="getCafe" resultType="Cafe" parameterType="Cafe">
+    SELECT cafe_id, cafe_pwd
+    FROM cafe
+    where cafe_id = #{cafe_id}
+</select>
+    
 </mapper>

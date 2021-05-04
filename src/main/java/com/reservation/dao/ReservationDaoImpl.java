@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.evaluation.domain.EvaluationDTO;
 import com.reservation.domain.MemberOrderListDTO;
 import com.reservation.domain.ReservationDTO;
 
@@ -55,5 +56,21 @@ public class ReservationDaoImpl implements ReservationDAO {
 		return sqlSession.selectOne("getOrderOneByReser_number",reser_number);
 	}
 
+	@Override
+	public List<MemberOrderListDTO> getCafeOrders(String cafe_id) {
+		return sqlSession.selectList("getCafeOrders",cafe_id);
+	}
+
+	@Override
+	public List<MemberOrderListDTO> getCafeOrdersUsed(String cafe_id) {
+		return sqlSession.selectList("getCafeOrdersUsed",cafe_id);
+	}
+
+	@Override
+	public EvaluationDTO getEvaluationOneByReser_number(int reser_number) {
+		return sqlSession.selectOne("getEvaluationOneByReser_number",reser_number);
+	}
+
+	
 
 }

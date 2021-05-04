@@ -84,7 +84,13 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
 						</c:when>
-					
+						
+						<c:when test="${!empty sessionScope.loginCafe}">
+	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+									
 						<c:when test="${!empty sessionScope.loginUser}">
 	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
@@ -96,7 +102,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>         
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -134,9 +140,17 @@
                         <a href="#">도움말</a>
                     </li>                   
 
-                   <li>
-                        <a href="#">호스트 센터</a>
-                    </li>           
+                    <li>
+                   	  <c:choose>
+						<c:when test="${empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafeLogin.do">호스트 센터</a>
+						</c:when>
+						
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+						</c:otherwise>
+					  </c:choose>   
+                    </li>             
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -160,19 +174,18 @@
 			<div class=" s-results margin-bottom-50">
        			<div class="row">
                    			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 예약</h3>
+		                        <h3 id="RPath">스터디 카페 예약</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}">구매후기작성/조회</a></li>
-		                            <li><a href="#">장바구니</a></li>   
+		                            <li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">예약내역조회/취소</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/cafe_evaluationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">구매후기작성/조회</a></li>
 		                       </ul>
 		                        <hr>
 	                    	</div>       
 
                     		<div class="col-md-12 col-sm-4">
-                        	<h3 id="RPath">My 정보</h3>
+                        	<h3 id="RPath">스터디 카페 정보</h3>
                        		<ul class="list-unstyled">
-                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
+                            	<li><a href="#">정보확인/수정</a></li>       
                         	</ul>
                         	<hr>
                     		</div>                                                                      		        
@@ -183,19 +196,19 @@
 	    	<div class="tab-pane fade in active" id="home-1">
             	<div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-user"></i>My 예약</h3>
+                        <h3 class="panel-title"><i class="fa fa-user"></i>예약 내역 조회/취소</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover" style="text-align: center;">
                             <thead>
                                 <tr class="active">
                                     <td width="8%">예약번호</td>
-                                    <td width="15%">스터디 카페명</td>
+                                    <td width="14%">회원 아이디</td>
                                     <td width="6%">공간</td>
                                     <td width="10%">예약 날짜</td>
                                     <td width="10%">예약 시간</td>
                                     <td width="9%">사용 시간</td>
-                                    <td width="8%">사용 인원</td>
+                                    <td width="9%">사용 인원</td>
                                     <td width="9%">결제 금액</td>
                                     <td width="8%">예약 상태</td>
                                     <td width="8%">주문 일시</td>
@@ -216,12 +229,12 @@
                             	<c:forEach var="OrderList" items="${OrderList}">  
                                		 <tr>
                                 	   <td width="8%">${OrderList.reser_number}</td>
-	                                   <td width="15%">${OrderList.cafe_name}</td>
+	                                   <td width="14%">${OrderList.member_id}</td>
 	                                   <td width="6%">${OrderList.reser_category}</td>
 	                                   <td width="10%">${OrderList.reser_date}</td>
 	                                   <td width="10%">${OrderList.reser_time}</td>
 	                                   <td width="9%">${OrderList.reser_usertime}시간</td>
-	                                   <td width="8%">${OrderList.reser_person}명</td>
+	                                   <td width="9%">${OrderList.reser_person}명</td>
 	                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
 	                                   <td width="8%">${OrderList.reser_status}</td>
 	                                   <td width="8%">${OrderList.reser_orderDate}</td>
@@ -386,7 +399,7 @@
 	function cancel(reser_number) {
 		var chk = confirm("예약을 취소하시겠습니까?");
 		if (chk) {
-			location.href = "${pageContext.request.contextPath}/page_mypage_orderCancel.do?member_id=${sessionScope.loginUser.member_id}&reser_number="+reser_number;
+			location.href = "${pageContext.request.contextPath}/cafe_reservationCancel.do?cafe_id=${sessionScope.loginCafe.cafe_id}&reser_number="+reser_number;
 		}
 	}
 	

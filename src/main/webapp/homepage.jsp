@@ -71,7 +71,13 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
 						</c:when>
-					
+						
+						<c:when test="${!empty sessionScope.loginCafe}">
+	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+									
 						<c:when test="${!empty sessionScope.loginUser}">
 	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
@@ -121,8 +127,16 @@
                         <a href="#">도움말</a>
                     </li>                   
 
-                   <li>
-                        <a href="#">호스트 센터</a>
+                    <li>
+                   	  <c:choose>
+						<c:when test="${empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafeLogin.do">호스트 센터</a>
+						</c:when>
+						
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+						</c:otherwise>
+						</c:choose>   
                     </li>             
                 </ul>
             </div><!--/end container-->

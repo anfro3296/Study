@@ -84,7 +84,13 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
 						</c:when>
-					
+						
+						<c:when test="${!empty sessionScope.loginCafe}">
+	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+									
 						<c:when test="${!empty sessionScope.loginUser}">
 	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
@@ -96,7 +102,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>          
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -134,9 +140,17 @@
                         <a href="#">도움말</a>
                     </li>                   
 
-                   <li>
-                        <a href="#">호스트 센터</a>
-                    </li>           
+                    <li>
+                       <c:choose>
+						<c:when test="${empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafeLogin.do">호스트 센터</a>
+						</c:when>
+						
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+						</c:otherwise>
+					  </c:choose> 
+                    </li>         
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -157,90 +171,154 @@
      <div class="container content">		
     	<div class="row blog-page"> 
     	   <div class="col-md-2  hidden-xs related-search">
-			<div class=" s-results margin-bottom-50">
-       			<div class="row">
+				<div class=" s-results margin-bottom-50">
+       				<div class="row">
                    			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 예약</h3>
+		                        <h3 id="RPath">스터디 카페 예약</h3>
 		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}">구매후기작성/조회</a></li>
-		                            <li><a href="#">장바구니</a></li>   
+		                             <li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">예약내역조회/취소</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/cafe_evaluationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">구매후기작성/조회</a></li>
 		                       </ul>
-		                        <hr>
-	                    	</div>       
+		                       <hr>
+	                    	</div>        
 
                     		<div class="col-md-12 col-sm-4">
-                        	<h3 id="RPath">My 정보</h3>
-                       		<ul class="list-unstyled">
-                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
-                        	</ul>
-                        	<hr>
-                    		</div>                                                                      		        
+	                        	<h3 id="RPath">스터디 카페 정보</h3>
+	                       		<ul class="list-unstyled">
+	                            	<li><a href="#">정보확인/수정</a></li>       
+	                        	</ul>
+	                        	<hr>
+                    		</div>                                                                    		        
             		</div>
             	</div>
             </div>
-		<div class="col-md-10">
-	    	<div class="tab-pane fade in active" id="home-1">
-            	<div class="panel panel-green margin-bottom-40">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-user"></i>My 예약</h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-hover" style="text-align: center;">
-                            <thead>
-                                <tr class="active">
-                                    <td width="8%">예약번호</td>
-                                    <td width="15%">스터디 카페명</td>
-                                    <td width="6%">공간</td>
-                                    <td width="10%">예약 날짜</td>
-                                    <td width="10%">예약 시간</td>
-                                    <td width="9%">사용 시간</td>
-                                    <td width="8%">사용 인원</td>
-                                    <td width="9%">결제 금액</td>
-                                    <td width="8%">예약 상태</td>
-                                    <td width="8%">주문 일시</td>
-                                    <td width="9%">예약 취소</td>
-                                </tr>
-                            </thead>
-                            
-                            <!-- 레코드가 없다면 -->
-							<c:if test="${count==0}">
-							    <tr>
-							       <td colspan="11" align="center">
-							          예약하신 내역이 없습니다.
-							       </td>
-							    </tr>
-							</c:if>
-					
-                            <tbody>
-                            	<c:forEach var="OrderList" items="${OrderList}">  
-                               		 <tr>
-                                	   <td width="8%">${OrderList.reser_number}</td>
-	                                   <td width="15%">${OrderList.cafe_name}</td>
-	                                   <td width="6%">${OrderList.reser_category}</td>
-	                                   <td width="10%">${OrderList.reser_date}</td>
-	                                   <td width="10%">${OrderList.reser_time}</td>
-	                                   <td width="9%">${OrderList.reser_usertime}시간</td>
-	                                   <td width="8%">${OrderList.reser_person}명</td>
-	                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
-	                                   <td width="8%">${OrderList.reser_status}</td>
-	                                   <td width="8%">${OrderList.reser_orderDate}</td>
-	                                   <c:if test="${OrderList.reser_status=='READY'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="취소요청" onclick="cancel(${OrderList.reser_number})"></td>
-									   </c:if>
-									   <c:if test="${OrderList.reser_status=='CANCEL'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-red" disabled value="취소완료"></td>
-									   </c:if>
-									   <c:if test="${OrderList.reser_status=='USED'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-blue" disabled value="사용완료"></td>
-									   </c:if>
-									 </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>                      
-                </div>
-        	</div>
+         
+        	<div class="col-md-10">
+		    	<div class="tab-pane fade in active" id="home-1">
+	            	<div class="panel panel-green margin-bottom-40">
+	            	
+	                    <div class="panel-heading">
+	                        <h3 class="panel-title"><i class="fa fa-user"></i>작성한 리뷰</h3>
+	                    </div>
+	                    
+	                    <div class="panel-body">
+							<div class="row-v4">
+								<div class="col-md-pull pull-left">             
+									<div class="row">
+										<div class="col-sm-3">
+									    	<img class="img-responsive rounded-x" src="${pageContext.request.contextPath}/assets/img/team/logo.png" style="width:180px; height:110px">
+									     </div>
+									     
+									     <div class="col-sm-9">
+									     	<blockquote>
+									        	<div class="row">
+										        	<div class="col-sm-2">
+											        	<h2 style="font-weight: bolder;">${evaluation.member_id}</h2>
+											        </div>
+
+											        <c:if test="${evaluation.order_eval_score==1}">
+											        <div class="col-sm-4 col-sm-offset-6">
+												    	<ul class="list-inline star-vote">
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+														</ul>
+												     </div>       
+											         </c:if>   
+											                            
+											         <c:if test="${evaluation.order_eval_score==2}">
+											         <div class="col-sm-4 col-sm-offset-6">
+												     	<ul class="list-inline star-vote">
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+													  	</ul>
+												      </div>       
+											          </c:if>   
+											                            											                            
+											         <c:if test="${evaluation.order_eval_score==3}">
+											         <div class="col-sm-4 col-sm-offset-6">
+												     	<ul class="list-inline star-vote">
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+													  	</ul>
+												      </div>       
+											          </c:if>   
+											          
+											         <c:if test="${evaluation.order_eval_score==4}">
+											         <div class="col-sm-4 col-sm-offset-6">
+												     	<ul class="list-inline star-vote">
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star-o"></i></li>
+													  	</ul>
+												      </div>       
+											          </c:if>   
+											          
+											         <c:if test="${evaluation.order_eval_score==5}">
+											         <div class="col-sm-4 col-sm-offset-6">
+												     	<ul class="list-inline star-vote">
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+															<li><i class="color-green fa fa-star"></i></li>
+													  	</ul>
+												      </div>       
+											          </c:if>   
+											          											          											          											                           					                                     
+										        </div>
+										        <h5>제목 : ${evaluation.order_eval_title}</h5>
+										        <p>${evaluation.order_eval_content}</p>
+										        <h6 style="font-weight: lighter;">${evaluation.order_eval_regdate}</h6>
+									        </blockquote> 			                              
+									     </div>
+									</div>
+									<hr>
+								</div>
+							</div>
+	                    </div>                
+	                </div>
+	        	</div>
+			</div>
+			    
+		<div class="col-md-10 col-md-offset-2">
+			<form method="post" action="page_mypage_evaluationWrite.do" id="writeForm" >
+		    	<table class="table" style="text-align: center;">
+						<thead > 
+							<tr class="active">
+								<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">후기에 대한 댓글 작성하기</font></th>
+							</tr>
+						</thead>
+							
+						<tbody>							
+							<tr>
+								 <td><textarea id="order_eval_reply_content" name="order_eval_reply_content" class="form-control" rows="20" cols="50" placeholder="고객이 남겨주신 소중한 후기에 대한 댓글을 남겨주세요."></textarea></td>
+							</tr>	
+						</tbody>
+				</table>
+				<input type="hidden" name="cafe_id" value="sessionScope.loginCafe.cafe_id">
+				<input type="hidden" name="order_eval_id" value="#">
+				
+				 <div class="col-md-2 col-md-offset-6">
+				    	<input type="button" onclick="EvaluationWriteValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
+				 </div>
+				 <div class="col-md-2">
+				         <input type="reset" class="btn-u btn-block btn-u-green" value="초기화">                        
+				  </div>
+				  <div class="col-md-2">
+					   	 <input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}' ">   	
+				  </div>
+			  </form>
 		</div>
 	</div>
 </div>
@@ -383,13 +461,39 @@
         ParallaxSlider.initParallaxSlider();
     });
     
-	function cancel(reser_number) {
-		var chk = confirm("예약을 취소하시겠습니까?");
-		if (chk) {
-			location.href = "${pageContext.request.contextPath}/page_mypage_orderCancel.do?member_id=${sessionScope.loginUser.member_id}&reser_number="+reser_number;
-		}
-	}
-	
+    function EvaluationWriteValidation(){
+    	var score = $("#order_eval_score").val();	
+    	var title = $("#order_eval_title").val();
+    	var content = $("#order_eval_content").val();
+    	
+    	if(!score){
+    		alert("평점은 필수로 입력하셔야 입니다.");
+    		$("#order_eval_score").focus();
+    	}else if(!title){
+    		alert("후기 제목은 필수로 입력하셔야 입니다.");
+    		$("#order_eval_title").focus();
+    	}else if(!content){
+    		alert("후기 내용은 필수로 입력하셔야 합니다.");
+    		$("#order_eval_content").focus();
+    	}else {
+    		EvaluationWrite();
+    	}
+    }
+    
+    function EvaluationWrite(){
+    	$.ajax({		
+    		url : "page_mypage_evaluationWrite.do",
+    		type:'POST',
+    		data :  $("#writeForm").serialize(),
+    		success:function(data){
+    			if(data == "success"){
+    				alert("스터디 카페 후기가 등록되었습니다.^^");
+    				location.href = "${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}";
+    			}
+    			return false;
+    		}
+    	})
+    }  
 </script>
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>

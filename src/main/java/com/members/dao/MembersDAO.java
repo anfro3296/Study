@@ -8,11 +8,9 @@ public interface MembersDAO{
 	public void userJoin(MembersDTO members);
 	
 	public MembersDTO getId(MembersDTO members);
-	public int getPwd(MembersDTO members);
-	
+
 	public AdminDTO adminGetOne(AdminDTO admins);
 	public int adminGetPwd(AdminDTO admins);
-	
 	
 	 //회원정보수정
 	public void updateMember(MembersDTO members);

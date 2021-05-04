@@ -45,7 +45,6 @@ CREATE TABLE Board_find_mem
 	PRIMARY KEY (find_mem_number)
 );
 
-
 CREATE TABLE Bookmark
 (
 	bookmark_id number NOT NULL,

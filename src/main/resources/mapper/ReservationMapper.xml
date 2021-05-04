@@ -14,12 +14,12 @@
     <!-- 회원당 예약내역 보기 -->
     <select id="getMemberOrders" resultType="MemberOrderList" parameterType="String">
 		select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'YY-MM-DD') as reser_orderdate,
-        TO_CHAR(r.reser_date, 'YY-MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id
+        TO_CHAR(r.reser_date, 'YY-MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id, r.cafe_id, r.reser_evaluationCheck
 		from reservation r, cafe c
 		where r.cafe_id = c.cafe_id and r.member_id=#{member_id} order by r.reser_number desc
    </select>
    
-   <!-- 회원당 예약 취소하기 -->
+   <!-- 회원/스터디 카페에서 예약 취소하기 -->
 	<update id="orderCancel" parameterType="String">
 	   update reservation set reser_status='CANCEL' where reser_number=#{reser_number}
 	</update>
@@ -60,7 +60,26 @@
    </select>
    
 
-   <!--  -->
+   <!-- 스터디 카페당 예약내역 보기 -->
+    <select id="getCafeOrders" resultType="MemberOrderList" parameterType="String">
+		select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'YY-MM-DD') as reser_orderdate,
+        TO_CHAR(r.reser_date, 'YY-MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id, r.cafe_id, r.reser_evaluationCheck
+		from reservation r, cafe c
+		where r.cafe_id = c.cafe_id and c.cafe_id=#{cafe_id} order by r.reser_number desc
+   </select>
+   
+   <!-- 스터디 카페당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기) -->
+   <select id="getCafeOrdersUsed" parameterType="String" resultType="MemberOrderList">
+ 	 	select r.reser_number, c.cafe_name, r.reser_time, r.reser_usertime, r.reser_price, TO_CHAR(r.reser_orderdate, 'YY-MM-DD') as reser_orderdate,
+        TO_CHAR(r.reser_date, 'YY-MM-DD') as reser_date, r.reser_category, r.reser_person, r.reser_request, r.reser_status, r.member_id, r.cafe_id, r.reser_evaluationCheck
+		from reservation r, cafe c
+		where r.cafe_id = c.cafe_id and r.cafe_id=#{cafe_id} and reser_status='USED' order by r.reser_number desc
+   </select>
+   
+   <!-- 예약번호로 후기 남긴 내용 불러오기 -->
+   <select id="getEvaluationOneByReser_number" parameterType="int" resultType="Evaluation">
+ 	 select * from order_evaluation where reser_number=#{reser_number} 
+   </select>
    
    
 </mapper>

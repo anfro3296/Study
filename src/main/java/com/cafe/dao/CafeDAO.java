@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException; // 스프링 전용 예외처리 클래스 -> try ~ catch를 사용 x => 예외가 발생이 될때 처리를 해준다.
 
 import com.cafe.domain.CafeDTO;
+import com.members.domain.MembersDTO;
 
 public interface CafeDAO{
 	
@@ -19,5 +20,11 @@ public interface CafeDAO{
 	
 	// 4. 오늘의 추천 스터디 카페 출력하기
 	public List<CafeDTO> recommendCafe() throws DataAccessException;	
+	
+	// 5. 스터디 카페 ID로 스터디 카페 정보 갖고오기
+	public CafeDTO getCafe(CafeDTO cafe);
+	
+	// 6. 스터디 카페 ID로 스터디 카페 예약 정보 갖고 오기
+	
 }
 

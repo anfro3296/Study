@@ -1,21 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="ko"> <!--<![endif]-->  
+<html>
 <head>
-    <title>GatherStudy</title>
-
-    <!-- Meta -->
+<meta charset="UTF-8">
+<!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- color -->
-	<link rel="stylesheet" href="assets/css/theme-colors/blue.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -31,43 +26,41 @@
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
     <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
 
-
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">    
-    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 
     <!-- CSS Page Style -->    
-    <link rel="stylesheet" href="assets/css/pages/blog.css">
-    <link rel="stylesheet" href="assets/css/pages/blog_magazine.css">
+    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v1.css">    
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
-    <!-- 스타일존 -->
-	<style>    
-	    #RPath{
-			color:#2ecc71;
-		}
-	    #CTitle{
-			font-size:30px;
-			    
-	    }
-	    
     
-	</style>
-</head>	
-
+    
+    
+    <!-- 
+================스타일 추가 하기=====================
+    -->
+    <style type="text/css">
+    .reg-page {
+    	padding:20px;
+    }
+   </style>  
+    <!-- 
+================스타일 추가 끝========================= 
+    -->
+<title>Insert title here</title>
+</head>
 <body>
 <div class="wrapper">
+    <!--=== Header ===-->    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
     
     =================================================-->    
-    <div class="header">
+        <div class="header">
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="${pageContext.request.contextPath}/main.do">
@@ -84,7 +77,13 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
 						</c:when>
-					
+						
+						<c:when test="${!empty sessionScope.loginCafe}">
+	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>   
+						</c:when>
+									
 						<c:when test="${!empty sessionScope.loginUser}">
 	                    	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
 	                    	<li class="topbar-devider"></li>   
@@ -96,7 +95,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>       
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -134,9 +133,17 @@
                         <a href="#">도움말</a>
                     </li>                   
 
-                   <li>
-                        <a href="#">호스트 센터</a>
-                    </li>           
+                    <li>
+                   	  <c:choose>
+						<c:when test="${empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafeLogin.do">호스트 센터</a>
+						</c:when>
+						
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+						</c:otherwise>
+						</c:choose>   
+                    </li>                
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -147,112 +154,61 @@
     
     ================================================-->
 
-	<div class="breadcrumbs">
+
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left" id="RPath"><b>My 예약</b></h1>
-        </div>
+            <h1 class="pull-left">로그인</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
+                <li class="active">로그인</li>
+            </ul>
+        </div><!--/container-->
     </div><!--/breadcrumbs-->
-    
-    <!-- 중단 시작 -->
-     <div class="container content">		
-    	<div class="row blog-page"> 
-    	   <div class="col-md-2  hidden-xs related-search">
-			<div class=" s-results margin-bottom-50">
-       			<div class="row">
-                   			<div class="col-md-12 col-sm-4">
-		                        <h3 id="RPath">My 예약</h3>
-		                        <ul class="list-unstyled">
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_selfReg.do?member_id=${sessionScope.loginUser.member_id}">예약내역조회/취소</a></li>
-		                            <li><a href="${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}">구매후기작성/조회</a></li>
-		                            <li><a href="#">장바구니</a></li>   
-		                       </ul>
-		                        <hr>
-	                    	</div>       
-
-                    		<div class="col-md-12 col-sm-4">
-                        	<h3 id="RPath">My 정보</h3>
-                       		<ul class="list-unstyled">
-                            	<li><a href="${pageContext.request.contextPath}/page_mypage_info.do?member_id=${sessionScope.loginUser.member_id}">개인정보확인/수정</a></li>       
-                        	</ul>
-                        	<hr>
-                    		</div>                                                                      		        
-            		</div>
-            	</div>
-            </div>
-		<div class="col-md-10">
-	    	<div class="tab-pane fade in active" id="home-1">
-            	<div class="panel panel-green margin-bottom-40">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-user"></i>My 예약</h3>
+    <!--=== End Breadcrumbs ===-->
+<!--  
+====================로그인 구역 시작========================
+-->
+	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.cafe_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+	
+	<form method="post" action="cafeLogin.do" id="loginform" >
+    <!--=== Content Part ===-->
+    <div class="container content">		
+    	<div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <form class="reg-page">
+                    <div class="reg-header">            
+                        <h2>호스트 로그인</h2>
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-hover" style="text-align: center;">
-                            <thead>
-                                <tr class="active">
-                                    <td width="8%">예약번호</td>
-                                    <td width="15%">스터디 카페명</td>
-                                    <td width="6%">공간</td>
-                                    <td width="10%">예약 날짜</td>
-                                    <td width="10%">예약 시간</td>
-                                    <td width="9%">사용 시간</td>
-                                    <td width="8%">사용 인원</td>
-                                    <td width="9%">결제 금액</td>
-                                    <td width="8%">예약 상태</td>
-                                    <td width="8%">주문 일시</td>
-                                    <td width="9%">예약 취소</td>
-                                </tr>
-                            </thead>
-                            
-                            <!-- 레코드가 없다면 -->
-							<c:if test="${count==0}">
-							    <tr>
-							       <td colspan="11" align="center">
-							          예약하신 내역이 없습니다.
-							       </td>
-							    </tr>
-							</c:if>
-					
-                            <tbody>
-                            	<c:forEach var="OrderList" items="${OrderList}">  
-                               		 <tr>
-                                	   <td width="8%">${OrderList.reser_number}</td>
-	                                   <td width="15%">${OrderList.cafe_name}</td>
-	                                   <td width="6%">${OrderList.reser_category}</td>
-	                                   <td width="10%">${OrderList.reser_date}</td>
-	                                   <td width="10%">${OrderList.reser_time}</td>
-	                                   <td width="9%">${OrderList.reser_usertime}시간</td>
-	                                   <td width="8%">${OrderList.reser_person}명</td>
-	                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
-	                                   <td width="8%">${OrderList.reser_status}</td>
-	                                   <td width="8%">${OrderList.reser_orderDate}</td>
-	                                   <c:if test="${OrderList.reser_status=='READY'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="취소요청" onclick="cancel(${OrderList.reser_number})"></td>
-									   </c:if>
-									   <c:if test="${OrderList.reser_status=='CANCEL'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-red" disabled value="취소완료"></td>
-									   </c:if>
-									   <c:if test="${OrderList.reser_status=='USED'}">
-	                                 	  <td width="9%"><input type="button" class="btn-u btn-u-sm btn-u-blue" disabled value="사용완료"></td>
-									   </c:if>
-									 </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>                      
-                </div>
-        	</div>
-		</div>
-	</div>
-</div>
- <div class="margin-bottom-50"></div>
 
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="cafe_id" name="cafe_id" value="${cookie.cafe_check.value}" placeholder="아이디" class="form-control">
+                    </div>                    
+                    <div class="input-group margin-bottom-10">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="pwd1" name="cafe_pwd" placeholder="비밀번호" class="form-control">
+                    </div>                    
+					<div class="row">
+                        <div class="col-md-12">	
+                            <label class="pull-left">	
+                            	<input type="checkbox" id="remember_us" name="remember_cafeId" ${checked}> 아이디 저장                  
+                        	</label>
+                        </div>                     
+            		</div>
+					<input type="button" onclick="signInValidation()" class="btn-u btn-u-lg btn-block btn-u-blue" value="로그인">
+                    <hr>
+					</form>            
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->		
+    <!--=== End Content Part ===-->
+    </form>
 
-
-
-
-
-
-    <!--===========================
+<!--===========================
     
   	   Footer 하단시작이요오
   
@@ -263,7 +219,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="homepage.html">
+                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -344,7 +300,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
@@ -353,44 +309,70 @@
      				Footer 하단끝끝
 
 	========================--> 
-    </div>
+    
+   
+</div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->
 
-<!-- JS Global Compulsory -->			
+<!-- JS Global Compulsory -->           
 <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-<script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
-<script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
-<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
-<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
-<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
 <!-- JS Customization -->
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/forms/login.js"></script>
-<script type="text/javascript" src="assets/js/forms/contact.js"></script>
-<script type="text/javascript" src="assets/js/plugins/fancy-box.js"></script>
-<script type="text/javascript" src="assets/js/plugins/datepicker.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-      	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
-    });
-    
-	function cancel(reser_number) {
-		var chk = confirm("예약을 취소하시겠습니까?");
-		if (chk) {
-			location.href = "${pageContext.request.contextPath}/page_mypage_orderCancel.do?member_id=${sessionScope.loginUser.member_id}&reser_number="+reser_number;
-		}
+        App.init();
+        });
+</script>
+
+<script type="text/javascript">
+	function signInValidation(){
+		var cafeId = $("#cafe_id").val();
+		var cafePw = $("#pwd1").val();
+	
+		if(!cafeId){
+    		alert("아이디 입력은 필수입니다.");
+    		$("#cafe_id").focus();
+    	}else if(!cafePw){
+    		alert("비밀번호 입력은 필수입니다.");
+    		$("#pwd1").focus();
+    	}else {
+    		signIn()
+    	}
 	}
 	
+    function signIn(){
+    	$.ajax({		
+    		url : "cafeLogin.do",
+    		type:'POST',
+    		data : {
+    			cafe_id : $("#cafe_id").val(),
+    			cafe_pwd : $("#pwd1").val(),
+				remember_cafeId : $("#remember_us").is(':checked')
+			},
+    		success:function(data){
+    			if(data == "success"){
+    				alert("호스트 ID로 접속하셨습니다.");
+    				location.href = "main.do";
+    			}else if(data == "idFail"){
+    				alert("ID가 존재하지 않습니다");
+    				return false;
+    				
+    			} else if(data == "pwdFail") {
+    				alert("패스워드가 틀렸습니다. 비밀번호를 확이해주세요");
+    				return false;		
+    			}
+    		}
+    	})
+    }
 </script>
+
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

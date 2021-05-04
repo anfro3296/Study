@@ -133,7 +133,8 @@ CREATE TABLE Order_evaluation_reply
 (
 	order_eval_reply_content varchar2(4000) NOT NULL,
 	order_eval_reply_regdate timestamp,
-	order_eval_id number NOT NULL
+	order_eval_id number NOT NULL,
+	cafe_id varchar2(30) NOT NULL
 );
 
 
@@ -149,6 +150,7 @@ CREATE TABLE Reservation
 	reser_request varchar2(100),
 	reser_orderDate timestamp,
 	reser_status varchar2(20),
+	reser_evaluationCheck varchar2(10),
 	member_id varchar2(30) NOT NULL,
 	cafe_id varchar2(30) NOT NULL,
 	PRIMARY KEY (reser_number)
@@ -177,6 +179,12 @@ ALTER TABLE Bookmark
 
 
 ALTER TABLE Order_evaluation
+	ADD FOREIGN KEY (cafe_id)
+	REFERENCES Cafe (cafe_id)
+;
+
+
+ALTER TABLE Order_evaluation_reply
 	ADD FOREIGN KEY (cafe_id)
 	REFERENCES Cafe (cafe_id)
 ;
