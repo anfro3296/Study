@@ -41,7 +41,7 @@
    select max(order_eval_id) from order_evaluation
 </select>
 
-<!-- 6. 공지사항 쓰기 -->
+<!-- 6. 후기 작성하기 -->
 <insert id="evaluationWrite" parameterType="Evaluation">
     insert into order_evaluation(order_eval_id, order_eval_title, order_eval_content, order_eval_regdate, order_eval_score, cafe_id, member_id, reser_number)
     values(#{order_eval_id},#{order_eval_title},#{order_eval_content}, sysdate, #{order_eval_score}, #{cafe_id}, #{member_id}, #{reser_number})
@@ -67,5 +67,11 @@
 <select  id="evaluation_reply_Entrylist" resultType="EvaluationReply"  >
     select  order_eval_reply_content, TO_CHAR(order_eval_reply_regdate, 'YYYY-MM-DD') AS order_eval_reply_regdate, order_eval_id, cafe_id from order_evaluation_reply
 </select>
+
+<!-- 고객이 남겨주신 후기에 대해서 댓글 작성하기 -->
+<insert id="evaluationReplyWrite" parameterType="EvaluationReply">
+    insert into order_evaluation_reply
+    values(#{order_eval_reply_content}, sysdate, #{order_eval_id}, #{cafe_id})
+</insert>
 
 </mapper>

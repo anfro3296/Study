@@ -292,7 +292,7 @@
 			</div>
 			    
 		<div class="col-md-10 col-md-offset-2">
-			<form method="post" action="page_mypage_evaluationWrite.do" id="writeForm" >
+			<form method="post" action="cafe_evaluationReplyWrite.do" id="writeForm" >
 		    	<table class="table" style="text-align: center;">
 						<thead > 
 							<tr class="active">
@@ -306,11 +306,11 @@
 							</tr>	
 						</tbody>
 				</table>
-				<input type="hidden" name="cafe_id" value="sessionScope.loginCafe.cafe_id">
-				<input type="hidden" name="order_eval_id" value="#">
+				<input type="hidden" name="cafe_id" value="${sessionScope.loginCafe.cafe_id}">
+				<input type="hidden" name="order_eval_id" value="${evaluation.order_eval_id}">
 				
 				 <div class="col-md-2 col-md-offset-6">
-				    	<input type="button" onclick="EvaluationWriteValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
+				    	<input type="button" onclick="EvaluationReplyWriteValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
 				 </div>
 				 <div class="col-md-2">
 				         <input type="reset" class="btn-u btn-block btn-u-green" value="초기화">                        
@@ -461,34 +461,26 @@
         ParallaxSlider.initParallaxSlider();
     });
     
-    function EvaluationWriteValidation(){
-    	var score = $("#order_eval_score").val();	
-    	var title = $("#order_eval_title").val();
-    	var content = $("#order_eval_content").val();
+    function EvaluationReplyWriteValidation(){
+    	var content = $("#order_eval_reply_content").val();	
     	
-    	if(!score){
-    		alert("평점은 필수로 입력하셔야 입니다.");
-    		$("#order_eval_score").focus();
-    	}else if(!title){
-    		alert("후기 제목은 필수로 입력하셔야 입니다.");
-    		$("#order_eval_title").focus();
-    	}else if(!content){
-    		alert("후기 내용은 필수로 입력하셔야 합니다.");
-    		$("#order_eval_content").focus();
+    	if(!content){
+    		alert("고객이 남겨주신 후기에 대해서 댓글 내용을 남겨주세요.");
+    		$("#order_eval_reply_content").focus();
     	}else {
-    		EvaluationWrite();
+    		EvaluationRelpyWrite();
     	}
     }
     
-    function EvaluationWrite(){
+    function EvaluationRelpyWrite(){
     	$.ajax({		
-    		url : "page_mypage_evaluationWrite.do",
+    		url : "cafe_evaluationReplyWrite.do",
     		type:'POST',
     		data :  $("#writeForm").serialize(),
     		success:function(data){
     			if(data == "success"){
-    				alert("스터디 카페 후기가 등록되었습니다.^^");
-    				location.href = "${pageContext.request.contextPath}/page_mypage_orderEvaluation.do?member_id=${sessionScope.loginUser.member_id}";
+    				alert("고객이 남겨주신 후기에 대해서 댓글을 등록했습니다.^^");
+    				location.href = "${pageContext.request.contextPath}/cafe_evaluationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}";
     			}
     			return false;
     		}

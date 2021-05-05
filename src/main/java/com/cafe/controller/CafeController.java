@@ -177,7 +177,15 @@ public class CafeController{
 	   return "cafe_evaluationReplyWrite";
 	 }
 	
-	
+	// By Jay_스터디 카페 호스트가 구매후기 관련 댓글 작성하기_20210505
+	@RequestMapping(value="cafe_evaluationReplyWrite.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String orderEvaluationReplyWrite(@ModelAttribute EvaluationReplyDTO EvaluationReplyDTO) {
+	   log.info("MemberController의 orderEvaluationReplyWrite()호출됨");
+	   evaluationDAO.evaluationReplyWrite(EvaluationReplyDTO);
+
+	   return "success";
+	 }
 	
 	
 	

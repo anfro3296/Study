@@ -257,7 +257,7 @@
 		    	<div class="tab-pane fade in active" id="home-1">
 	            	<div class="panel panel-green margin-bottom-40">
 	                    <div class="panel-heading">
-	                        <h3 class="panel-title"><i class="fa fa-user"></i>작성한 리뷰</h3>
+	                        <h3 class="panel-title"><i class="fa fa-user"></i>고객이 작성한 리뷰</h3>
 	                    </div>
 	                    <div class="panel-body">
 							<div class="row-v4">

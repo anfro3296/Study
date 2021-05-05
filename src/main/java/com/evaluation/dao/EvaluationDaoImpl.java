@@ -62,6 +62,12 @@ public class EvaluationDaoImpl implements EvaluationDAO {
 		return sqlSession.selectList("evaluation_reply_Entrylist");
 	}
 
+	@Override
+	public void evaluationReplyWrite(EvaluationReplyDTO EvaluationReplyDTO) throws DataAccessException {
+		sqlSession.insert("evaluationReplyWrite", EvaluationReplyDTO);
+	}
+
+	
 	
 
 	

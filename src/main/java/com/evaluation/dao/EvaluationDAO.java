@@ -36,5 +36,8 @@ public interface EvaluationDAO{
 	// 9. 회원이 작성한 스터디 카페 후기에 대한 댓글 보기(스터디 카페 전체 댓글 불러오기)
 	public List<EvaluationReplyDTO> evaluation_reply_Entrylist() throws DataAccessException;
 
+	// 10. 고객이 남겨주신 후기에 댓글 남기기
+	public void evaluationReplyWrite(EvaluationReplyDTO EvaluationReplyDTO) throws DataAccessException;
+	
 }
 
