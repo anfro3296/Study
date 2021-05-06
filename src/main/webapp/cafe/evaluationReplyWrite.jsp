@@ -77,38 +77,32 @@
             
             <!-- Topbar -->
             <div class="topbar">
-                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
-                   </li>
-                  
-                    <li>
-                        <a href="${pageContext.request.contextPath}/notice/list.do">공지사항</a>
-                    </li>
-                    
-                    <li>
-                        <a href="${pageContext.request.contextPath}/cafe/list.do">카페 구경하기</a>
-                    </li>
-                    
-                    <li>
-                        <a href="${pageContext.request.contextPath}/findMember/list.do">멤버 구하기</a>
-                    </li>
-                    
-                     <li>
-                        <a href="${pageContext.request.contextPath}/help/list.do">도움말</a>
-                    </li>                   
-
-                    <li>
-                   	  <c:choose>
-						<c:when test="${empty sessionScope.loginCafe}">
-							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
+                <ul class="loginbar pull-right">  
+	                <c:choose>
+						<c:when test="${!empty sessionScope.loginAdmin}">
+	                    	<li><a href="#">관리자 페이지</a></li>  
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>
+						</c:when>
+						
+						<c:when test="${!empty sessionScope.loginCafe}">
+	                    	<li><a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>   
+						</c:when>
+									
+						<c:when test="${!empty sessionScope.loginUser}">
+	                    	<li><a href="${pageContext.request.contextPath}/user/mypage_info.do?member_id=${sessionScope.loginUser.member_id}">마이페이지</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>   
 						</c:when>
 						
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+	                    	<li><a href="${pageContext.request.contextPath}/user/login.do">로그인</a></li>
+	                    	<li class="topbar-devider"></li>   
+	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-						</c:choose>   
-                    </li>             
+					</c:choose>        
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -131,32 +125,35 @@
                    </li>
                   
                     <li>
-                        <a href="${pageContext.request.contextPath}/notice.do">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/notice/list.do">공지사항</a>
                     </li>
                     
                     <li>
-                        <a href="${pageContext.request.contextPath}/lookcafe.do">카페 구경하기</a>
+                        <a href="${pageContext.request.contextPath}/cafe/list.do">카페 구경하기</a>
                     </li>
                     
                     <li>
-                        <a href="">멤버 구하기</a>
+                        <a href="${pageContext.request.contextPath}/findMember/list.do">멤버 구하기</a>
                     </li>
                     
                      <li>
-                        <a href="#">도움말</a>
+                        <a href="${pageContext.request.contextPath}/help/list.do">도움말</a>
                     </li>                   
 
                     <li>
-                       <c:choose>
-						<c:when test="${empty sessionScope.loginCafe}">
-							<a href="${pageContext.request.contextPath}/cafeLogin.do">호스트 센터</a>
+                   	  <c:choose>
+						<c:when test="${!empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
 						</c:when>
 						
+						<c:when test="${!empty sessionScope.loginUser}"></c:when>
+						<c:when test="${!empty sessionScope.loginAdmin}"></c:when>
+																		
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
 						</c:otherwise>
-					  </c:choose> 
-                    </li>         
+						</c:choose>   
+                    </li>             
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->

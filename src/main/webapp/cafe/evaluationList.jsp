@@ -86,7 +86,7 @@
 						</c:when>
 						
 						<c:when test="${!empty sessionScope.loginCafe}">
-	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li><a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>   
 						</c:when>
@@ -102,7 +102,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>       
+					</c:choose>        
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -119,7 +119,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
             <div class="container">
-                  <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>
                         <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
@@ -142,12 +142,15 @@
 
                     <li>
                    	  <c:choose>
-						<c:when test="${empty sessionScope.loginCafe}">
-							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
+						<c:when test="${!empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
 						</c:when>
 						
+						<c:when test="${!empty sessionScope.loginUser}"></c:when>
+						<c:when test="${!empty sessionScope.loginAdmin}"></c:when>
+																		
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
 						</c:otherwise>
 						</c:choose>   
                     </li>             
@@ -237,11 +240,11 @@
 		                                   <td width="9%"><fmt:formatNumber value="${OrderList.reser_price}" pattern="#,###" />원</td>
 		                                   <td width="8%">${OrderList.reser_status}</td>
 		                                   <c:if test="${OrderList.reser_evaluationCheck=='NO'}">
-		                                 	  <td width="13%"><input type="button" class="btn-u btn-u-sm btn-u-red" value="작성 미완료" disabled></td>
+		                                 	  <td width="13%">작성 미완료</td>
 		                                 	  <td width="14%"><input type="button" class="btn-u btn-u-sm btn-u-red" value="작성 미완료" disabled></td>
 										   </c:if>
 										   <c:if test="${OrderList.reser_evaluationCheck=='YES'}">
-		                                 	  <td width="13%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="작성 완료" disabled"></td>
+		                                 	  <td width="13%">작성 완료</td>
 										  	  <td width="14%"><input type="button" class="btn-u btn-u-sm btn-u-green" value="작성 하러 가기 " onclick="location.href='${pageContext.request.contextPath}/cafe/evaluationReplyWrite.do?reser_number=${OrderList.reser_number}' "></td>
 										   </c:if>
 		                                   </tr>

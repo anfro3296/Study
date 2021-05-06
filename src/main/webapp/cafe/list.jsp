@@ -69,7 +69,7 @@
 						</c:when>
 						
 						<c:when test="${!empty sessionScope.loginCafe}">
-	                    	<li><a href="${pageContext.request.contextPath}/cafe_reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
+	                    	<li><a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a></li>
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>   
 						</c:when>
@@ -102,7 +102,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
             <div class="container">
-                  <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>
                         <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
@@ -125,12 +125,15 @@
 
                     <li>
                    	  <c:choose>
-						<c:when test="${empty sessionScope.loginCafe}">
-							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
+						<c:when test="${!empty sessionScope.loginCafe}">
+							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
 						</c:when>
 						
+						<c:when test="${!empty sessionScope.loginUser}"></c:when>
+						<c:when test="${!empty sessionScope.loginAdmin}"></c:when>
+																		
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/cafe/reservationList.do?cafe_id=${sessionScope.loginCafe.cafe_id}">호스트 센터</a>
+							<a href="${pageContext.request.contextPath}/cafe/login.do">호스트 센터</a>
 						</c:otherwise>
 						</c:choose>   
                     </li>             
