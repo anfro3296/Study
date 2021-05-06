@@ -4,24 +4,23 @@ import com.members.domain.MembersDTO;
 import com.reservation.domain.ReservationDTO;
 
 public interface MembersDAO{
+	// 1. 회원가입 ( 중복id값 확인, 회원가입 하기)
 	public int idCheck(MembersDTO members);
 	public void userJoin(MembersDTO members);
 	
-	public MembersDTO getId(MembersDTO members);
+	// 2. 아이디 값으로 아이디, 비밀번호 값 갖고오기(로그인시 아이디, 비밀번호 확인)
+	public MembersDTO getOne(MembersDTO members);
 
-	public AdminDTO adminGetOne(AdminDTO admins);
-	public int adminGetPwd(AdminDTO admins);
+	// 3. 마이페이지(회원정보보기)
+	public MembersDTO getMember(String member_id);
 	
-	 //회원정보수정
+	// 4.회원정보수정
 	public void updateMember(MembersDTO members);
 	   
-	 //회원정보탈퇴(삭제)
-	 public void deleteMember(MembersDTO members);
-	   
-	 //회원예약내역
-	 public ReservationDTO getMemberRes(String member_id);
+	// 5.회원탈퇴
+	public void deleteMember(MembersDTO members);
 	 
-	//마이페이지(회원정보보기)
-	public MembersDTO getMember(String member_id);
+	// 6. 관리자 계정으로 아이디, 비밀번호 값 갖고오기(로그인시 아이디, 비밀번호 확인)
+	public AdminDTO adminGetOne(AdminDTO admins);
 }
 

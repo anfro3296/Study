@@ -15,26 +15,25 @@ import com.reservation.domain.ReservationDTO;
 public class ReservationController{
 	
 	private Log log = LogFactory.getLog(getClass());
-	ReservationDAO dao;
+	private final ReservationDAO reservationDAO;
 	
-	@Required
+
 	@Autowired
-	public void setDao(ReservationDAO dao) {
-		this.dao = dao;
+	public ReservationController(ReservationDAO reservationDAO) {
+		super();
+		this.reservationDAO = reservationDAO;
 	}
 	
 	// By jay_카페 예약하기_20210418
-	@RequestMapping("/order.do")
+	@RequestMapping("cafe/order.do")
 	@ResponseBody
 	public String reservate(ReservationDTO reservation){
-		log.info(reservation);
 		log.info("ReservationActionController의 reservate()호출됨");
-		log.info(reservation.getReser_date());
-		
+
 		if(reservation.getMember_id() == "") {
 			return "fail";
 		} else {
-			dao.reservate(reservation);
+			reservationDAO.reservate(reservation);
 		}
 		
 		return "success";

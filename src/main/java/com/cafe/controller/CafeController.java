@@ -31,38 +31,31 @@ import com.reservation.domain.MemberOrderListDTO;
 public class CafeController{
 
 	private Log log = LogFactory.getLog(getClass());
-	CafeDAO cafeDAO;
-	EvaluationDAO evaluationDAO;
-	ReservationDAO reservationDAO;
-	
+	private final CafeDAO cafeDAO;
+	private final EvaluationDAO evaluationDAO;
+	private final ReservationDAO reservationDAO;
+
 	@Autowired
-	public void setCafeDAO(CafeDAO cafeDAO) {
+	public CafeController(CafeDAO cafeDAO, EvaluationDAO evaluationDAO, ReservationDAO reservationDAO) {
+		super();
 		this.cafeDAO = cafeDAO;
-	}
-	
-	@Autowired
-	public void setEvaluationDAO(EvaluationDAO evaluationDAO) {
 		this.evaluationDAO = evaluationDAO;
-	}
-	
-	@Autowired
-	public void setReservationDAO(ReservationDAO reservationDAO) {
 		this.reservationDAO = reservationDAO;
 	}
-	
+
 	// By Jay_카페구경하기 페이지 출력하기_20210423
-	@RequestMapping("/lookcafe.do")
-	public String lookCafe(Model model){
-		log.info("CafeController의 lookCafe()호출됨");
+	@RequestMapping("/cafe/list.do")
+	public String cafeEntireList(Model model){
+		log.info("CafeController의 cafeEntireList()호출됨");
 		List<CafeDTO> list = cafeDAO.lookcafe();
 		List<CafeDTO> newList = cafeDAO.newCafe();
 		model.addAttribute("list", list);
 		model.addAttribute("newList", newList);
-		return "lookcafe";
+		return "cafe/list";
 	}
 	
-	// By Jay_카페 상세페이지 출력하기_20210421
-	@RequestMapping("/list.do")
+	// By Jay_카페 상세페이지 출력하기_20210423
+	@RequestMapping("cafe/detail.do")
 	public String listBoard(@RequestParam String cafe_id, Model model){
 		log.info("CafeController의 listBoard()호출됨");
 		CafeDTO cafe = cafeDAO.list(cafe_id);
@@ -73,19 +66,18 @@ public class CafeController{
 		model.addAttribute("evaluation_list", evaluation_list);
 		model.addAttribute("evaluation_reply_list", evaluation_reply_list);
 		model.addAttribute("count", count);
-		log.info(count);
-		return "Detailed_shop";
+		return "cafe/detail";
 	}
 	
 	// By Jay_호스트 로그인 페이지로 이동_20210503
-	@RequestMapping(value="/cafeLogin.do", method = RequestMethod.GET)
+	@RequestMapping(value="cafe/login.do", method = RequestMethod.GET)
 	public String cafeLoginForm(){
 		log.info("CafeController의 cafeLoginForm()호출됨");
-		return "cafe_login";
+		return "cafe/cafe_login";
 	}
 	
 	// By Jay_호스트 로그인 하기_20210503
-	@RequestMapping(value="/cafeLogin.do", method = RequestMethod.POST)
+	@RequestMapping(value="cafe/login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String cafeLogin(@ModelAttribute CafeDTO cafe, HttpSession session, HttpServletRequest request,
 			HttpServletResponse response){
@@ -122,7 +114,7 @@ public class CafeController{
 	}	
 	
 	// By Jay_스터디 카페 당 예약내역 불러오기_20210503
-	@RequestMapping(value="cafe_reservationList.do", method = RequestMethod.GET)
+	@RequestMapping(value="cafe/reservationList.do", method = RequestMethod.GET)
 	public String cafe_reservationList(@RequestParam String cafe_id, Model model) {
 	   log.info("CafeController의 cafe_reservationList()호출됨");
 	   
@@ -131,11 +123,11 @@ public class CafeController{
 	   
 	   model.addAttribute("OrderList", OrderList);
 
-	   return "cafe_reservationList";
+	   return "cafe/reservationList";
 	 }
 	
 	// By Jay_스터디 카페에서 예약 내역 취소하기_20210503
-	@RequestMapping(value="cafe_reservationCancel.do", method = RequestMethod.GET)
+	@RequestMapping(value="cafe/reservationCancel.do", method = RequestMethod.GET)
 	public String orderCancel(@RequestParam String cafe_id, @RequestParam String reser_number, Model model) {
 	   log.info("CafeController의 orderCancel()호출됨");
 	   reservationDAO.orderCancel(reser_number);
@@ -143,11 +135,11 @@ public class CafeController{
 	   List<MemberOrderListDTO> OrderList = reservationDAO.getCafeOrders(cafe_id);
 
 	   model.addAttribute("OrderList", OrderList);
-	   return "cafe_reservationList";
+	   return "cafe/reservationList";
 	 }
 	
 	// By Jay_스터디 카페당 구매후기 관련 리스트로 이동_20210503
-	@RequestMapping(value="cafe_evaluationList.do", method = RequestMethod.GET)
+	@RequestMapping(value="cafe/evaluationList.do", method = RequestMethod.GET)
 	public String orderEvaluationList(@RequestParam String cafe_id, Model model) {
 	   log.info("CafeController의 cafeEvaluationList()호출됨");
 	   
@@ -162,23 +154,23 @@ public class CafeController{
 	   log.info(evaluationList);
 	   log.info(replyList);
 	   
-	   return "cafe_evaluationList";
+	   return "cafe/evaluationList";
 	 }
 	
 	
 	// By Jay_스터디 카페 호스트가 구매후기 관련 댓글 작성 페이지로 이동_20210504
-	@RequestMapping(value="cafe_evaluationReplyWrite.do", method = RequestMethod.GET)
+	@RequestMapping(value="cafe/evaluationReplyWrite.do", method = RequestMethod.GET)
 	public String orderEvaluationReplyWriteForm(@RequestParam int reser_number, Model model) {
 	   log.info("MemberController의 orderEvaluationReplyWriteForm()호출됨");
 	   EvaluationDTO evaluation = reservationDAO.getEvaluationOneByReser_number(reser_number);
 	   log.info(evaluation);
 	   model.addAttribute("evaluation", evaluation);
 	   
-	   return "cafe_evaluationReplyWrite";
+	   return "cafe/evaluationReplyWrite";
 	 }
 	
 	// By Jay_스터디 카페 호스트가 구매후기 관련 댓글 작성하기_20210505
-	@RequestMapping(value="cafe_evaluationReplyWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="cafe/evaluationReplyWrite.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String orderEvaluationReplyWrite(@ModelAttribute EvaluationReplyDTO EvaluationReplyDTO) {
 	   log.info("MemberController의 orderEvaluationReplyWrite()호출됨");

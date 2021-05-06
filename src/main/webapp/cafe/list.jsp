@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>GatherStudy</title>
+    <title>Unify - Responsive Website Template</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel='stylesheet' type='text/csss' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -29,26 +29,22 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
 
+    
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/parallax-slider/css/parallax-slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    <!-- 스타일존 -->
-    <style>
-    
-    
-    </style>
 </head>	
 
-<body>
+<body class="header-fixed">
 <div class="wrapper">
+    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
@@ -106,7 +102,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
             <div class="container">
-                <ul class="nav navbar-nav">
+                  <ul class="nav navbar-nav">
                     <li>
                         <a href="${pageContext.request.contextPath}/main.do">Home</a>
                    </li>
@@ -147,182 +143,89 @@
     								End Header 상단 끝입니다.!!!
     
     ================================================-->
-
-    <!-- 슬라이더 2개 -->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/19.jpg" alt=""> --></div>
-            </div>
-            <div class="da-slide">
-                <h2><i>Study with the person you want</i> <br/> <i>원하는 사람과 스터디하세요!</i><br/></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/18.jpg" alt=""> --></div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>        
-            </div>
+    
+	<!--=== 현재페이지 이름과 경로 보여주기 입니다!! ===-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">카페 구경하기</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/main.do">Home</a></li>
+                <li class="active">카페 구경하기</li>
+            </ul>
         </div>
-    </div><!--/slider-->
-    <!--슬라이더 2개-->
-
-    <!-- GatherStudy 핵심 설명 -->
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
+    
+    <!--=== Content Part ===-->
     <div class="container content-md">
-    	<!-- GatherStudy 핵심 설명 -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 카페 예약 플랫폼</h4>
-                        <p>예약이 편한 플랫폼으로,<br>
-                        특화된 서비스를 만나보세요</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>안전거래 보장</h4>
-                        <p>에약 피해 시,<br>
-                        예약비 전액을 환불해드립니다.</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 커뮤니티 형성</h4>
-                        <p>불편하게 여러 커뮤니티가 아닌,<br>
-                        GatherStudy에서 편안하게</p>
-        			</div>
-        		</div>	
-        	</div>			    
-    	</div>
-    	<!-- GatherStudy 핵심 설명 -->
-
-    	 <!-- 오늘의 추천 공간 -->
-        <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
+    	 <!-- Recent Works -->
+        <div class="heading heading-v1 margin-bottom-20">
+            <h2>새로 오픈한 스터디 카페</h2>
+        </div>
+        
+        <!--=== Illustration v2 ===-->
+        <div class="illustration-v2 margin-bottom-60">
             <ul class="list-inline owl-slider">
-            <c:forEach var="recommendCafe" items="${recommendCafe}">
+            <c:forEach var="newList" items="${newList}">
                 <li class="item">
                     <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${newList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${newList.cafe_image1}" style="width:213px; height:150px;"></a>
+                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${newList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                    	<div class="shop-rgba-dark-green rgba-banner">New</div>
                     </div>
 
                    <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
-	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${recommendCafe.cafe_category1} - <fmt:formatNumber value="${recommendCafe.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
+	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}//cafe/detail.do?cafe_id=${newList.cafe_id}">${newList.cafe_name}</a></h4>
+	                       		<h6 align="left">${newList.cafe_hashtag1}  ${newList.cafe_hashtag2}</h6>
+	                       		<h6 align="left">${newList.cafe_category1} - <fmt:formatNumber value="${newList.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
 	                        </div>    
 	                    </div>    
 	                </div>
                 </li>
             </c:forEach>
             </ul>
-        </div>        
-    	<!-- 오늘의 추천공간 -->
+        </div> 
+        <!--=== 신규 스터디카페 끝==-->
     	
-    	<!-- 이용자 리뷰 -->
-        <div class="headline"><h2>이용자 리뷰</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="evaluationList" items="${evaluationList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    </div>
+    
+        <div class="heading heading-v1 margin-bottom-40">
+            <h2>스터디 카페</h2>
+        </div>
 
-                   <div class="product-description product-description-brd">
+        <!--=== 스터디룸 ===-->
+        <div class="illustration-v2 margin-bottom-60">
+        	<c:forEach var="cafe" items="${list}">
+	            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
+	                <div class="product-img">
+	                    <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${cafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${cafe.cafe_image1}" style="width:273px; height:200px;"></a>
+	                    <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${cafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+	                </div>
+	                <div class="product-description product-description-brd">
 	                    <div class="overflow-h margin-bottom-5">
 	                        <div class="pull-left">
-	                            <h4 class="title-price" align="center" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"">${evaluationList.cafe_name}</a></h4>
-	                            <h5 align="center">- ${evaluationList.member_id} -</h5>
-	                            <div class="caption" align="center">	              
-					                <c:if test="${evaluationList.order_eval_score==1}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==2}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==3}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>       	                 
-					                 
-					                <c:if test="${evaluationList.order_eval_score==4}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                 <c:if test="${evaluationList.order_eval_score==5}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                 </ul>
-					                 </c:if>	  
-					                 <hr>               
-					                <p>${evaluationList.order_eval_content}</p>
-			                     </div>    
+	                            <h4 class="title-price" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${cafe.cafe_id}">${cafe.cafe_name}</a></h4>
+	                            <span class="gender text-uppercase">${cafe.cafe_category1} / ${cafe.cafe_category2}</span>   
+	                       		<h6>${cafe.cafe_hashtag1}  ${cafe.cafe_hashtag2}</h6>
+	                       		<h6><fmt:formatNumber value="${cafe.cafe_category1Price}" pattern="#,###" /> ~ / 시간(인)</h6>
 	                        </div>    
-	                    </div>
+	                    </div>    
 	                </div>
-                </li>
+	            </div>
             </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 이용자 리뷰 -->
+        </div> 
+        <!--=== 추천 스터디룸 ===-->
+	</div>
 
-    </div><!--/container-->
-    <!-- End Content Part -->
-
-    <!--===========================
-    
-  	   Footer 하단시작이요오
-  
-    =============================-->
+    <!--=== Footer v2 ===-->
     <div id="footer-v2" class="footer-v2">
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                        <a class="logo" href="homepage.html">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -407,12 +310,8 @@
             </div> 
         </div><!--/copyright--> 
     </div>
-    <!--=======================
-    
-     				Footer 하단끝끝
-
-	========================--> 
-    </div>
+    <!--=== End Footer v2 ===-->
+</div><!--/wrapper-->
 
 <!-- JS Global Compulsory -->			
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery.min.js"></script>
@@ -436,7 +335,10 @@
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
+    
 </script>
+
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

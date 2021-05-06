@@ -25,19 +25,15 @@ public class MembersDaoImpl implements MembersDAO {
 	}
 
 	@Override
-	public MembersDTO getId(MembersDTO members) {
+	public MembersDTO getOne(MembersDTO members) {
 		return sqlSession.selectOne("getOne",members);
 	}
 	
 	@Override
-	public AdminDTO adminGetOne(AdminDTO admins) {
-		return sqlSession.selectOne("adminGetOne",admins);
-		}
-
-	@Override
-	public int adminGetPwd(AdminDTO admins) {
-		return sqlSession.selectOne("adminGetPwd",admins);
-	}
+	public MembersDTO getMember(String member_id) {
+	     return sqlSession.selectOne("getMember",member_id);
+	 }
+	
 
 	@Override
   	public void updateMember(MembersDTO members) {
@@ -50,12 +46,8 @@ public class MembersDaoImpl implements MembersDAO {
 	}
 	   
 	@Override
-	public ReservationDTO getMemberRes(String member_id) {
-	   return sqlSession.selectOne("getMemberRes",member_id);
-	}
-	
-	@Override
-	public MembersDTO getMember(String member_id) {
-	     return sqlSession.selectOne("getMember",member_id);
-	 }
+	public AdminDTO adminGetOne(AdminDTO admins) {
+		return sqlSession.selectOne("adminGetOne",admins);
+		}
+
 }

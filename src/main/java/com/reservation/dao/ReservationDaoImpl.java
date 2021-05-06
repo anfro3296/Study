@@ -27,13 +27,13 @@ public class ReservationDaoImpl implements ReservationDAO {
 	}
 
 	@Override
-	public void orderCancel(String reser_number) {
-		 sqlSession.update("orderCancel", reser_number);
-	}
-
-	@Override
 	public int getOrderNum(String member_id) {
 		return sqlSession.selectOne("getOrderNum",member_id);
+	}
+	
+	@Override
+	public void orderCancel(String reser_number) {
+		 sqlSession.update("orderCancel", reser_number);
 	}
 
 	@Override

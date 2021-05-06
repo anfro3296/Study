@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<html>
 <head>
-    <title>GatherStudy</title>
-
-    <!-- Meta -->
+<meta charset="UTF-8">
+<!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -23,8 +21,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
-    
+
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
@@ -33,28 +30,37 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/parallax-slider/css/parallax-slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/page_log_reg_v1.css">    
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    <!-- 스타일존 -->
-    <style>
     
     
-    </style>
-</head>	
-
+    
+    <!-- 
+================스타일 추가 하기=====================
+    -->
+    <style type="text/css">
+    .reg-page {
+    	padding:20px;
+    }
+   </style>  
+    <!-- 
+================스타일 추가 끝========================= 
+    -->
+<title>Insert title here</title>
+</head>
 <body>
 <div class="wrapper">
+    <!--=== Header ===-->    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
     
     =================================================-->    
-    <div class="header">
+        <div class="header">
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="${pageContext.request.contextPath}/main.do">
@@ -67,7 +73,7 @@
                 <ul class="loginbar pull-right">  
 	                <c:choose>
 						<c:when test="${!empty sessionScope.loginAdmin}">
-	                    	<li><a href="#">관리자 페이지</a></li>  
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>
 						</c:when>
@@ -89,7 +95,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>      
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -148,170 +154,75 @@
     
     ================================================-->
 
-    <!-- 슬라이더 2개 -->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/19.jpg" alt=""> --></div>
-            </div>
-            <div class="da-slide">
-                <h2><i>Study with the person you want</i> <br/> <i>원하는 사람과 스터디하세요!</i><br/></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/18.jpg" alt=""> --></div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>        
-            </div>
-        </div>
-    </div><!--/slider-->
-    <!--슬라이더 2개-->
 
-    <!-- GatherStudy 핵심 설명 -->
-    <div class="container content-md">
-    	<!-- GatherStudy 핵심 설명 -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 카페 예약 플랫폼</h4>
-                        <p>예약이 편한 플랫폼으로,<br>
-                        특화된 서비스를 만나보세요</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>안전거래 보장</h4>
-                        <p>에약 피해 시,<br>
-                        예약비 전액을 환불해드립니다.</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 커뮤니티 형성</h4>
-                        <p>불편하게 여러 커뮤니티가 아닌,<br>
-                        GatherStudy에서 편안하게</p>
-        			</div>
-        		</div>	
-        	</div>			    
-    	</div>
-    	<!-- GatherStudy 핵심 설명 -->
-
-    	 <!-- 오늘의 추천 공간 -->
-        <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="recommendCafe" items="${recommendCafe}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">로그인</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
+                <li class="active">로그인</li>
+            </ul>
+        </div><!--/container-->
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
+<!--  
+====================로그인 구역 시작========================
+-->
+	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+	
+	<form method="post" action="/user/login.do" id="loginform" >
+    <!--=== Content Part ===-->
+    <div class="container content">		
+    	<div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <form class="reg-page">
+                    <div class="reg-header">            
+                        <h2>로그인</h2>
                     </div>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
-	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${recommendCafe.cafe_category1} - <fmt:formatNumber value="${recommendCafe.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 오늘의 추천공간 -->
-    	
-    	<!-- 이용자 리뷰 -->
-        <div class="headline"><h2>이용자 리뷰</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="evaluationList" items="${evaluationList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="member_id" name="member_id" value="${cookie.user_check.value}" placeholder="아이디" class="form-control">
+                    </div>                    
+                    <div class="input-group margin-bottom-10">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="pwd1" name="member_pwd" placeholder="비밀번호" class="form-control">
+                    </div>                    
+					<div class="row">
+                        <div class="col-md-12">	
+                            <label class="pull-left">	
+                            	<input type="checkbox" id="remember_us" name="remember_userId" ${checked}> 아이디 저장                  
+                        	</label>
+                        </div>                     
+            		</div>
+					<input type="button" onclick="signInValidation()" class="btn-u btn-u-lg btn-block btn-u-blue" value="로그인">
+                    <hr>
+					<div class="col-md-pull">
+                    <p style="text-align:center;" class="color-blue">아직 회원이 아니신가요?</p>
                     </div>
+                    <p><a href="${pageContext.request.contextPath}/user/register.do"><button class="btn-u btn-block btn-u-blue" type="button" >회원가입</button></a></p>
+                    <div class="row">
+                    	<div class="col-md-12">
+                        	<span class="pull-right">
+                            	<a class="color-blue" href="#">비밀번호 찾기</a>
+                            </span>
+                            <span class="pull-left">
+                            	<a class="color-blue" href="#">아이디 찾기</a>
+                            </span>  
+                        </div>
+                	</div> 
+                </form>            
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->		
+    <!--=== End Content Part ===-->
+    </form>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="center" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"">${evaluationList.cafe_name}</a></h4>
-	                            <h5 align="center">- ${evaluationList.member_id} -</h5>
-	                            <div class="caption" align="center">	              
-					                <c:if test="${evaluationList.order_eval_score==1}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==2}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==3}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>       	                 
-					                 
-					                <c:if test="${evaluationList.order_eval_score==4}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                 <c:if test="${evaluationList.order_eval_score==5}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                 </ul>
-					                 </c:if>	  
-					                 <hr>               
-					                <p>${evaluationList.order_eval_content}</p>
-			                     </div>    
-	                        </div>    
-	                    </div>
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 이용자 리뷰 -->
-
-    </div><!--/container-->
-    <!-- End Content Part -->
-
-    <!--===========================
+<!--===========================
     
   	   Footer 하단시작이요오
   
@@ -403,7 +314,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/user/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
@@ -412,31 +323,70 @@
      				Footer 하단끝끝
 
 	========================--> 
-    </div>
+    
+   
+</div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->
 
-<!-- JS Global Compulsory -->			
+<!-- JS Global Compulsory -->           
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-      	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
-    });
+        App.init();
+        });
 </script>
+
+<script type="text/javascript">
+	function signInValidation(){
+		var userId = $("#member_id").val();
+		var userPw = $("#pwd1").val();
+	
+		if(!userId){
+    		alert("아이디 입력은 필수입니다.");
+    		$("#member_id").focus();
+    	}else if(!userPw){
+    		alert("비밀번호 입력은 필수입니다.");
+    		$("#pwd1").focus();
+    	}else {
+    		signIn()
+    	}
+	}
+	
+    function signIn(){
+    	$.ajax({		
+    		url : "${pageContext.request.contextPath}/user/login.do",
+    		type:'POST',
+    		data : {
+    			member_id : $("#member_id").val(),
+    			member_pwd : $("#pwd1").val(),
+				remember_userId : $("#remember_us").is(':checked')
+			},
+    		success:function(data){
+    			if(data == "success"){
+    				alert("로그인에 성공하셨습니다.");
+    				location.href = "${pageContext.request.contextPath}/main.do";
+    			}else if(data == "idFail"){
+    				alert("ID가 존재하지 않습니다");
+    				return false;
+    				
+    			} else if(data == "pwdFail") {
+    				alert("패스워드가 틀렸습니다. 비밀번호를 확이해주세요");
+    				return false;		
+    			}
+    		}
+    	})
+    }
+</script>
+
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

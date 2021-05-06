@@ -14,6 +14,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- color -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme-colors/blue.css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
 
@@ -23,8 +26,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
-    
+
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
@@ -33,18 +35,38 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/parallax-slider/css/parallax-slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/fancybox/source/jquery.fancybox.css">    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/blog.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/blog_magazine.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <!-- 스타일존 -->
-    <style>
-    
-    
-    </style>
+	<style>    
+	    #RPath{
+			color:#2ecc71;
+		}
+	    #CTitle{
+			font-size:30px;
+			    
+	    }
+    	#Dstyle{
+    		text-align: center;
+    	}
+    	#Dtext{
+    		font-size: 24px;
+    	}
+    	#DDDtext{
+    		color:#FF5050;
+    	}
+    	#userF{
+    		color:#52C6F3;
+    	}
+	</style>
 </head>	
 
 <body>
@@ -67,7 +89,7 @@
                 <ul class="loginbar pull-right">  
 	                <c:choose>
 						<c:when test="${!empty sessionScope.loginAdmin}">
-	                    	<li><a href="#">관리자 페이지</a></li>  
+	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>
 						</c:when>
@@ -89,7 +111,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>         
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -148,168 +170,60 @@
     
     ================================================-->
 
-    <!-- 슬라이더 2개 -->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/19.jpg" alt=""> --></div>
-            </div>
-            <div class="da-slide">
-                <h2><i>Study with the person you want</i> <br/> <i>원하는 사람과 스터디하세요!</i><br/></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/18.jpg" alt=""> --></div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>        
-            </div>
+	<div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left" id="RPath"><b>마이페이지</b></h1>
         </div>
-    </div><!--/slider-->
-    <!--슬라이더 2개-->
-
-    <!-- GatherStudy 핵심 설명 -->
-    <div class="container content-md">
-    	<!-- GatherStudy 핵심 설명 -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 카페 예약 플랫폼</h4>
-                        <p>예약이 편한 플랫폼으로,<br>
-                        특화된 서비스를 만나보세요</p>
-        			</div>
-        		</div>	
+    </div><!--/breadcrumbs-->
+    
+    <!-- 중단 시작 -->
+     <div class="container content">		
+    	<div class="row blog-page"> 
+			<div id="Dstyle">
+	    	<div class="tab-pane fade in active" id="home-1">
+                            <form action="/user/mypage_infoDelete.do" method="post"  class="sky-form" id="deleteform">
+                                <header>회원탈퇴</header>
+                                
+                                <fieldset>
+                                	<div id="Dtext">                  
+                                        <b id="userF">${mem.member_id}</b> 라는 아이디를 쓰고계신                 
+                                        <i class="fa fa-user">&ensp;</i><b id="userF"> ${mem.member_name}</b>님!!<br>
+                                        정말로 회원을 탈퇴하실껀가요????
+                                    </div>
+                                    <p>
+                                    <div id="DDDtext">
+                                   	※회원 탈퇴시 모든정보가 삭제 되며 복구가 불가능하오니 참고바랍니다.
+                                   	</div>
+                                    <p>
+                                    <div class="col-md-offset-4 col-md-4 col-md-offset-4">
+                                    	<i class="fa fa-lock">&ensp;</i><b>비밀번호</b>
+                                    	<input type="password" class="form-control" id="pwd1" name="member_pwd" placeholder="Password"><br>
+                                    	<input type="hidden" name="member_id" value="${sessionScope.loginUser.member_id}">
+                                    	<i class="fa fa-lock">&ensp;</i><b>비밀번호 확인</b>
+                                    	<input type="password" class="form-control" id="pwd2" placeholder="Password">
+                                    </div>
+                                </fieldset>
+                                <footer class="pull">
+	                                	<div class="pull-left">
+	                                		<a type="button" class="btn-u btn-u-red" onclick="DeleteUpValidation()">탈퇴하기</a>
+	                                	</div>
+										<div class="pull-right">
+	                                		<a type="button" class="btn-u" href="${pageContext.request.contextPath}/user/mypage_info.do?member_id=${sessionScope.loginUser.member_id}">탈퇴 취소 하기</a>
+	                                	</div>
+                                </footer>
+                            </form>
+                            <!--/ Success states for elements -->
         	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>안전거래 보장</h4>
-                        <p>에약 피해 시,<br>
-                        예약비 전액을 환불해드립니다.</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 커뮤니티 형성</h4>
-                        <p>불편하게 여러 커뮤니티가 아닌,<br>
-                        GatherStudy에서 편안하게</p>
-        			</div>
-        		</div>	
-        	</div>			    
-    	</div>
-    	<!-- GatherStudy 핵심 설명 -->
+		</div>
+	</div>
+</div>
+ <div class="margin-bottom-50"></div>
 
-    	 <!-- 오늘의 추천 공간 -->
-        <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="recommendCafe" items="${recommendCafe}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    </div>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
-	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${recommendCafe.cafe_category1} - <fmt:formatNumber value="${recommendCafe.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 오늘의 추천공간 -->
-    	
-    	<!-- 이용자 리뷰 -->
-        <div class="headline"><h2>이용자 리뷰</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="evaluationList" items="${evaluationList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    </div>
 
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="center" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"">${evaluationList.cafe_name}</a></h4>
-	                            <h5 align="center">- ${evaluationList.member_id} -</h5>
-	                            <div class="caption" align="center">	              
-					                <c:if test="${evaluationList.order_eval_score==1}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==2}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==3}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>       	                 
-					                 
-					                <c:if test="${evaluationList.order_eval_score==4}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                 <c:if test="${evaluationList.order_eval_score==5}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                 </ul>
-					                 </c:if>	  
-					                 <hr>               
-					                <p>${evaluationList.order_eval_content}</p>
-			                     </div>    
-	                        </div>    
-	                    </div>
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 이용자 리뷰 -->
 
-    </div><!--/container-->
-    <!-- End Content Part -->
+
+
 
     <!--===========================
     
@@ -322,7 +236,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                        <a class="logo" href="homepage.html">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -421,21 +335,61 @@
 <!-- JS Implementing Plugins -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/forms/login.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/forms/contact.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/fancy-box.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/datepicker.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();
         OwlCarousel.initOwlCarousel();        
         ParallaxSlider.initParallaxSlider();
     });
+    
+    function DeleteUpValidation(){
+    	var userPw = $("#pwd1").val();	
+    	var userPwCheck = $("#pwd2").val();
+		if(!userPw){
+    		alert("비밀번호 입력은 필수입니다.");
+    		$("#pwd1").focus();
+    	}else if(!userPwCheck){
+    		alert("비밀번호 확인 입력은 필수입니다.");
+    		$("#pwd2").focus();
+    	}else if(userPw != userPwCheck){
+    		alert("비밀번호가 맞지 않습니다.");
+    		$("#userPwCheck").focus();		
+    	}else {
+    		DeleteUp();
+    	}
+    }
+    
+    function DeleteUp(){
+    	$.ajax({		
+    		url : "${pageContext.request.contextPath}/user/mypage_infoDelete.do",
+    		type:'POST',
+    		data :  $("#deleteform").serialize(),
+    		success:function(data){
+    			if(data == "success"){
+    				alert("회원이 탈퇴가 완료되었습니다.");
+    				location.href = "${pageContext.request.contextPath}/main.do"
+    			} else if(data == "pwdFail"){
+    				alert("회원정보에 등록된 패스워드가 틀립니다!!");
+    			}
+    			return false
+    		}
+    	})
+    }
+    
 </script>
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>

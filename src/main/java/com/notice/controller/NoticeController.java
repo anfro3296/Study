@@ -25,16 +25,15 @@ import com.notice.util.PagingUtil;
 public class NoticeController{
 
 	private Log log = LogFactory.getLog(getClass());
-	NoticeDAO dao;
+	private final NoticeDAO noticeDAO;
 	
-	@Required
 	@Autowired
-	public void setDao(NoticeDAO dao) {
-		this.dao = dao;
+	public NoticeController(NoticeDAO noticeDAO) {
+		this.noticeDAO = noticeDAO;
 	}
 
 	// By Jay_공지사항 호출관련 메서드_20210415
-	@RequestMapping(value="notice.do", method = RequestMethod.GET)
+	@RequestMapping(value="notice/list.do", method = RequestMethod.GET)
 	public String noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 		    @RequestParam(value="keyField",defaultValue="") String keyField,
 		    @RequestParam(value="keyWord",defaultValue="") String keyWord, Model model) {
@@ -49,7 +48,7 @@ public class NoticeController{
 		map.put("keyField", keyField);
 		map.put("keyWord", keyWord);
 		
-		int count=dao.getRowCount(map);
+		int count=noticeDAO.getRowCount(map);
 		log.info(count);
 		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"notice.do");
 		
@@ -58,8 +57,7 @@ public class NoticeController{
 		
 		List<NoticeDTO> list=null;
 		if(count > 0) {
-			System.out.println("리스트 담김");
-			list=dao.noticeList(map);
+			list=noticeDAO.noticeList(map);
 		}else {
 			list=Collections.emptyList();
 		}
@@ -68,65 +66,64 @@ public class NoticeController{
 		model.addAttribute("list", list);
 		model.addAttribute("keyWord", keyWord);
 		model.addAttribute("pagingHtml",page.getPagingHtml());
-		return "notice";
+		return "/notice/list";
 	}
-	
-	// By Jay_공지사항 상세페이지로 이동 관련 메서드_20210415
-	@RequestMapping(value="noticeDetails.do", method = RequestMethod.GET)
-	public String noticeDetails(@RequestParam int notice_number, Model model) {
-		log.info("NoticeController의 noticeDetails()호출됨");
-		dao.updateReadcnt(notice_number); 
-		NoticeDTO notice = dao.retrieve(notice_number);
-		model.addAttribute("notice", notice);
-		return "noticeDetails";
-	}	
+		
+	// By Jay_공지사항 작성하기 폼으로 이동_20210417
+	@RequestMapping(value="notice/write.do", method = RequestMethod.GET)
+	public String noticeWriteForm() {
+		log.info("NoticeController의 noticeWriteForm()호출됨");
+		return "notice/write";
+	}		
 	
 	// By Jay_공지사항 작성하기_20210416
-	@RequestMapping(value="noticeWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="notice/write.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String noticeWrite(@ModelAttribute NoticeDTO noticeDTO) {
 		log.info("NoticeController의 noticeWrite()호출됨");
 		
-		int num = dao.getNewNum()+1;
-		log.info("해당글의 글번호는 " +  num + "번 입니다.");
-		
+		int num = noticeDAO.getNewNum()+1;
+
 		noticeDTO.setNotice_number(num);
-		dao.noticeWrite(noticeDTO);
+		noticeDAO.noticeWrite(noticeDTO);
 		
 		return "success";
 	}	
 	
-	// By Jay_공지사항 삭제하기 폼으로 이동_20210417
-	@RequestMapping(value="noticeWrite.do", method = RequestMethod.GET)
-	public String noticeWriteForm() {
-		log.info("NoticeController의 noticeWriteForm()호출됨");
-		return "noticeWrite";
-	}		
+	// By Jay_공지사항 상세페이지로 이동 관련 메서드_20210415
+	@RequestMapping(value="notice/details.do", method = RequestMethod.GET)
+	public String noticeDetails(@RequestParam int notice_number, Model model) {
+		log.info("NoticeController의 noticeDetails()호출됨");
+		noticeDAO.updateReadcnt(notice_number); 
+		NoticeDTO notice = noticeDAO.retrieve(notice_number);
+		model.addAttribute("notice", notice);
+		return "notice/details";
+	}	
 	
 	// By Jay_공지사항 수정하기 폼으로 이동_20210417
-	@RequestMapping(value="noticeUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value="notice/update.do", method = RequestMethod.GET)
 	public String noticeUpdateForm(@RequestParam("notice_number") int notice_number, Model model) {
 		log.info("NoticeController의 noticeUpdateForm()호출됨");
-		NoticeDTO notice = dao.retrieve(notice_number);
+		NoticeDTO notice = noticeDAO.retrieve(notice_number);
 		model.addAttribute("notice", notice);
-		return "noticeUpdate";
+		return "notice/update";
 	}	
 	
 	// By Jay_공지사항 수정하기_20210417
-	@RequestMapping(value="noticeUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value="notice/update.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String noticeUpdate(@ModelAttribute NoticeDTO noticeDTO) {
 		log.info("NoticeController의 noticeUpdate()호출됨");
-		dao.noticeUpdate(noticeDTO);
+		noticeDAO.noticeUpdate(noticeDTO);
 		return "success";
 	}
 	
 	// By Jay_공지사항 삭제하기_20210417
-	@RequestMapping(value="noticeDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value="notice/delete.do", method = RequestMethod.GET)
 	public String noticeDelete(@RequestParam("notice_number") int notice_number) {
 		log.info("NoticeController의 noticeDelete()호출됨");
-		dao.noticeDelete(notice_number);
-		return "redirect:/notice.do";
+		noticeDAO.noticeDelete(notice_number);
+		return "redirect:/notice/list.do";
 	}	
 }
 

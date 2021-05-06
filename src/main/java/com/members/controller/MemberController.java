@@ -33,34 +33,27 @@ import com.reservation.domain.MemberOrderListDTO;
 public class MemberController{
 
 	private Log log = LogFactory.getLog(getClass());
-	MembersDAO membersDAO;
-	ReservationDAO reservationDAO;
-	EvaluationDAO evaluationDAO;
+	private final MembersDAO membersDAO;
+	private final ReservationDAO reservationDAO;
+	private final EvaluationDAO evaluationDAO;
 	
 	@Autowired
-	public void setMembersDAO(MembersDAO membersDAO) {
+	public MemberController(MembersDAO membersDAO, ReservationDAO reservationDAO, EvaluationDAO evaluationDAO) {
+		super();
 		this.membersDAO = membersDAO;
-	}
-	
-	@Autowired
-	public void setDReservationDAO(ReservationDAO reservationDAO) {
 		this.reservationDAO = reservationDAO;
-	}
-	
-	@Autowired
-	public void setEvaluationDAO(EvaluationDAO evaluationDAO) {
 		this.evaluationDAO = evaluationDAO;
 	}
 	
 	// By Jay_회원가입 폼 호출 하기_20210405
-	@RequestMapping(value="register.do", method = RequestMethod.GET)
+	@RequestMapping(value="/user/register.do", method = RequestMethod.GET)
 	public String form() {
 		log.info("MemberController의 form()호출됨");
-		return "page_registration";
+		return "user/registration";
 	}
 	
 	// By Jay_회원 가입하기_20210405
-	@RequestMapping(value="register.do", method = RequestMethod.POST)
+	@RequestMapping(value="/user/register.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String signUp(MembersDTO members) {
 		log.info("MemberController의 signUp()호출됨");
@@ -77,14 +70,14 @@ public class MemberController{
 	}
 	
 	// By Jay_로그인 폼 호출 하기_20210406
-	@RequestMapping(value="login.do", method = RequestMethod.GET)
+	@RequestMapping(value="/user/login.do", method = RequestMethod.GET)
 	public String login() {
 		log.info("MemberController의 login()호출됨");
-		return "page_login";
+		return "user/user_login";
 	}	
 	
 	// By Jay_로그인 하기_20210406
-	@RequestMapping(value="login.do", method = RequestMethod.POST)
+	@RequestMapping(value="/user/login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String singIn (@ModelAttribute MembersDTO members, HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -94,7 +87,7 @@ public class MemberController{
 		String user_check = request.getParameter("remember_userId");
 		
 		String result = null;
-		MembersDTO userIdCheck = membersDAO.getId(members);
+		MembersDTO userIdCheck = membersDAO.getOne(members);
 		log.info(userIdCheck);
 		if(userIdCheck == null) {
 			result= "idFail";
@@ -122,22 +115,85 @@ public class MemberController{
 	}
 	
 	// By Jay_로그아웃 하기_20210408
-	@RequestMapping(value="logout.do", method = RequestMethod.GET)
+	@RequestMapping(value="/user/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession httpSession) throws IOException {
 		log.info("MemberController의 logout()호출됨");
 		httpSession.invalidate();
-		return "page_logout";
+		return "user/logout";
 	}	
 	
-	// By Jay_관리자 로그인창 호출 하기_20210428
-	@RequestMapping(value="adminLogin.do", method = RequestMethod.GET)
+	// By Lsh_마이페이지에서 로그인한 회원정보 뿌리기_20210429
+	@RequestMapping(value="/user/mypage_info.do", method = RequestMethod.GET)
+	public String getMember(@RequestParam String member_id, Model model) {
+	     log.info(member_id);
+	     log.info("MemberController의 ()호출됨");
+	     MembersDTO mem=membersDAO.getMember(member_id);
+	     model.addAttribute("mem", mem);
+	     return "user/mypage_info";
+	}
+	   
+	// By Lsh_회원 수정 하기 폼으로 이동_20210429
+	@RequestMapping(value="/user/mypage_infoModify.do", method = RequestMethod.GET)
+	public String Modify(@RequestParam String member_id, Model model) {
+	     log.info("MemberController의 ()호출됨");
+
+	     MembersDTO mem=membersDAO.getMember(member_id);
+	     model.addAttribute("mem", mem);
+	     return "user/mypage_modify";
+	}
+	   
+	// By Lsh_회원 수정 하기_20210429
+	@RequestMapping(value="/user/mypage_infoModify.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String update(@ModelAttribute MembersDTO members) {
+		membersDAO.updateMember(members);
+	     return "success";
+	}
+	   
+	// By Lsh_회원 탈퇴 하기 폼으로 이동_20210429
+	@RequestMapping(value="/user/mypage_infoDelete.do", method = RequestMethod.GET)
+	public String deleteForm(@RequestParam String member_id, Model model) {
+	    log.info("MemberController의 deleteForm()호출됨");
+
+	    MembersDTO mem=membersDAO.getMember(member_id);
+	    model.addAttribute("mem", mem);
+	    return "user/mypage_delete";
+	}
+	   
+	// By Lsh_회원 탈퇴 하기_20210429
+	@RequestMapping(value="/user/mypage_infoDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteUp(@ModelAttribute MembersDTO members, HttpSession session) {
+	      
+	    log.info(members);
+	    log.info("MemberController의 deleteUp()호출됨");
+	      
+	    String result = null;
+	    MembersDTO userIdCheck = membersDAO.getOne(members);
+	    log.info(userIdCheck);
+	      
+	    //db에 담겨져있는 비밀번호와 입력한 비밀번호가 같다면 
+	    //success(탈퇴) 틀리다면 pwdFail떨어져서 다시입력해야된다
+	    if(members.getMember_pwd().equals(userIdCheck.getMember_pwd())) {
+	       session.invalidate();
+	       membersDAO.deleteMember(members);
+	       result = "success";
+	    } else {
+	       result = "pwdFail";
+	    }
+	    log.info(result);
+	    return result;
+	   }
+	   
+	// By Jay_관리자 로그인창 호출 하기_20210503
+	@RequestMapping(value="user/adminLogin.do", method = RequestMethod.GET)
 	public String adminLoginForm() {
 		log.info("MemberController의 adminLoginform()호출됨");
-		return "admin_login";
+		return "user/admin_login";
 	}
 	
-	// By Jay_관리자 로그인 하기_20210428
-	@RequestMapping(value="adminLogin.do", method = RequestMethod.POST)
+	// By Jay_관리자 로그인 하기_20210503
+	@RequestMapping(value="user/adminLogin.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String adminLogin (@ModelAttribute AdminDTO admins, HttpSession session) {
 		log.info(admins);
@@ -161,99 +217,39 @@ public class MemberController{
 		log.info(result);
 		return result;
 	}
-	
-	// // By Lsh_마이페이지 로그인한 회원정보 뿌리기_20210429
-	@RequestMapping(value="page_mypage_info.do", method = RequestMethod.GET)
-	public String getMember(@RequestParam String member_id, Model model) {
-	     log.info(member_id);
-	     log.info("MemberController의 ()호출됨");
-	     MembersDTO mem=membersDAO.getMember(member_id);
-	     model.addAttribute("mem", mem);
-	     return "page_mypage_info";
-	}
-	   
-	// By Lsh_회원 수정 하기 폼으로 이동_20210429
-	@RequestMapping(value="page_mypage_modify.do", method = RequestMethod.GET)
-	public String Modify(@RequestParam String member_id, Model model) {
-	     log.info("MemberController의 ()호출됨");
-
-	     MembersDTO mem=membersDAO.getMember(member_id);
-	     model.addAttribute("mem", mem);
-	     return "page_mypage_modify";
-	}
-	   
-	// By Lsh_회원 수정 하기_20210429
-	@RequestMapping(value="update.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String update(@ModelAttribute MembersDTO members) {
-		membersDAO.updateMember(members);
-	     return "success";
-	}
-	   
-	// By Lsh_회원 탈퇴 하기 폼으로 이동_20210429
-	@RequestMapping(value="page_mypage_delete.do", method = RequestMethod.GET)
-	public String deleteForm(@RequestParam String member_id, Model model) {
-	    log.info("MemberController의 deleteForm()호출됨");
-
-	    MembersDTO mem=membersDAO.getMember(member_id);
-	    model.addAttribute("mem", mem);
-	    return "page_mypage_delete";
-	}
-	   
-	// By Lsh_회원 탈퇴 하기_20210429
-	@RequestMapping(value="delete.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteUp(@ModelAttribute MembersDTO members, HttpSession session) {
-	      
-	    log.info(members);
-	    log.info("MemberController의 deleteUp()호출됨");
-	      
-	    String result = null;
-	    MembersDTO userIdCheck = membersDAO.getId(members);
-	    log.info(userIdCheck);
-	      
-	    //db에 담겨져있는 비밀번호와 입력한 비밀번호가 같다면 
-	    //success(탈퇴) 틀리다면 pwdFail떨어져서 다시입력해야된다
-	    if(members.getMember_pwd().equals(userIdCheck.getMember_pwd())) {
-	       session.invalidate();
-	       membersDAO.deleteMember(members);
-	       result = "success";
-	    } else {
-	       result = "pwdFail";
-	    }
-	    log.info(result);
-	    return result;
-	   }
-	   
+		
 	// By Jay_회원 당 예약내역 불러오기_20210430
-	@RequestMapping(value="page_mypage_selfReg.do", method = RequestMethod.GET)
+	@RequestMapping(value="/user/mypage_reservation.do", method = RequestMethod.GET)
 	public String resForm(@RequestParam String member_id, Model model) {
-	   log.info("MemberController의 resForm()호출됨");
+	   log.info("MemberController의 reservationList()호출됨");
+	   
+	   reservationDAO.orderUsed();
 	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
-	   reservationDAO.orderUsed();
+	   
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
-	   return "page_mypage_selfReg";
+	   return "user/mypage_reservation";
 	 }
 	
 	// By Jay_회원 당 예약 내역 취소하기_20210430
-	@RequestMapping(value="page_mypage_orderCancel.do", method = RequestMethod.GET)
+	@RequestMapping(value="/user/mypage_reservationCancel.do", method = RequestMethod.GET)
 	public String orderCancel(@RequestParam String member_id, @RequestParam String reser_number, Model model) {
 	   log.info("MemberController의 orderCancel()호출됨");
 	   reservationDAO.orderCancel(reser_number);
 	   
+	   reservationDAO.orderUsed();
 	   List<MemberOrderListDTO> OrderList=reservationDAO.getMemberOrders(member_id);
 	   int count = reservationDAO.getOrderNum(member_id);
 
 	   model.addAttribute("OrderList", OrderList);
 	   model.addAttribute("count", count);   
 	   
-	   return "page_mypage_selfReg";
+	   return "user/mypage_reservation";
 	 }
 	
 	// By Jay_회원 당 구매후기 관련 리스트로 이동_20210430
-	@RequestMapping(value="page_mypage_orderEvaluation.do", method = RequestMethod.GET)
+	@RequestMapping(value="user/mypage_evaluation.do", method = RequestMethod.GET)
 	public String orderEvaluationList(@RequestParam String member_id, Model model) {
 	   log.info("MemberController의 orderEvaluationList()호출됨");
 	   List<MemberOrderListDTO> OrderList = reservationDAO.orderEvaluationList(member_id);
@@ -267,21 +263,21 @@ public class MemberController{
 	   model.addAttribute("evaluationList", evaluationList);  
 	   model.addAttribute("replyList", replyList);  
 	   
-	   return "page_mypage_orderEvaluation";
+	   return "user/mypage_evaluation";
 	 }
 	
 	// By Jay_회원 당 구매후기 관련 작성 페이지로 이동_20210501
-	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.GET)
+	@RequestMapping(value="user/mypage_evaluationWrite.do", method = RequestMethod.GET)
 	public String EvaluationWriteForm(@RequestParam int reser_number, Model model) {
 	   log.info("MemberController의 EvaluationWriteForm()호출됨");
 	   MemberOrderListDTO memberOrder = reservationDAO.getOrderOneByReser_number(reser_number);
 	   model.addAttribute("memberOrder", memberOrder);
 	   log.info(memberOrder);
-	   return "page_mypage_orderEvaluationWrite";
+	   return "user/mypage_evaluationWrite";
 	 }
 	
 	// By Jay_회원 당 구매후기 관련 작성하기_20210501
-	@RequestMapping(value="page_mypage_evaluationWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="user/mypage_evaluationWrite.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String EvaluationWrite(@ModelAttribute EvaluationDTO evaluationDTO) {
 	   log.info("MemberController의 EvaluationWrite()호출됨");
@@ -294,7 +290,7 @@ public class MemberController{
 	   
 	   return "success";
 	 }	
-	
+
 }
 
 

@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>GatherStudy</title>
+    <title>Unify - Responsive Website Template</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel='stylesheet' type='text/csss' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -29,26 +29,22 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
 
+    
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/parallax-slider/css/parallax-slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    <!-- 스타일존 -->
-    <style>
-    
-    
-    </style>
 </head>	
 
-<body>
+<body class="header-fixed">
 <div class="wrapper">
+    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
@@ -89,7 +85,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>        
+					</c:choose>   
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -147,182 +143,62 @@
     								End Header 상단 끝입니다.!!!
     
     ================================================-->
+    
+	<!--=== Content Part ===-->
+    <div class="container content-sm">
+    <div class="col-md-10 col-md-offset-1">
+    <div class="headline"><h2>공지사항</h2></div>
+    </div>
+    <div class="row">
+    	<div class="col-md-10 col-md-offset-1">
+			<table class="table" style="text-align: center;">
+				<thead > 
+					<tr class="active">
+							<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">공지사항 보기</font></th>
+					</tr>
+				</thead>
+					<tbody>
+						<tr>
+							<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
+							<td colspan="2"><font color="black" size="3pt">${notice.notice_title}</font></td>
+						</tr>
 
-    <!-- 슬라이더 2개 -->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>Study from Anywhere</i> <br /> <i>원하는 곳에서 스터디하세요!</i> <br /></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/19.jpg" alt=""> --></div>
-            </div>
-            <div class="da-slide">
-                <h2><i>Study with the person you want</i> <br/> <i>원하는 사람과 스터디하세요!</i><br/></h2>
-                <div class="da-img"><!-- <img class="img-responsive" src="assets/img/bg/18.jpg" alt=""> --></div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>        
-            </div>
-        </div>
-    </div><!--/slider-->
-    <!--슬라이더 2개-->
+						<tr>
+							<td><font color="black" size="3pt">작성일</font></td>	
+							<td colspan="2"><font color="black" size="3pt">${notice.notice_regdate}</font></td>
+						</tr>
+						<tr>
+							<td><font color="black" size="3pt">내용</font></td>	
+							<td colspan="2" style="min-height: 200px; text-align: left;"><p style="white-space: pre-line;"><font color="black" size="3pt" >${notice.notice_content}</font></p></td>
+						</tr>
+					</tbody>
+			</table>
+			
+			<div class="col-md-2 col-md-offset-6">
+				<input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/notice/list.do' ">   	
+			</div>
+			<c:if test="${!empty sessionScope.loginAdmin}">
+				<div class="col-md-2">
+					<input type="button" class="btn-u btn-block btn-u-green" value="수정" onclick="location.href='${pageContext.request.contextPath}/notice/update.do?notice_number=${notice.notice_number}' ">
+				</div>		
+				<div class="col-md-2">
+					<input type="button" class="btn-u btn-block btn-u-green" value="삭제" onclick="del(${notice.notice_number})">
+				</div>
+			</c:if>	
 
-    <!-- GatherStudy 핵심 설명 -->
-    <div class="container content-md">
-    	<!-- GatherStudy 핵심 설명 -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 카페 예약 플랫폼</h4>
-                        <p>예약이 편한 플랫폼으로,<br>
-                        특화된 서비스를 만나보세요</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>안전거래 보장</h4>
-                        <p>에약 피해 시,<br>
-                        예약비 전액을 환불해드립니다.</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>스터디 커뮤니티 형성</h4>
-                        <p>불편하게 여러 커뮤니티가 아닌,<br>
-                        GatherStudy에서 편안하게</p>
-        			</div>
-        		</div>	
-        	</div>			    
-    	</div>
-    	<!-- GatherStudy 핵심 설명 -->
-
-    	 <!-- 오늘의 추천 공간 -->
-        <div class="headline"><h2>오늘의 추천 공간</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="recommendCafe" items="${recommendCafe}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${recommendCafe.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    </div>
-
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="left" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${recommendCafe.cafe_id}">${recommendCafe.cafe_name}</a></h4>
-	                       		<h6 align="left">${recommendCafe.cafe_hashtag1}  ${recommendCafe.cafe_hashtag2}</h6>
-	                       		<h6 align="left">${recommendCafe.cafe_category1} - <fmt:formatNumber value="${recommendCafe.cafe_category1Price}" pattern="#,###" />/시간(인)</h6>
-	                        </div>    
-	                    </div>    
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 오늘의 추천공간 -->
-    	
-    	<!-- 이용자 리뷰 -->
-        <div class="headline"><h2>이용자 리뷰</h2></div>
-        <div class="illustration-v2 margin-bottom-30">
-            <ul class="list-inline owl-slider">
-            <c:forEach var="evaluationList" items="${evaluationList}">
-                <li class="item">
-                    <div class="product-img">
-                        <a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><img class="full-width img-responsive" src="${pageContext.request.contextPath}/${evaluationList.cafe_image1}" style="width:213px; height:150px;"></a>
-                        <a class="add-to-cart" href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"><i class="fa fa-shopping-cart"></i>예약하기</a>
-                    </div>
-
-                   <div class="product-description product-description-brd">
-	                    <div class="overflow-h margin-bottom-5">
-	                        <div class="pull-left">
-	                            <h4 class="title-price" align="center" style="font-weight: bolder;"><a href="${pageContext.request.contextPath}/cafe/detail.do?cafe_id=${evaluationList.cafe_id}"">${evaluationList.cafe_name}</a></h4>
-	                            <h5 align="center">- ${evaluationList.member_id} -</h5>
-	                            <div class="caption" align="center">	              
-					                <c:if test="${evaluationList.order_eval_score==1}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==2}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                <c:if test="${evaluationList.order_eval_score==3}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>       	                 
-					                 
-					                <c:if test="${evaluationList.order_eval_score==4}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star-o"></i></li>
-						                 </ul>
-					                 </c:if>
-					                 
-					                 <c:if test="${evaluationList.order_eval_score==5}">
-						               	<ul class="list-inline star-vote">
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                      <li><i class="color-black fa fa-star"></i></li>
-						                 </ul>
-					                 </c:if>	  
-					                 <hr>               
-					                <p>${evaluationList.order_eval_content}</p>
-			                     </div>    
-	                        </div>    
-	                    </div>
-	                </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>        
-    	<!-- 이용자 리뷰 -->
-
-    </div><!--/container-->
+		</div>	
+	</div>
+    </div><!--/container content-sm-->
     <!-- End Content Part -->
 
-    <!--===========================
-    
-  	   Footer 하단시작이요오
-  
-    =============================-->
+    <!--=== Footer v2 ===-->
     <div id="footer-v2" class="footer-v2">
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                        <a class="logo" href="homepage.html">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -407,12 +283,8 @@
             </div> 
         </div><!--/copyright--> 
     </div>
-    <!--=======================
-    
-     				Footer 하단끝끝
-
-	========================--> 
-    </div>
+    <!--=== End Footer v2 ===-->
+</div><!--/wrapper-->
 
 <!-- JS Global Compulsory -->			
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery.min.js"></script>
@@ -430,13 +302,26 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
+
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();
-        OwlCarousel.initOwlCarousel();        
-        ParallaxSlider.initParallaxSlider();
     });
+    
+	function del(notice_number) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='${pageContext.request.contextPath}/notice/delete.do?notice_number='+notice_number;
+		}
+	}
+    
 </script>
+
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>
