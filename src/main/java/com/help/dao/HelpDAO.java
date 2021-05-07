@@ -21,13 +21,10 @@ public interface HelpDAO{
 	// 3. 글 수정하기 - 게시물 번호에 해당하는 레코드 수정하기
 	public void helpUpdate(HelpDTO helpDTO) throws DataAccessException;
 
-	// 4. 글 등록하기 - 게시물 번호 최대값 구하기
-	public int getNewNumMax() throws DataAccessException;
-	
-	// 5. 글 등록하기 - 글쓰기
+	// 4. 글 등록하기 - 글쓰기
 	public void helpWrite(HelpDTO helpDTO) throws DataAccessException;
 		
-	// 6. 글 삭제하기
+	// 5. 글 삭제하기
 	public void helpDelete(int help_number) throws DataAccessException;
 	
 }

@@ -69,6 +69,13 @@ public class MemberController{
 		return "success";
 	}
 	
+	// By Jay_회원가입 폼 호출 하기_20210405
+	@RequestMapping(value="user/registration_term.do", method = RequestMethod.GET)
+	public String registration_term() {
+		log.info("MemberController의 registration_term()호출됨");
+		return "user/registration_term";
+	}	
+	
 	// By Jay_로그인 폼 호출 하기_20210406
 	@RequestMapping(value="/user/login.do", method = RequestMethod.GET)
 	public String login() {
@@ -272,7 +279,6 @@ public class MemberController{
 	   log.info("MemberController의 EvaluationWriteForm()호출됨");
 	   MemberOrderListDTO memberOrder = reservationDAO.getOrderOneByReser_number(reser_number);
 	   model.addAttribute("memberOrder", memberOrder);
-	   log.info(memberOrder);
 	   return "user/mypage_evaluationWrite";
 	 }
 	
@@ -281,11 +287,8 @@ public class MemberController{
 	@ResponseBody
 	public String EvaluationWrite(@ModelAttribute EvaluationDTO evaluationDTO) {
 	   log.info("MemberController의 EvaluationWrite()호출됨");
-	   int num = evaluationDAO.getEvaluationNum()+1;
-	   log.info(num);
-	   evaluationDTO.setOrder_eval_id(num);
+	   log.info(evaluationDTO);
 	   evaluationDAO.evaluationWrite(evaluationDTO);
-	   
 	   evaluationDAO.evaluationCheckChange(evaluationDTO.getReser_number());
 	   
 	   return "success";

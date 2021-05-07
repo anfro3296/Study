@@ -5,25 +5,55 @@ INCREMENT BY 1
 NOMAXVALUE
 NOMINVALUE;
 
-/* Drop Tables */
+/* 예약 후기 생성관련 시퀀스 생성 */
+CREATE SEQUENCE order_evaluation_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
 
+/* 공지사항 생성관련 시퀀스 생성 */
+CREATE SEQUENCE notice_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
+
+/* 도움말 생성관련 시퀀스 생성 */
+CREATE SEQUENCE help_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
+
+/* 스터디원 구하는 게시판 생성관련 시퀀스 생성 */
+CREATE SEQUENCE find_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
+
+/* 스터디원 구하는 게시판 댓글관련 시퀀스 생성 */
+CREATE SEQUENCE find_reply_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOMINVALUE;
+
+/* Drop Tables */
 DROP TABLE Help CASCADE CONSTRAINTS;
 DROP TABLE Notice CASCADE CONSTRAINTS;
 DROP TABLE Admins CASCADE CONSTRAINTS;
-DROP TABLE Find CASCADE CONSTRAINTS;
-DROP TABLE Find_reply CASCADE CONSTRAINTS;
 DROP TABLE Bookmark CASCADE CONSTRAINTS;
+DROP TABLE Cafe CASCADE CONSTRAINTS;
+DROP TABLE find_reply CASCADE CONSTRAINTS;
+DROP TABLE find CASCADE CONSTRAINTS;
+DROP TABLE Members CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation_reply CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation CASCADE CONSTRAINTS;
 DROP TABLE Reservation CASCADE CONSTRAINTS;
-DROP TABLE Cafe CASCADE CONSTRAINTS;
-DROP TABLE Members CASCADE CONSTRAINTS;
-
-
-
 
 /* Create Tables */
-
 CREATE TABLE Admins
 (
 	admin_id varchar2(30) NOT NULL,
@@ -31,27 +61,6 @@ CREATE TABLE Admins
 	PRIMARY KEY (admin_id)
 );
 
-
-CREATE TABLE Find
-(
-	find_number number NOT NULL,
-	find_title varchar2(60),
-	find_content varchar2(4000),
-	find_regdate timestamp,
-	find_hit number,
-	member_id varchar2(30) NOT NULL,
-	PRIMARY KEY (find_number)
-);
-
-CREATE TABLE Find_reply 
-(
-  	find_reply_number number NOT NULL,
-    find_reply_content varchar2(4000),
-    find_reply_regdate timestamp,
-   	find_number number,
-  	member_id varchar2(30) NOT NULL,
-  	PRIMARY KEY (find_reply_number)
-);
 
 CREATE TABLE Bookmark
 (
@@ -89,6 +98,29 @@ CREATE TABLE Cafe
 	cafe_category2 varchar2(12),
 	cafe_category2Price number,
 	PRIMARY KEY (cafe_id)
+);
+
+
+CREATE TABLE find
+(
+	find_number number NOT NULL,
+	find_title varchar2(100),
+	find_content varchar2(4000),
+	find_regdate timestamp,
+	find_hit number,
+	member_id varchar2(30) NOT NULL,
+	PRIMARY KEY (find_number)
+);
+
+
+CREATE TABLE find_reply
+(
+	find_reply_number number NOT NULL,
+	find_reply_content varchar2(4000),
+	find_reply_regdate timestamp,
+	find_number number NOT NULL,
+	member_id varchar2(30) NOT NULL,
+	PRIMARY KEY (find_reply_number)
 );
 
 
@@ -146,7 +178,8 @@ CREATE TABLE Order_evaluation_reply
 (
 	order_eval_reply_content varchar2(4000) NOT NULL,
 	order_eval_reply_regdate timestamp,
-	order_eval_id number NOT NULL
+	order_eval_id number NOT NULL,
+	cafe_id varchar2(30) NOT NULL
 );
 
 
@@ -162,6 +195,7 @@ CREATE TABLE Reservation
 	reser_request varchar2(100),
 	reser_orderDate timestamp,
 	reser_status varchar2(20),
+	reser_evaluationCheck varchar2(10),
 	member_id varchar2(30) NOT NULL,
 	cafe_id varchar2(30) NOT NULL,
 	PRIMARY KEY (reser_number)
@@ -195,19 +229,37 @@ ALTER TABLE Order_evaluation
 ;
 
 
+ALTER TABLE Order_evaluation_reply
+	ADD FOREIGN KEY (cafe_id)
+	REFERENCES Cafe (cafe_id)
+;
+
+
 ALTER TABLE Reservation
 	ADD FOREIGN KEY (cafe_id)
 	REFERENCES Cafe (cafe_id)
 ;
 
 
-ALTER TABLE Find
+ALTER TABLE find_reply
+	ADD FOREIGN KEY (find_number)
+	REFERENCES find (find_number)
+;
+
+
+ALTER TABLE Bookmark
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;
 
 
-ALTER TABLE Bookmark
+ALTER TABLE find
+	ADD FOREIGN KEY (member_id)
+	REFERENCES Members (member_id)
+;
+
+
+ALTER TABLE find_reply
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;

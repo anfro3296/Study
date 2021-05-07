@@ -45,11 +45,6 @@ public class FindDaoImpl implements FindDAO {
 	}
 
 	@Override
-	public int NewNumMax() throws DataAccessException {
-		return sqlSession.selectOne("NewNumMax");
-	}
-
-	@Override
 	public void findWrite(FindDTO findDTO) throws DataAccessException {
 		sqlSession.insert("findWrite", findDTO);
 	}
@@ -70,11 +65,6 @@ public class FindDaoImpl implements FindDAO {
 	}
 	
 	@Override
-	public int replyWriteNum() throws DataAccessException {
-		return sqlSession.selectOne("replyWriteNum");
-	}
-	
-	@Override
 	public void replyWrite(FindReplyDTO findReplyDTO) throws DataAccessException {
 		sqlSession.insert("replyWrite", findReplyDTO);
 	}
@@ -82,10 +72,5 @@ public class FindDaoImpl implements FindDAO {
 	@Override
 	public void replyDelete(int find_reply_number) throws DataAccessException {
 		sqlSession.delete("replyDelete", find_reply_number);
-	}
-	
-	@Override
-	public void replyUpdate(FindReplyDTO findReplyDTO) throws DataAccessException {
-		sqlSession.update("replyUpdate", findReplyDTO);
 	}
 }

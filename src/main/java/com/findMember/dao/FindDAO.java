@@ -8,8 +8,6 @@ import org.springframework.dao.DataAccessException;
 import com.findMember.domain.FindDTO;
 import com.findMember.domain.FindReplyDTO;
 
-
-
 public interface FindDAO{
 	// 1.글 목록 보기
 	public List<FindDTO> findList(Map<String,Object>map) throws DataAccessException;
@@ -24,29 +22,22 @@ public interface FindDAO{
 	// 3. 글 수정하기 - 게시물 번호에 해당하는 레코드 수정하기
 	public void findUpdate(FindDTO findDTO) throws DataAccessException;
 
-	// 4. 글 등록하기 - 게시물 번호 최대값 구하기
-	public int NewNumMax() throws DataAccessException;
-	
-	// 5. 글 등록하기 - 글쓰기
+	// 4. 글 등록하기 - 글쓰기
 	public void findWrite(FindDTO findDTO) throws DataAccessException;
 		
-	// 6. 글 삭제하기
+	// 5. 글 삭제하기
 	public void findDelete(int find_number) throws DataAccessException;
 	
-	// 7. 댓글 출력하기
+	// 6. 댓글 출력하기
 	public List<FindReplyDTO> replyList(int find_number) throws DataAccessException;
 
-	// 8. 댓글 개수 확인하기
+	// 7. 댓글 개수 확인하기
 	public int replyCount(int find_number) throws DataAccessException;
 	
-	// 9. 댓글 작성하기
-	public int replyWriteNum() throws DataAccessException;
+	// 8. 댓글 작성하기
 	public void replyWrite(FindReplyDTO findReplyDTO) throws DataAccessException;
 	
-	// 10. 댓글 삭제하기
+	// 9. 댓글 삭제하기
 	public void replyDelete(int find_reply_number) throws DataAccessException;
-		
-	// 11. 댓글 수정하기
-	public void replyUpdate(FindReplyDTO findReplyDTO) throws DataAccessException;
 }
 

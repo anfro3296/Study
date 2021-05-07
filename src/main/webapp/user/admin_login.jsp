@@ -208,7 +208,7 @@
     <!--=== End Content Part ===-->
     </form>
 
-<!--===========================
+    <!--===========================
     
   	   Footer 하단시작이요오
   
@@ -222,16 +222,8 @@
                         <a class="logo" href="${pageContext.request.contextPath}/main.do">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
-                        <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
-                        <p>공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해주세요. ㅇㅇ는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 ㅇㅇ는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
-                        <form class="footer-subsribe">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Email Address">                            
-                                <span class="input-group-btn">
-                                    <button class="btn-u" type="button">Go</button>
-                                </span>
-                            </div>                  
-                        </form>                         
+                        <p class="margin-bottom-20"><p>Study from Anywhere!<br> 원하는 곳에서 스터디 하세요.<br>
+                        	GatherStudy는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 GatherStudy는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>                
                     </div>
                     <!-- End About -->
                     
@@ -239,16 +231,16 @@
                     <div class="col-md-3 md-margin-bottom-40">
                         <div class="headline"><h2 class="heading-sm">Useful Links</h2></div>
                         <ul class="list-unstyled link-list">
-                            <li><a href="#">HOME</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">공지 사항</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">카페 구경하기</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">멤버 구하기</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">문의 사항</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="${pageContext.request.contextPath}/main.do">HOME</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="${pageContext.request.contextPath}/notice/list.do">공지 사항</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="${pageContext.request.contextPath}/cafe/list.do">카페 구경하기</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="${pageContext.request.contextPath}/findMember/list.do">멤버 구하기</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="${pageContext.request.contextPath}/help/list.do">도움말</a><i class="fa fa-angle-right"></i></li>
                         </ul>
                     </div>
                     <!-- End Link List -->                   
 
-                    <!-- Latest Tweets -->
+                    <!-- Blog Tweets -->
                     <div class="col-md-3 md-margin-bottom-40">
                         <div class="latest-tweets">
                             <div class="headline"><h2 class="heading-sm">Latest Tweets</h2></div>
@@ -279,19 +271,10 @@
                         <div class="headline"><h2 class="heading-sm">Contact Us</h2></div>                         
                         <address class="md-margin-bottom-40">
                             <i class="fa fa-home"></i>서울특별시 강남구 테헤란로11 세경빌딩 3층 <br />
-                            <i class="fa fa-phone"></i>Phone: 010 123 3456 <br />
-                            <i class="fa fa-globe"></i>Website: <a href="#">www.studycafe.com</a> <br />
-                            <i class="fa fa-envelope"></i>Email: <a href="mailto:info@anybiz.com">studycafe@xxx.com</a> 
+                            <i class="fa fa-phone"></i>Phone: 010 1234 5678 <br />
+                            <i class="fa fa-globe"></i>Website: <a href="#">www.GatherStudy.com</a> <br />
+                            <i class="fa fa-envelope"></i>Email: <a href="GatherStudy@naver.com">GatherStudy@naver.com</a> 
                         </address>
-
-                        <!-- Social Links -->
-                        <ul class="social-icons">
-                            <li><a href="#" data-original-title="Facebook" class="rounded-x social_facebook"></a></li>
-                            <li><a href="#" data-original-title="Twitter" class="rounded-x social_twitter"></a></li>
-                            <li><a href="#" data-original-title="Goole Plus" class="rounded-x social_googleplus"></a></li>
-                            <li><a href="#" data-original-title="Linkedin" class="rounded-x social_linkedin"></a></li>
-                        </ul>
-                        <!-- End Social Links -->
                     </div>
                     <!-- End Address -->
                 </div>
@@ -300,7 +283,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/user/adminLogin.do">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
@@ -308,7 +291,7 @@
     
      				Footer 하단끝끝
 
-	========================--> 
+	========================-->
     
    
 </div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->

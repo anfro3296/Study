@@ -21,22 +21,19 @@ public interface EvaluationDAO{
 	// 4. 스터디 카페당 후기 개수 추출하기
 	public int getEvaluationRows(String cafe_id) throws DataAccessException;
 	
-	// 5. 글 등록하기 - 게시물 번호 최대값 구하기
-	public int getEvaluationNum() throws DataAccessException;
-	
-	// 6. 글 등록하기 - 글쓰기
+	// 5. 글 등록하기 - 글쓰기
 	public void evaluationWrite(EvaluationDTO evaluationDTO) throws DataAccessException;
 	
-	// 7. 후기 작성 후 후기작성 여부 YES로 변경
+	// 6. 후기 작성 후 후기작성 여부 YES로 변경
 	public void evaluationCheckChange(int reser_number) throws DataAccessException;
 	
-	// 8. 회원이 작성한 스터디 카페 후기 보기
+	// 7. 회원이 작성한 스터디 카페 후기 보기
 	public List<TotalEvaluationDTO> evaluation_list_byMemberId(String member_id) throws DataAccessException;
 
-	// 9. 회원이 작성한 스터디 카페 후기에 대한 댓글 보기(스터디 카페 전체 댓글 불러오기)
+	// 8. 회원이 작성한 스터디 카페 후기에 대한 댓글 보기(스터디 카페 전체 댓글 불러오기)
 	public List<EvaluationReplyDTO> evaluation_reply_Entrylist() throws DataAccessException;
 
-	// 10. 고객이 남겨주신 후기에 댓글 남기기
+	// 9. 고객이 남겨주신 후기에 댓글 남기기
 	public void evaluationReplyWrite(EvaluationReplyDTO EvaluationReplyDTO) throws DataAccessException;
 	
 }

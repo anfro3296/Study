@@ -8,7 +8,7 @@
     <insert id="reservate" parameterType="Reservation">
         insert into reservation
         values (reservation_seq.nextval, #{reser_usertime} * #{reser_person} * #{reser_categoryPersonPrice}, #{reser_date}, #{reser_time}, #{reser_usertime}, #{reser_category},
-                #{reser_person}, #{reser_request}, sysdate, 'READY', #{member_id}, #{cafe_id}, 'NO')
+                #{reser_person}, #{reser_request}, sysdate, 'READY', 'NO', #{member_id}, #{cafe_id})
     </insert>
     
      <!-- 현재일 기준으로 사용일이 지난 예약은 USED로 변경하기 -->

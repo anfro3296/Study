@@ -53,7 +53,7 @@ public class FindController{
 		
 		int count=dao.getRowCount(map);
 		log.info(count);
-		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"/findMember/list.do");
+		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"list.do");
 		
 		map.put("start",page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -104,13 +104,6 @@ public class FindController{
 	@ResponseBody
 	public String findWrite(@ModelAttribute FindDTO findDTO) {
 		log.info("findController의 findWrite()호출됨");
-		
-		int num = dao.NewNumMax()+1;
-		log.info("해당글의 글번호는 " +  num + "번 입니다.");
-		
-		findDTO.setFind_number(num);
-		log.info(findDTO);
-		
 		dao.findWrite(findDTO);
 		
 		return "success";
@@ -149,9 +142,6 @@ public class FindController{
 	public String findReplyWrite(@ModelAttribute FindReplyDTO findReplyDTO) {
 		log.info("findController의 findReplyWrite()호출됨");
 		
-		int num = dao.replyWriteNum()+1;
-		findReplyDTO.setFind_reply_number(num);
-
 		if(findReplyDTO.getMember_id() == "") {
 			return "fail";
 		} else {
@@ -168,9 +158,6 @@ public class FindController{
 		dao.replyDelete(find_reply_number);
 		return "redirect:/findMember/details.do?find_number="+find_number;
 	}	
-	
-	
-	
 }
 
 

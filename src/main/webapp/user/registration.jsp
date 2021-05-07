@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <title>GatherStudy - user</title>
 
-<!-- Meta -->
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -93,8 +93,8 @@
 
         <div class="checkbox">            
             <label>
-                <input type="checkbox" id="term_check" name="term_check" value=""> 
-                <a target="_blank" href="page_terms.html">이용약관</a>을 읽었습니다.
+                <input type="checkbox" id="term_check" name="term_check" value="" onClick="termCheck()"> 
+                <a target="_blank">이용약관</a>을 읽었습니다.
             </label>
         </div>
                                 
@@ -190,6 +190,13 @@
     		}
     	})
     }
+    
+    function termCheck(){
+    	 url="${pageContext.request.contextPath}/user/registration_term.do"
+   		 //1.불러올 문서명 2.창의 제목 3.창의 옵션
+   		 window.open(url,"get","left=450,top=150,width=1100,height=2000")
+   	}
+    	   
 </script>
 
 <!--[if lt IE 9]>

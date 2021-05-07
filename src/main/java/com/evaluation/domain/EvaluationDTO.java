@@ -2,22 +2,18 @@ package com.evaluation.domain;
 
 public class EvaluationDTO {
 	private int order_eval_id;
-	private String order_eval_pwd, order_eval_title, order_eval_content, order_eval_regdate;
+	private String order_eval_title, order_eval_content, order_eval_regdate;
 	private int order_eval_score;
 	private int reser_number;
 	private String cafe_id, member_id;
+	
 	public int getOrder_eval_id() {
 		return order_eval_id;
 	}
 	public void setOrder_eval_id(int order_eval_id) {
 		this.order_eval_id = order_eval_id;
 	}
-	public String getOrder_eval_pwd() {
-		return order_eval_pwd;
-	}
-	public void setOrder_eval_pwd(String order_eval_pwd) {
-		this.order_eval_pwd = order_eval_pwd;
-	}
+	
 	public String getOrder_eval_title() {
 		return order_eval_title;
 	}
@@ -62,7 +58,7 @@ public class EvaluationDTO {
 	}
 	@Override
 	public String toString() {
-		return "EvaluationDTO [order_eval_id=" + order_eval_id + ", order_eval_pwd=" + order_eval_pwd
+		return "EvaluationDTO [order_eval_id=" + order_eval_id 
 				+ ", order_eval_title=" + order_eval_title + ", order_eval_content=" + order_eval_content
 				+ ", order_eval_regdate=" + order_eval_regdate + ", order_eval_score=" + order_eval_score
 				+ ", reser_number=" + reser_number + ", cafe_id=" + cafe_id + ", member_id=" + member_id + "]";

@@ -50,7 +50,7 @@ public class NoticeController{
 		
 		int count=noticeDAO.getRowCount(map);
 		log.info(count);
-		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"notice.do");
+		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"list.do");
 		
 		map.put("start",page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -81,12 +81,8 @@ public class NoticeController{
 	@ResponseBody
 	public String noticeWrite(@ModelAttribute NoticeDTO noticeDTO) {
 		log.info("NoticeController의 noticeWrite()호출됨");
-		
-		int num = noticeDAO.getNewNum()+1;
-
-		noticeDTO.setNotice_number(num);
-		noticeDAO.noticeWrite(noticeDTO);
-		
+	
+		noticeDAO.noticeWrite(noticeDTO);	
 		return "success";
 	}	
 	

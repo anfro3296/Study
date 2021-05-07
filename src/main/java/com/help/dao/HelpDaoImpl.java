@@ -44,11 +44,6 @@ public class HelpDaoImpl implements HelpDAO {
 	}
 
 	@Override
-	public int getNewNumMax() throws DataAccessException {
-		return sqlSession.selectOne("getNewNumMax");
-	}
-
-	@Override
 	public void helpWrite(HelpDTO helpDTO) throws DataAccessException {
 		sqlSession.insert("helpWrite", helpDTO);
 	}

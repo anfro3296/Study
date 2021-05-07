@@ -4,14 +4,14 @@
 DROP TABLE Help CASCADE CONSTRAINTS;
 DROP TABLE Notice CASCADE CONSTRAINTS;
 DROP TABLE Admins CASCADE CONSTRAINTS;
-DROP TABLE Board_find_mem CASCADE CONSTRAINTS;
 DROP TABLE Bookmark CASCADE CONSTRAINTS;
+DROP TABLE Cafe CASCADE CONSTRAINTS;
+DROP TABLE find_reply CASCADE CONSTRAINTS;
+DROP TABLE find CASCADE CONSTRAINTS;
+DROP TABLE Members CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation_reply CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation CASCADE CONSTRAINTS;
 DROP TABLE Reservation CASCADE CONSTRAINTS;
-DROP TABLE Cafe CASCADE CONSTRAINTS;
-DROP TABLE Members CASCADE CONSTRAINTS;
-
 
 
 
@@ -22,21 +22,6 @@ CREATE TABLE Admins
 	admin_id varchar2(30) NOT NULL,
 	admin_pwd varchar2(30),
 	PRIMARY KEY (admin_id)
-);
-
-
-CREATE TABLE Board_find_mem
-(
-	find_mem_number number NOT NULL,
-	find_mem_pwd varchar2(4),
-	find_mem_title varchar2(60),
-	find_mem_content varchar2(4000),
-	find_mem_hit number,
-	find_mem_ref number,
-	find_mem_ref_step number,
-	find_mem_ref_level number,
-	member_id varchar2(30) NOT NULL,
-	PRIMARY KEY (find_mem_number)
 );
 
 
@@ -76,6 +61,29 @@ CREATE TABLE Cafe
 	cafe_category2 varchar2(12),
 	cafe_category2Price number,
 	PRIMARY KEY (cafe_id)
+);
+
+
+CREATE TABLE find
+(
+	find_number number NOT NULL,
+	find_title varchar2(60),
+	find_content varchar2(4000),
+	find_regdate timestamp,
+	find_hit number,
+	member_id varchar2(30) NOT NULL,
+	PRIMARY KEY (find_number)
+);
+
+
+CREATE TABLE find_reply
+(
+	find_reply_number number NOT NULL,
+	find_reply_content varchar2(4000),
+	find_reply_regdate timestamp,
+	find_number number NOT NULL,
+	member_id varchar2(30) NOT NULL,
+	PRIMARY KEY (find_reply_number)
 );
 
 
@@ -196,13 +204,25 @@ ALTER TABLE Reservation
 ;
 
 
-ALTER TABLE Board_find_mem
+ALTER TABLE find_reply
+	ADD FOREIGN KEY (find_number)
+	REFERENCES find (find_number)
+;
+
+
+ALTER TABLE Bookmark
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;
 
 
-ALTER TABLE Bookmark
+ALTER TABLE find
+	ADD FOREIGN KEY (member_id)
+	REFERENCES Members (member_id)
+;
+
+
+ALTER TABLE find_reply
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;

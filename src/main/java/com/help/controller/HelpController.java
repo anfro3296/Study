@@ -51,7 +51,7 @@ public class HelpController{
 		
 		int count=dao.getRowCount(map);
 		log.info(count);
-		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"help/list.do");
+		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"list.do");
 		
 		map.put("start",page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -87,12 +87,7 @@ public class HelpController{
 	public String helpWrite(@ModelAttribute HelpDTO helpDTO) {
 		log.info("HelpController의 helpWrite()호출됨");
 		
-		int num = dao.getNewNumMax()+1;
-		log.info("해당글의 글번호는 " +  num + "번 입니다.");
-		
-		helpDTO.setHelp_number(num);
 		dao.helpWrite(helpDTO);
-		
 		return "success";
 	}	
 	

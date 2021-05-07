@@ -45,15 +45,10 @@
                  </where>
  </select>
  
-<!-- 3.공지사항 쓰기(게시물 번호 최대값구하기) -->
-<select id="getNewNumMax" resultType="int">
-   select max(help_number) from help
-</select>
-
 <!-- 4.공지사항 쓰기 -->
 <insert id="helpWrite" parameterType="Help">
     insert into help(help_number, help_title, help_content, help_regdate, help_hit, admin_id)
-    values(#{help_number},#{help_title},#{help_content}, sysdate, 0, #{admin_id})
+    values(help_seq.nextval, #{help_title}, #{help_content}, sysdate, 0, #{admin_id})
 </insert>
 
 <!-- 5.공지사항 상세보기(조회수증가)  -->

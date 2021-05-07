@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>GatherStudy - user</title>
 </head>
 <body>
 <script>

@@ -53,7 +53,7 @@
 <!-- 4.공지사항 쓰기 -->
 <insert id="findWrite" parameterType="Find">
     insert into find(find_number, find_title, find_content, find_regdate, find_hit, member_id)
-    values(#{find_number}, #{find_title}, #{find_content}, sysdate, 0, #{member_id})
+    values(find_seq.nextval, #{find_title}, #{find_content}, sysdate, 0, #{member_id})
 </insert>
 
 <!-- 5.공지사항 상세보기(조회수증가)  -->
@@ -97,14 +97,9 @@
 <!-- 댓글 작성하기 -->
 <insert id="replyWrite" parameterType="FindReply">
 INSERT INTO FIND_REPLY (find_reply_number, find_reply_content, find_reply_regdate, find_number, member_id)
-        VALUES(#{find_reply_number},#{find_reply_content}, sysdate, #{find_number}, #{member_id}) 
+        VALUES(find_reply_seq.nextval,#{find_reply_content}, sysdate, #{find_number}, #{member_id}) 
 </insert>
     
-<!-- 4. 댓글 수정 -->
-<update id="replyUpdate" parameterType="FindReply" >
-	UPDATE FIND_REPLY SET find_reply_content = #{find_reply_content} WHERE find_reply_number = #{find_reply_number}
-</update>
-
 <!-- 5. 댓글 삭제 -->
 <delete id="replyDelete" parameterType="int">
 	DELETE FROM FIND_REPLY WHERE find_reply_number = #{find_reply_number}

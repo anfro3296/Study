@@ -38,11 +38,6 @@ public class EvaluationDaoImpl implements EvaluationDAO {
 	}
 
 	@Override
-	public int getEvaluationNum() throws DataAccessException {
-		return sqlSession.selectOne("getEvaluationNum");
-	}
-
-	@Override
 	public void evaluationWrite(EvaluationDTO evaluationDTO) throws DataAccessException {
 		sqlSession.insert("evaluationWrite", evaluationDTO);
 	}

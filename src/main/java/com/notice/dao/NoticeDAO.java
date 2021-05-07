@@ -13,8 +13,7 @@ public interface NoticeDAO{
 	public List<NoticeDTO> noticeList(Map<String,Object>map) throws DataAccessException;
 	public int getRowCount(Map<String,Object>map);
 	
-	// 2. 공지사항 쓰기 ( 게시무 번호 최대값 구하기 / 공지사항 쓰기 )
-	public int getNewNum() throws DataAccessException;
+	// 2. 공지사항 쓰기
 	public void noticeWrite(NoticeDTO noticeDTO) throws DataAccessException;
 		
 	// 3. 공지사항 상세보기 ( 조회수 증가 / 게시물 번호에 해당하는 레코드 한개 얻어오기 )

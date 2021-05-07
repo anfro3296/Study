@@ -45,33 +45,28 @@
                  </where>
  </select>
  
-<!-- 3.도움말 쓰기(게시물 번호 최대값구하기) -->
-<select id="getNewNum" resultType="int">
-   select max(notice_number) from notice
-</select>
-
-<!-- 4.도움말 쓰기 -->
+<!-- 3.도움말 쓰기 -->
 <insert id="noticeWrite" parameterType="Notice">
     insert into notice(notice_number, notice_title, notice_content, notice_regdate, notice_hit, admin_id)
-    values(#{notice_number},#{notice_title},#{notice_content}, sysdate, 0, #{admin_id})
+    values(notice_seq.nextval, #{notice_title}, #{notice_content}, sysdate, 0, #{admin_id})
 </insert>
 
-<!-- 5.도움말 상세보기(조회수증가)  -->
+<!-- 4.도움말 상세보기(조회수증가)  -->
 <update id="updateReadcnt" parameterType="int">
    update notice set notice_hit=notice_hit+1 where notice_number=#{notice_number}
 </update>
 
-<!-- 6.도움말 번호에 해당하는 레코드 한개 얻어오기 -->
+<!-- 5.도움말 번호에 해당하는 레코드 한개 얻어오기 -->
 <select id="retrieve" parameterType="int" resultType="Notice">
     select * from notice where notice_number=#{notice_number}
 </select>
  
-<!-- 7.도움말 수정하기 -->
+<!-- 6.도움말 수정하기 -->
 <update id="noticeUpdate" parameterType="Notice">
  	update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_number=#{notice_number}
 </update>
  
-<!-- 8.도움말 삭제하기 -->
+<!-- 7.도움말 삭제하기 -->
 <delete id='noticeDelete' parameterType="int">
 	delete from notice where notice_number=#{notice_number}
 </delete>

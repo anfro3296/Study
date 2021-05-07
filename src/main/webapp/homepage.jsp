@@ -6,7 +6,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>GatherStudy</title>
+    <title>GatherStudy - main</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -170,7 +170,7 @@
     </div><!--/slider-->
     <!--슬라이더 2개-->
 
-    <!-- GatherStudy 핵심 설명 -->
+    
     <div class="container content-md">
     	<!-- GatherStudy 핵심 설명 -->
     	<div class="row margin-bottom-30">
@@ -207,7 +207,7 @@
     	</div>
     	<!-- GatherStudy 핵심 설명 -->
 
-    	 <!-- 오늘의 추천 공간 -->
+    	<!-- 오늘의 추천 공간 -->
         <div class="headline"><h2>오늘의 추천 공간</h2></div>
         <div class="illustration-v2 margin-bottom-30">
             <ul class="list-inline owl-slider">

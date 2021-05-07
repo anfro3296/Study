@@ -42,11 +42,6 @@ public class NoticeDaoImpl implements NoticeDAO {
 	}
 
 	@Override
-	public int getNewNum() throws DataAccessException {
-		return sqlSession.selectOne("getNewNum");
-	}
-
-	@Override
 	public void noticeWrite(NoticeDTO noticeDTO) throws DataAccessException {
 		sqlSession.insert("noticeWrite", noticeDTO);
 	}
