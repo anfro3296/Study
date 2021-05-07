@@ -10,7 +10,8 @@ NOMINVALUE;
 DROP TABLE Help CASCADE CONSTRAINTS;
 DROP TABLE Notice CASCADE CONSTRAINTS;
 DROP TABLE Admins CASCADE CONSTRAINTS;
-DROP TABLE Board_find_mem CASCADE CONSTRAINTS;
+DROP TABLE Find CASCADE CONSTRAINTS;
+DROP TABLE Find_reply CASCADE CONSTRAINTS;
 DROP TABLE Bookmark CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation_reply CASCADE CONSTRAINTS;
 DROP TABLE Order_evaluation CASCADE CONSTRAINTS;
@@ -31,18 +32,25 @@ CREATE TABLE Admins
 );
 
 
-CREATE TABLE Board_find_mem
+CREATE TABLE Find
 (
-	find_mem_number number NOT NULL,
-	find_mem_pwd varchar2(4),
-	find_mem_title varchar2(60),
-	find_mem_content varchar2(4000),
-	find_mem_hit number,
-	find_mem_ref number,
-	find_mem_ref_step number,
-	find_mem_ref_level number,
+	find_number number NOT NULL,
+	find_title varchar2(60),
+	find_content varchar2(4000),
+	find_regdate timestamp,
+	find_hit number,
 	member_id varchar2(30) NOT NULL,
-	PRIMARY KEY (find_mem_number)
+	PRIMARY KEY (find_number)
+);
+
+CREATE TABLE Find_reply 
+(
+  	find_reply_number number NOT NULL,
+    find_reply_content varchar2(4000),
+    find_reply_regdate timestamp,
+   	find_number number,
+  	member_id varchar2(30) NOT NULL,
+  	PRIMARY KEY (find_reply_number)
 );
 
 CREATE TABLE Bookmark
@@ -193,7 +201,7 @@ ALTER TABLE Reservation
 ;
 
 
-ALTER TABLE Board_find_mem
+ALTER TABLE Find
 	ADD FOREIGN KEY (member_id)
 	REFERENCES Members (member_id)
 ;

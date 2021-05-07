@@ -161,10 +161,10 @@
     <!--=== Breadcrumbs ===-->
     <div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left">로그인</h1>
+            <h1 class="pull-left">호스트 로그인</h1>
             <ul class="pull-right breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
-                <li class="active">로그인</li>
+                <li class="active">호스트 로그인</li>
             </ul>
         </div><!--/container-->
     </div><!--/breadcrumbs-->
@@ -303,7 +303,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/adminLogin.do">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/user/adminLogin.do">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>

@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-<meta charset="UTF-8">
-<!-- Meta -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -16,51 +18,39 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel='stylesheet' type='text/csss' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop.style.css">
+    
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footers/footer-v2.css">
 
+    
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/animate.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-
-    <!-- CSS Page Style -->    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/page_log_reg_v1.css">    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    
-    
-    
-    <!-- 
-================스타일 추가 하기=====================
-    -->
-    <style type="text/css">
-    .reg-page {
-    	padding:20px;
-    }
-   </style>  
-    <!-- 
-================스타일 추가 끝========================= 
-    -->
-<title>Insert title here</title>
-</head>
-<body>
+</head>	
+
+<body class="header-fixed">
 <div class="wrapper">
-    <!--=== Header ===-->    
+    
     <!--==========================================
     
     					Header 상단 시작합니다~!!!!!
     
     =================================================-->    
-        <div class="header">
+    <div class="header">
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="${pageContext.request.contextPath}/main.do">
@@ -73,7 +63,7 @@
                 <ul class="loginbar pull-right">  
 	                <c:choose>
 						<c:when test="${!empty sessionScope.loginAdmin}">
-	                    	<li><a href="${pageContext.request.contextPath}/login.do">관리자 페이지</a></li>  
+	                    	<li><a href="#">관리자 페이지</a></li>  
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/logout.do">로그아웃</a></li>
 						</c:when>
@@ -95,7 +85,7 @@
 	                    	<li class="topbar-devider"></li>   
 	                    	<li><a href="${pageContext.request.contextPath}/user/register.do">회원가입</a></li>   
 						</c:otherwise>
-					</c:choose>      
+					</c:choose> 
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -156,87 +146,65 @@
     								End Header 상단 끝입니다.!!!
     
     ================================================-->
-
-
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs">
-        <div class="container">
-            <h1 class="pull-left">사용자 로그인</h1>
-            <ul class="pull-right breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/main.do">홈</a></li>
-                <li class="active">사용자 로그인</li>
-            </ul>
-        </div><!--/container-->
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
-<!--  
-====================로그인 구역 시작========================
--->
-	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
-	<c:if test="${not empty cookie.user_check}">
-		<c:set value="checked" var="checked"/>
-	</c:if>
-	
-	<form method="post" action="/user/login.do" id="loginform" >
-    <!--=== Content Part ===-->
-    <div class="container content">		
-    	<div class="row">
-            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <form class="reg-page">
-                    <div class="reg-header">            
-                        <h2>사용자 로그인</h2>
-                    </div>
-
-                    <div class="input-group margin-bottom-20">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="member_id" name="member_id" value="${cookie.user_check.value}" placeholder="아이디" class="form-control">
-                    </div>                    
-                    <div class="input-group margin-bottom-10">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="pwd1" name="member_pwd" placeholder="비밀번호" class="form-control">
-                    </div>                    
-					<div class="row">
-                        <div class="col-md-12">	
-                            <label class="pull-left">	
-                            	<input type="checkbox" id="remember_us" name="remember_userId" ${checked}> 아이디 저장                  
-                        	</label>
-                        </div>                     
-            		</div>
-					<input type="button" onclick="signInValidation()" class="btn-u btn-u-lg btn-block btn-u-blue" value="로그인">
-                    <hr>
-					<div class="col-md-pull">
-                    <p style="text-align:center;" class="color-blue">아직 회원이 아니신가요?</p>
-                    </div>
-                    <p><a href="${pageContext.request.contextPath}/user/register.do"><button class="btn-u btn-block btn-u-blue" type="button" >회원가입</button></a></p>
-                    <div class="row">
-                    	<div class="col-md-12">
-                        	<span class="pull-right">
-                            	<a class="color-blue" href="#">비밀번호 찾기</a>
-                            </span>
-                            <span class="pull-left">
-                            	<a class="color-blue" href="#">아이디 찾기</a>
-                            </span>  
-                        </div>
-                	</div> 
-                </form>            
-            </div>
-        </div><!--/row-->
-    </div><!--/container-->		
-    <!--=== End Content Part ===-->
-    </form>
-
-<!--===========================
     
-  	   Footer 하단시작이요오
-  
-    =============================-->
+	<!--=== Content Part ===-->
+    <div class="container content-sm">
+	    <div class="col-md-10 col-md-offset-1">
+		    <div class="headline">
+		   		<h2>멤버구하기</h2>
+		    </div>
+	    </div>
+	    
+	    <form method="post" action="findWrite.do" id="registerform" >
+	    <div class="row">
+	    	<div class="col-md-10 col-md-offset-1">
+					<table class="table" style="text-align: center;">
+						<thead > 
+							<tr class="active">
+									<th colspan="3"	style="background-color: #eeeeee; text-align: center;"><font color="black" size="5pt">멤버구하기 작성하기</font></th>
+							</tr>
+						</thead>
+							<tbody>
+								<tr>
+									<td style="width: 20%;"><font color="black" size="3pt">글제목</font></td>
+									<td><input type="text" id="find_title" name="find_title" class="form-control" placeholder="ex) 스터디 목적 / 지역 / 인원 모집합니다."></td>
+								</tr>
+		
+								<tr>
+									 <td><font color="black" size="3pt">내용</font></td>	
+									 <td><textarea id="find_content" name="find_content" class="form-control" rows="50" cols="50"></textarea></td>
+								</tr>
+								
+							</tbody>
+					</table>
+						<input type="hidden" name="member_id" value="${sessionScope.loginUser.member_id}">
+					
+			           <div class="col-md-2 col-md-offset-6">
+			                <input type="button" onclick="findResgisterValidation()" class="btn-u btn-block btn-u-green" value="작성 하기 ">           
+			           </div>
+			            
+			           <div class="col-md-2">
+			           		<input type="reset" class="btn-u btn-block btn-u-green" value="초기화">                        
+			           </div>
+			            
+			           <div class="col-md-2">
+				   			 <input type="button" class="btn-u btn-block btn-u-green" value="목록" onclick="location.href='${pageContext.request.contextPath}/findMember/list.do' ">   	
+						</div>
+		        	
+			</div>
+		</div>
+		</form>
+    </div><!--/container content-sm-->
+    <!-- End Content Part -->
+
+    <!--=== Footer v2 ===-->
     <div id="footer-v2" class="footer-v2">
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a class="logo" href="${pageContext.request.contextPath}/main.do">
+                        <a class="logo" href="homepage.html">
                 		<img src="${pageContext.request.contextPath}/assets/logoimg/MainLogo.png" alt="Logo" width="180">
             			</a>
                         <p class="margin-bottom-20"><p>Study from Anywhere! 원하는 곳에서 스터디 하세요. 홈페이지 설명 구구절절</p>
@@ -317,78 +285,68 @@
 
         <div class="copyright">
             <div class="container">
-                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="${pageContext.request.contextPath}/user/adminLogin.do">Htmlstream</a></p>
+                <p class="text-center">2015 &copy; All Rights Reserved. Unify Theme by <a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a></p>
             </div> 
         </div><!--/copyright--> 
     </div>
-    <!--=======================
-    
-     				Footer 하단끝끝
+    <!--=== End Footer v2 ===-->
+</div><!--/wrapper-->
 
-	========================--> 
-    
-   
-</div><!--/wrapper--><!-- 전체를 하나로 감싸주는 역할? -->
-
-<!-- JS Global Compulsory -->           
+<!-- JS Global Compulsory -->			
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-<!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/modernizr.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/app.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/owl-carousel.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/plugins/parallax-slider.js"></script>
+
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/Js_Set/bootstrap.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        App.init();
-        });
-</script>
-
-<script type="text/javascript">
-	function signInValidation(){
-		var userId = $("#member_id").val();
-		var userPw = $("#pwd1").val();
-	
-		if(!userId){
-    		alert("아이디 입력은 필수입니다.");
-    		$("#member_id").focus();
-    	}else if(!userPw){
-    		alert("비밀번호 입력은 필수입니다.");
-    		$("#pwd1").focus();
+      	App.init();
+    });
+    
+    function findResgisterValidation(){
+    	var title = $("#find_title").val();
+    	var content = $("#find_content").val();
+    	
+    	if(!title){
+    		alert("글 제목은 필수로 입력하셔야 입니다.");
+    		$("#find_title").focus();
+    	}else if(!content){
+    		alert("글 내용은 필수로 입력하셔야 합니다.");
+    		$("#find_content").focus();
     	}else {
-    		signIn()
+    		findRegister();
     	}
-	}
-	
-    function signIn(){
+    }
+    
+    function findRegister(){
     	$.ajax({		
-    		url : "${pageContext.request.contextPath}/user/login.do",
+    		url : "${pageContext.request.contextPath}/findMember/write.do",
     		type:'POST',
-    		data : {
-    			member_id : $("#member_id").val(),
-    			member_pwd : $("#pwd1").val(),
-				remember_userId : $("#remember_us").is(':checked')
-			},
+    		data :  $("#registerform").serialize(),
     		success:function(data){
     			if(data == "success"){
-    				alert("로그인에 성공하셨습니다.");
-    				location.href = "${pageContext.request.contextPath}/main.do";
-    			}else if(data == "idFail"){
-    				alert("ID가 존재하지 않습니다");
-    				return false;
-    				
-    			} else if(data == "pwdFail") {
-    				alert("패스워드가 틀렸습니다. 비밀번호를 확이해주세요");
-    				return false;		
+    				alert("게시글이 등록되었습니다.^^");
+    				location.href = "${pageContext.request.contextPath}/findMember/list.do"
     			}
+    			return false;
     		}
     	})
-    }
+    }  
 </script>
-
 
 <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
