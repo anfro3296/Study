@@ -197,11 +197,11 @@
 		<div class="col-md-10">
 	    	<div class="tab-pane fade in active" id="home-1">
                             <form action="/user/mypage_infoModify.do" id="updateform" class="sky-form" method="post">
-                                <header>회원정보수정하기</header>
+                                <header>회원정보 수정하기</header>
                                 
                                 <fieldset>
                                 	<div>                  
-                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${mem.member_id}
+                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${member.member_id}
                                     </div>
                                     <p>
                                     <hr>
@@ -218,19 +218,19 @@
                                     <hr>
                                     <div>                  
                                         <i class="fa fa-user">&ensp;</i><b>이름</b>
-                                        <input type="text" id="member_name" name="member_name" class="form-control" placeholder="이름을 입력해주세요" value="${mem.member_name}">
+                                        <input type="text" id="member_name" name="member_name" class="form-control" placeholder="이름을 입력해주세요" value="${member.member_name}">
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
                                         <i class="fa fa-envelope">&ensp;</i><b>이메일</b>
-                                        <input type="email" class="form-control" id="member_email" name="member_email" placeholder="예시) aaa@aaa.com" value="${mem.member_email}" >
+                                        <input type="email" class="form-control" id="member_email" name="member_email" placeholder="예시) aaa@aaa.com" value="${member.member_email}" >
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
                                         <i class="fa fa-phone-square">&ensp;</i><b>전화번호</b>                                        
-                                        <input type="text" id="member_phone" name="member_phone" class="form-control" placeholder="전화번호 ex)01012345678" value="${mem.member_phone}">
+                                        <input type="text" id="member_phone" name="member_phone" class="form-control" placeholder="전화번호 ex)01012345678" value="${member.member_phone}">
                                     	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.loginUser.member_id}">
                                     </div>
                                     <p>

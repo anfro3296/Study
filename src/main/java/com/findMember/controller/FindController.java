@@ -26,15 +26,14 @@ import com.findMember.util.PagingUtil;
 public class FindController{
 
 	private Log log = LogFactory.getLog(getClass());
-	FindDAO dao;
+	private final FindDAO findDAO;
 
-	
-	@Required
 	@Autowired
-	public void setDao(FindDAO dao) {
-		this.dao = dao;
+	public FindController(FindDAO findDAO) {
+		super();
+		this.findDAO = findDAO;
 	}
-	
+
 	// By Ysh_멤버구하기 게시글 호출관련 메서드_20210503
 	@RequestMapping(value="findMember/list.do", method = RequestMethod.GET)
 	public String findList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
@@ -51,8 +50,7 @@ public class FindController{
 		map.put("keyField", keyField);
 		map.put("keyWord", keyWord);
 		
-		int count=dao.getRowCount(map);
-		log.info(count);
+		int count=findDAO.getRowCount(map);
 		PagingUtil page=new PagingUtil(keyField, keyWord, currentPage,count,10,3,"list.do");
 		
 		map.put("start",page.getStartCount());
@@ -61,7 +59,7 @@ public class FindController{
 		List<FindDTO> list=null;
 		if(count > 0) {
 			System.out.println("리스트 담김");
-			list=dao.findList(map);
+			list=findDAO.findList(map);
 		}else {
 			list=Collections.emptyList();
 		}
@@ -73,24 +71,6 @@ public class FindController{
 		
 		return "findMember/list";
 	}
-	
-	// By Ysh_멤버구하기 상세페이지로 이동 관련 메서드_20210503
-	@RequestMapping(value="findMember/details.do", method = RequestMethod.GET)
-	public String findDetails(@RequestParam int find_number, Model model) {
-		log.info("findController의 findDetails()호출됨");
-		dao.readcntIncrease(find_number); 
-		FindDTO find = dao.getRetrieve(find_number);
-		List<FindReplyDTO> replyList = dao.replyList(find_number);
-		int count = dao.replyCount(find_number);
-
-		model.addAttribute("find", find);
-		model.addAttribute("replyList", replyList);
-		model.addAttribute("count", count);
-		
-		return "findMember/details";
-	}	
-	
-
 	
 	// By Ysh_멤버구하기 게시글 작성하기 폼으로 이동_20210503
 	@RequestMapping(value="findMember/write.do", method = RequestMethod.GET)
@@ -104,16 +84,32 @@ public class FindController{
 	@ResponseBody
 	public String findWrite(@ModelAttribute FindDTO findDTO) {
 		log.info("findController의 findWrite()호출됨");
-		dao.findWrite(findDTO);
+		findDAO.findWrite(findDTO);
 		
 		return "success";
+	}	
+	
+	// By Ysh_멤버구하기 상세페이지로 이동 관련 메서드_20210503
+	@RequestMapping(value="findMember/details.do", method = RequestMethod.GET)
+	public String findDetails(@RequestParam int find_number, Model model) {
+		log.info("findController의 findDetails()호출됨");
+		findDAO.readcntIncrease(find_number); 
+		FindDTO find = findDAO.getRetrieve(find_number);
+		List<FindReplyDTO> replyList = findDAO.replyList(find_number);
+		int count = findDAO.replyCount(find_number);
+
+		model.addAttribute("find", find);
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("count", count);
+		
+		return "findMember/details";
 	}	
 	
 	// By Ysh_멤버구하기 게시글 수정하기 폼으로 이동_20210503
 	@RequestMapping(value="findMember/update.do", method = RequestMethod.GET)
 	public String findUpdateForm(@RequestParam("find_number") int find_number, Model model) {
 		log.info("findController의 findUpdateForm()호출됨");
-		FindDTO find = dao.getRetrieve(find_number);
+		FindDTO find = findDAO.getRetrieve(find_number);
 		model.addAttribute("find", find);
 		return "findMember/update";
 	}	
@@ -123,7 +119,7 @@ public class FindController{
 	@ResponseBody
 	public String findUpdate(@ModelAttribute FindDTO findDTO) {
 		log.info("findController의 findUpdate()호출됨");
-		dao.findUpdate(findDTO);
+		findDAO.findUpdate(findDTO);
 		return "success";
 	}
 	
@@ -131,7 +127,7 @@ public class FindController{
 	@RequestMapping(value="findMember/delete.do", method = RequestMethod.GET)
 	public String findDelete(@RequestParam("find_number") int find_number) {
 		log.info("findController의 findDelete()호출됨");
-		dao.findDelete(find_number);
+		findDAO.findDelete(find_number);
 		return "redirect:/findMember/list.do";
 	}	
 	
@@ -145,7 +141,7 @@ public class FindController{
 		if(findReplyDTO.getMember_id() == "") {
 			return "fail";
 		} else {
-			dao.replyWrite(findReplyDTO);
+			findDAO.replyWrite(findReplyDTO);
 		}
 		
 		return "success";
@@ -155,7 +151,7 @@ public class FindController{
 	@RequestMapping(value="findMember/replyDelete.do", method = RequestMethod.GET)
 	public String findReplyDelete(@RequestParam int find_number, @RequestParam int find_reply_number) {
 		log.info("findController의 findReplyDelete()호출됨");
-		dao.replyDelete(find_reply_number);
+		findDAO.replyDelete(find_reply_number);
 		return "redirect:/findMember/details.do?find_number="+find_number;
 	}	
 }

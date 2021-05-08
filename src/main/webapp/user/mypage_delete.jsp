@@ -189,8 +189,8 @@
                                 
                                 <fieldset>
                                 	<div id="Dtext">                  
-                                        <b id="userF">${mem.member_id}</b> 라는 아이디를 쓰고계신                 
-                                        <i class="fa fa-user">&ensp;</i><b id="userF"> ${mem.member_name}</b>님!!<br>
+                                        <b id="userF">${member.member_id}</b> 라는 아이디를 쓰고계신                 
+                                        <i class="fa fa-user">&ensp;</i><b id="userF"> ${member.member_name}</b>님!!<br>
                                         정말로 회원을 탈퇴하실껀가요????
                                     </div>
                                     <p>

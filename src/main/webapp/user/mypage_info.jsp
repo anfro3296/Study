@@ -201,27 +201,27 @@
                                 
                                 <fieldset>
                                 	<div>                  
-                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${mem.member_id}
+                                        <i class="fa fa-user">&ensp;</i><b>아이디</b> : ${member.member_id}
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
-                                        <i class="fa fa-user">&ensp;</i><b>이름</b> : ${mem.member_name}
+                                        <i class="fa fa-user">&ensp;</i><b>이름</b> : ${member.member_name}
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
-                                        <i class="fa fa-envelope">&ensp;</i><b>이메일</b> : ${mem.member_email}
+                                        <i class="fa fa-envelope">&ensp;</i><b>이메일</b> : ${member.member_email}
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
-                                        <i class="fa fa-phone-square">&ensp;</i><b>전화번호</b> : ${mem.member_phone}
+                                        <i class="fa fa-phone-square">&ensp;</i><b>전화번호</b> : ${member.member_phone}
                                     </div>
                                     <p>
                                     <hr>
                                     <div>                  
-                                        <i class="fa fa-history">&ensp;</i><b>가입날짜</b> : ${mem.member_joindate}                           
+                                        <i class="fa fa-history">&ensp;</i><b>가입날짜</b> : ${member.member_joindate}                           
                                     </div>
                                     <p>
                                 </fieldset>
