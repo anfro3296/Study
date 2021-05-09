@@ -46,7 +46,7 @@
 		where r.cafe_id = c.cafe_id and r.member_id=#{member_id} and reser_status='USED' order by r.reser_number desc
    </select>
 
-   <!-- 회원당 구매후기 관련 리스트 불러오기(사용한 예약만 불러오기) - 갯수체크 -->
+   <!-- 회원당 구매후기 관련 갯수 불러오기(사용한 예약만 불러오기) - 갯수체크 -->
    <select id="orderEvaluationNum" parameterType="String" resultType="int">
  	 select count(*) from reservation where member_id =#{member_id} and reser_status='USED'
    </select>

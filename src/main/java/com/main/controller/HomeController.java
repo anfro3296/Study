@@ -16,25 +16,20 @@ import com.evaluation.domain.TotalEvaluationDTO;
 
 @Controller
 public class HomeController {
-
-    private Log log = LogFactory.getLog(getClass());
-	CafeDAO dao;
-	EvaluationDAO dao2;
+	private final CafeDAO cafeDAO;
+	private final EvaluationDAO evaluationDAO;
 	
 	@Autowired
-	public void setDao(CafeDAO dao) {
-		this.dao = dao;
+	public HomeController(CafeDAO cafeDAO, EvaluationDAO evaluationDAO) {
+		this.cafeDAO = cafeDAO;
+		this.evaluationDAO = evaluationDAO;
 	}
 	
-	@Autowired
-	public void setDao(EvaluationDAO dao2) {
-		this.dao2 = dao2;
-	}	
-	
+	// By Jay_메인 페이지 출력하기_2021_04_21
     @RequestMapping("main.do")
     public String home(Model model) {
-        List<CafeDTO> recommendCafe = dao.recommendCafe();
-        List<TotalEvaluationDTO> evaluationList = dao2.total_evaluation_list();
+        List<CafeDTO> recommendCafe =  cafeDAO.recommendCafe();
+        List<TotalEvaluationDTO> evaluationList = evaluationDAO.total_evaluation_list();
 		model.addAttribute("recommendCafe", recommendCafe);
 		model.addAttribute("evaluationList", evaluationList);
 		return "homepage";

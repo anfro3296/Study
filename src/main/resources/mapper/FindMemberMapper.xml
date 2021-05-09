@@ -80,7 +80,7 @@
     
 <!-- 2. 댓글 목록 -->
 <select id="replyList" resultType="FindReply" parameterType="int">
-	SELECT * FROM FIND_REPLY WHERE FIND_NUMBER=#{FIND_NUMBER} order by find_number
+	SELECT * FROM FIND_REPLY WHERE FIND_NUMBER=#{FIND_NUMBER} order by find_reply_regdate asc
 </select>
     
 <!-- 3. 댓글 작성 -->
