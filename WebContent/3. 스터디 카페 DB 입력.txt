@@ -224,3 +224,106 @@ update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr
  '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
  '4. 이용당일 환불 불가' where cafe_id='instudy';
  
+  =======================================================================================================================================
+ 
+  insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('bencherspace', '벤처 스페이스', 'bencherspace', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/bencherspace/1.jpg', './assets/img/cafeimg/bencherspace/2.jpg', './assets/img/cafeimg/bencherspace/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500, sysdate);
+
+update cafe set cafe_linescription = '강남역 4번 출구 역세권에 위치한 24시간'||chr(13)||'스터디카페' where cafe_id='bencherspace';
+
+update cafe set cafe_spaceintroduction = '2020년 1월 새롭게 문을 연 24시간 프리미엄 스터디카페입니다. 강남역 5번 출구에서 약 300미터 거리에 위치하고 있어 오시기에 편리합니다. 넓은 데스크와 명품 시디즈의자, 개별 콘센트와 스탠드를 완비했으며 수험생과 직장인분들을 위한 최적의 환경을 조성했습니다. '||chr(13)||chr(13)||
+'2인실에서 10인실까지 다양한 규모의 스터디룸이 있어 여러 수업과 모임을 진행하실 수 있습니다. 망고나무가 있는 라운지에서는 커피와 홍차, 아이스티를 무료로 즐기실 수 있습니다.' where cafe_id='bencherspace';
+
+update cafe set cafe_infrainformation = '- 스터디존과 컴퓨터존을 분리하여 목적에 맞게 이용 가능합니다'||chr(13)||
+'- 친환경 인테리어와 아카시아나무 소재의 원목테이블로 더 쾌적하게 이용하실 수 있습니다'||chr(13)||
+'- 장시간 앉아있어도 허리에 부담을 주지 않는 시디즈 의자를 구비했습니다'||chr(13)||
+'- 24시간 운영해서 언제든지 이용하실 수 있습니다'||chr(13)||
+'- 아메리카노와 아이스티가 무료로 제공됩니다'||chr(13)||
+'- 모든 방에 개별 냉난방기가 설치되어 있어 겨울엔 따듯하게, 여름에는 시원하게 이용 가능합니다' where cafe_id='bencherspace';
+
+update cafe set cafe_note = '- 스터디룸의 경우 예약이 빨리 마감되므로 빠른 예약 부탁드립니다.' where cafe_id='bencherspace';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='bencherspace';
+ 
+   =======================================================================================================================================
+ 
+   insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('wingstudy', '윙 스터디카페', 'wingstudy', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/wingstudy/1.png', './assets/img/cafeimg/wingstudy/2.png', './assets/img/cafeimg/wingstudy/3.png', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500, sysdate);
+
+update cafe set cafe_linescription = '강남역 9번 출구에서 도보 1분 거리 스터디룸'||chr(13)||'스터디카페' where cafe_id='wingstudy';
+
+update cafe set cafe_spaceintroduction = '2020년 1월 새롭게 문을 연 24시간 프리미엄 스터디카페입니다. 강남역 5번 출구에서 약 300미터 거리에 위치하고 있어 오시기에 편리합니다. 넓은 데스크와 명품 시디즈의자, 개별 콘센트와 스탠드를 완비했으며 수험생과 직장인분들을 위한 최적의 환경을 조성했습니다. '||chr(13)||chr(13)||
+'2인실에서 10인실까지 다양한 규모의 스터디룸이 있어 여러 수업과 모임을 진행하실 수 있습니다. 망고나무가 있는 라운지에서는 커피와 홍차, 아이스티를 무료로 즐기실 수 있습니다.' where cafe_id='wingstudy';
+
+update cafe set cafe_infrainformation = '- 스터디존과 컴퓨터존을 분리하여 목적에 맞게 이용 가능합니다'||chr(13)||
+'- 친환경 인테리어와 아카시아나무 소재의 원목테이블로 더 쾌적하게 이용하실 수 있습니다'||chr(13)||
+'- 장시간 앉아있어도 허리에 부담을 주지 않는 시디즈 의자를 구비했습니다'||chr(13)||
+'- 24시간 운영해서 언제든지 이용하실 수 있습니다'||chr(13)||
+'- 아메리카노와 아이스티가 무료로 제공됩니다'||chr(13)||
+'- 모든 방에 개별 냉난방기가 설치되어 있어 겨울엔 따듯하게, 여름에는 시원하게 이용 가능합니다' where cafe_id='wingstudy';
+
+update cafe set cafe_note = '- 스터디룸의 경우 예약이 빨리 마감되므로 빠른 예약 부탁드립니다.' where cafe_id='wingstudy';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='wingstudy';
+ 
+    =======================================================================================================================================
+  
+   insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('gongzone', '24시공존스터디룸', 'gongzone', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/gongzone/1.jpg', './assets/img/cafeimg/gongzone/2.jpg', './assets/img/cafeimg/gongzone/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500, sysdate);
+
+update cafe set cafe_linescription = '강남역 11번출구 24시'||chr(13)||'스터디룸입니다.' where cafe_id='gongzone';
+
+update cafe set cafe_spaceintroduction = '24시 365일 이용가능한 무인 스터디 카페&룸 입니다.'||chr(13)||
+'9월 오픈하여 깨끗하고 쾌적한 공간에서 모임 및 스터디를 이용할 수 있습니다^^'||chr(13)||
+'2인룸 5인룸 6인룸 10인룸 12인룸 보유하고 있어 다양한 스터디 모임 할 수 있습니다.'||chr(13)||
+'각방에 최신식 냉난방기가 있어 무더위와 추위 상관없이 편안하게 사용 가능하십니다.'||chr(13)||
+'각방 화이트보드 무료 사용' where cafe_id='gongzone';
+
+update cafe set cafe_infrainformation = '1.화이트보드'||chr(13)||
+'2.빔프로젝터'||chr(13)||
+'3.40인치 티비모니터'||chr(13)||
+'4.2018.9월오픈 쾌적한 공간'||chr(13)||
+'5.모든 룸 최신식 냉난방기 제공'||chr(13)||
+'6.5모든 룸 최신식 냉난방기 제공'||chr(13)||
+'7.365일 24시간 최신 무인시스템' where cafe_id='gongzone';
+
+update cafe set cafe_note = '- 스터디룸의 경우 예약이 빨리 마감되므로 빠른 예약 부탁드립니다.' where cafe_id='gongzone';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='gongzone';
+ 
+     =======================================================================================================================================
+  
+     insert into cafe(cafe_id, cafe_name, cafe_pwd, cafe_address, cafe_contact, cafe_time, cafe_rest, cafe_image1, cafe_image2, cafe_image3, cafe_hashtag1, cafe_hashtag2, cafe_hashtag3, cafe_hashtag4, cafe_category1, cafe_category1Price, cafe_category2, cafe_category2Price, cafe_regdate) 
+   values('moimilju', '강남역 모임일주', 'moimilju', '서울특별시 서초구 사임당로 173 서전빌딩 지하 1층', '02-2158-1984', '00시~24시', '없음', './assets/img/cafeimg/moimilju/1.jpg', './assets/img/cafeimg/moimilju/2.jpg', './assets/img/cafeimg/moimilju/3.jpg', '#강남역스터디룸', '#스터디룸', '#강남스터디룸', '#강남역모임공간', '4인실', 1500, '6인실', 1500, sysdate);
+
+update cafe set cafe_linescription = '강남역10번출구, 24/연중무휴'||chr(13)||'스터디카페' where cafe_id='moimilju';
+
+update cafe set cafe_spaceintroduction = '24시 365일 이용가능한 유럽풍 스타일의 스터디카페 카이스터디 입니다.'||chr(13)||
+'11월 오픈하여 분위기 좋은 곳에서 다양한 모임과 스터디 공간을 이용하실수 있습니다.'||chr(13)||
+'4인-6인이 사용할수 있는 스터디룸은 모니터(hdmi케이블보유), 냉난방기, 공기공조시설을 별도로 갖추고 있습니다.' where cafe_id='moimilju';
+
+update cafe set cafe_infrainformation = '- 화이트보드'||chr(13)||
+'- 34인치 모니터'||chr(13)||
+'- 2018년.11월 정식오픈'||chr(13)||
+'- 고급 원두커피 및 다양한 티백 제공'||chr(13)||
+'- 간단하게 즐길수 있는 음료, 과자 자판기 사용가능'||chr(13)||
+'- 최신식 복합기 제공 (프린터, 복사 가능)'||chr(13)||
+'- 넉넉한 공간룸' where cafe_id='moimilju';
+
+update cafe set cafe_note = '- 스터디룸 사전예약 필수 (입금 확인후 출입카코드 전송됨)'||chr(13)||
+'- 환불규정 : 당일 변경.환불불가. 전날 6시 이후 취소 및 환불불가' where cafe_id='moimilju';
+
+update cafe set cafe_refund = '1. 이용 5일 전총 금액의 100% 환불'||chr(13)||chr(13)||
+ '2. 이용 3일 전총 금액의 50% 환불'||chr(13)||chr(13)||
+ '3. 이용일 전 날 총 금액의 30% 환불'||chr(13)||chr(13)||
+ '4. 이용당일 환불 불가' where cafe_id='moimilju';
+ 
