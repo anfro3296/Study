@@ -18,13 +18,13 @@ public class EvaluationDTO {
 		return order_eval_title;
 	}
 	public void setOrder_eval_title(String order_eval_title) {
-		this.order_eval_title = order_eval_title;
+		this.order_eval_title = convert(order_eval_title);
 	}
 	public String getOrder_eval_content() {
 		return order_eval_content;
 	}
 	public void setOrder_eval_content(String order_eval_content) {
-		this.order_eval_content = order_eval_content;
+		this.order_eval_content = convert(order_eval_content);
 	}
 	public String getOrder_eval_regdate() {
 		return order_eval_regdate;
@@ -62,5 +62,20 @@ public class EvaluationDTO {
 				+ ", order_eval_title=" + order_eval_title + ", order_eval_content=" + order_eval_content
 				+ ", order_eval_regdate=" + order_eval_regdate + ", order_eval_score=" + order_eval_score
 				+ ", reser_number=" + reser_number + ", cafe_id=" + cafe_id + ", member_id=" + member_id + "]";
+	}
+	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
 	}
 }

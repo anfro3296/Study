@@ -16,13 +16,13 @@ public class NoticeDTO {
 		return notice_title;
 	}
 	public void setNotice_title(String notice_title) {
-		this.notice_title = notice_title;
+		this.notice_title = convert(notice_title);
 	}
 	public String getNotice_content() {
 		return notice_content;
 	}
 	public void setNotice_content(String notice_content) {
-		this.notice_content = notice_content;
+		this.notice_content = convert(notice_content);
 	}
 
 	public String getNotice_regdate() {
@@ -48,5 +48,20 @@ public class NoticeDTO {
 		return "NoticeDTO [notice_number=" + notice_number + ", notice_title=" + notice_title + ", notice_content="
 				+ notice_content + ", notice_regdate=" + notice_regdate + ", notice_hit=" + notice_hit + ", admin_id="
 				+ admin_id + "]";
+	}
+	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
 	}
 }

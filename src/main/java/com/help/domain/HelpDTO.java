@@ -17,13 +17,13 @@ public class HelpDTO {
 		return help_title;
 	}
 	public void setHelp_title(String help_title) {
-		this.help_title = help_title;
+		this.help_title = convert(help_title);
 	}
 	public String getHelp_content() {
 		return help_content;
 	}
 	public void setHelp_content(String help_content) {
-		this.help_content = help_content;
+		this.help_content = convert(help_content);
 	}
 	public String getHelp_regdate() {
 		return help_regdate;
@@ -44,8 +44,6 @@ public class HelpDTO {
 		this.admin_id = admin_id;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "HostDTO [help_number=" + help_number + ", help_title=" + help_title + ", help_content="
@@ -53,4 +51,18 @@ public class HelpDTO {
 				+ admin_id + "]";
 	}
 	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
+	}
 }

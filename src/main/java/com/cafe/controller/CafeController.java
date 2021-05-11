@@ -57,7 +57,7 @@ public class CafeController{
 	// By Jay_카페 상세페이지 출력하기_20210423
 	@RequestMapping("cafe/detail.do")
 	public String listBoard(@RequestParam String cafe_id, Model model){
-		log.info("CafeController의 listBoard()호출됨");
+		log.info("Controller의 cafeDetails()호출됨");
 		CafeDTO cafe = cafeDAO.list(cafe_id);
 		List<EvaluationDTO> evaluation_list = evaluationDAO.evaluation_list(cafe_id);
 		List<EvaluationReplyDTO> evaluation_reply_list = evaluationDAO.evaluation_reply_list(cafe_id);

@@ -20,7 +20,7 @@ public class ReservationDTO {
 		return reser_time;
 	}
 	public void setReser_time(String reser_time) {
-		this.reser_time = reser_time;
+		this.reser_time = convert(reser_time);
 	}
 	public int getReser_number() {
 		return reser_number;
@@ -38,19 +38,19 @@ public class ReservationDTO {
 		return reser_date;
 	}
 	public void setReser_date(String reser_date) {
-		this.reser_date = reser_date;
+		this.reser_date = convert(reser_date);
 	}
 	public String getReser_usertime() {
 		return reser_usertime;
 	}
 	public void setReser_usertime(String reser_usertime) {
-		this.reser_usertime = reser_usertime;
+		this.reser_usertime = convert(reser_usertime);
 	}
 	public String getReser_category() {
 		return reser_category;
 	}
 	public void setReser_category(String reser_category) {
-		this.reser_category = reser_category;
+		this.reser_category = convert(reser_category);
 	}
 	public int getReser_person() {
 		return reser_person;
@@ -62,7 +62,7 @@ public class ReservationDTO {
 		return reser_request;
 	}
 	public void setReser_request(String reser_request) {
-		this.reser_request = reser_request;
+		this.reser_request = convert(reser_request);
 	}
 	public String getReser_orderDate() {
 		return reser_orderDate;
@@ -108,5 +108,20 @@ public class ReservationDTO {
 				+ reser_category + ", reser_person=" + reser_person + ", reser_request=" + reser_request
 				+ ", reser_orderDate=" + reser_orderDate + ", reser_status=" + reser_status + ", member_id=" + member_id
 				+ ", cafe_id=" + cafe_id + ", reser_evaluationCheck=" + reser_evaluationCheck + "]";
+	}
+	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
 	}
 }

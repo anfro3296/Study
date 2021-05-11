@@ -16,7 +16,7 @@ public class FindReplyDTO {
 		return find_reply_content;
 	}
 	public void setFind_reply_content(String find_reply_content) {
-		this.find_reply_content = find_reply_content;
+		this.find_reply_content = convert(find_reply_content);
 	}
 	public String getFind_reply_regdate() {
 		return find_reply_regdate;
@@ -43,5 +43,18 @@ public class FindReplyDTO {
 				+ member_id + "]";
 	}
 	
-	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
+	}
 }

@@ -17,13 +17,13 @@ public class FindDTO {
 		return find_title;
 	}
 	public void setFind_title(String find_title) {
-		this.find_title = find_title;
+		this.find_title = convert(find_title);
 	}
 	public String getFind_content() {
 		return find_content;
 	}
 	public void setFind_content(String find_content) {
-		this.find_content = find_content;
+		this.find_content = convert(find_content);
 	}
 	public String getFind_regdate() {
 		return find_regdate;
@@ -51,4 +51,18 @@ public class FindDTO {
 				+ member_id + "]";
 	}
 	
+	private static String convert(String name) {
+		 if(name!=null){
+	    	   name=name.replaceAll("<","&lt");
+	    	   name=name.replaceAll(">","&gt");
+	    	   name=name.replaceAll("\\(","&#40");
+	    	   name=name.replaceAll("\\)","&#41");
+	    	   name=name.replaceAll("\"","&quot");
+	    	   name=name.replaceAll("\'","&apos");
+	    	     
+	       }else{
+	    	   return null;
+	       }  
+		 return name;
+	}
 }
