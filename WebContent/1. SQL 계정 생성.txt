@@ -6,6 +6,6 @@ SQL> create user project identified by project;
 
 3. 계정(project)에게 접속 권한(connect), 조회&입력&수정&삭제 권한(resource) 부여하기
 SQL> grant connect, resource to project;
-ㄴㄴㄴ
+
 4. project 계정으로 접속하기
 SQL> conn project/project;
